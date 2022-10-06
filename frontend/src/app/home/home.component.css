@@ -1,0 +1,29 @@
+.navbar .container-fluid, .navbar-expand-lg{
+  background-color: aqua;
+  height: 100vh;
+}
+.nav{
+  background-color: white;
+  width: 15vh;
+  height:100vh;
+  display: flex;
+  border-radius: 7px;
+  align-content: space-between;
+}
+
+.vtb-logo{
+  width: 56px;
+  margin-bottom: 2rem;
+}
+
+.profile{
+  width: 56px;
+  height: 56px;
+  background-color: antiquewhite;
+  border-radius: 5px;
+}
+
+
+ul{
+  list-style: none;
+}
