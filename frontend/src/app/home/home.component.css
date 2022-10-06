@@ -2,7 +2,7 @@
   background-color: aqua;
   height: 100vh;
 }
-.nav{
+.nav {
   background-color: white;
   width: 15vh;
   height:100vh;
@@ -26,4 +26,8 @@
 
 ul{
   list-style: none;
+}
+
+body {
+  background-color: #d8d4d4;
 }
