@@ -1,19 +1,24 @@
+
 .navbar .container-fluid, .navbar-expand-lg{
   background-color: aqua;
   height: 100vh;
 }
 .nav {
   background-color: white;
-  width: 15vh;
-  height:100vh;
+  height: 97vh;
   display: flex;
   border-radius: 7px;
-  align-content: space-between;
+  margin: 1vh;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
 }
 
 .vtb-logo{
   width: 56px;
   margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .profile{
@@ -24,8 +29,20 @@
 }
 
 
+.mat-fab{
+  margin: 5px 5px 0 0 ;
+  background-color: white;
+
+}
+.mat-fab:hover{
+  background-color: #009FDF;
+  color: white;
+}
+
+
 ul{
   list-style: none;
+  padding: 0;
 }
 
 body {
