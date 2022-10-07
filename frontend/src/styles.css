@@ -7,6 +7,27 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: lightgrey;
+  background-color: #E5E5E5;
+}
+
+.info-block{
+  background-color: white;
+  border-radius: 7px;
+  margin: 0.5rem;
+}
+
+body{
+  overflow: hidden;
+}
+@media (min-width: 576px) {
+
+}
+
+
+@media (max-width: 576px) {
+  app-navbar{
+    width: 100%;
+    position: absolute;
+  }
 }
 

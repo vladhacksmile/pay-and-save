@@ -8,8 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
 import { TargetComponent } from './target/target.component';
 import { TargetViewComponent } from './target-view/target-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -18,14 +20,16 @@ import { TargetViewComponent } from './target-view/target-view.component';
     LoginComponent,
     HomeComponent,
     TargetComponent,
-    TargetViewComponent
+    TargetViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

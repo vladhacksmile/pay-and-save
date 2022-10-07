@@ -1,50 +1,31 @@
-
-.navbar .container-fluid, .navbar-expand-lg{
-  background-color: aqua;
-  height: 100vh;
-}
-.nav {
-  background-color: white;
-  height: 97vh;
+.home{
   display: flex;
-  border-radius: 7px;
-  margin: 1vh;
-  overflow: hidden;
-  flex-direction: column;
+}
+
+.hello-block{
+  display:flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin:0.5rem;
+  height: 170px;
 }
 
-.vtb-logo{
-  width: 56px;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
+.hello-img img{
+  width:160px;
 }
 
-.profile{
-  width: 56px;
-  height: 56px;
-  background-color: antiquewhite;
-  border-radius: 5px;
-}
-
-
-.mat-fab{
-  margin: 5px 5px 0 0 ;
-  background-color: white;
-
-}
-.mat-fab:hover{
-  background-color: #009FDF;
-  color: white;
-}
-
-
-ul{
-  list-style: none;
-  padding: 0;
-}
-
-body {
-  background-color: #d8d4d4;
+@media (max-width: 576px) {
+  .home{
+    flex-direction: column;
+  }
+  .hello-block{
+    margin-top: 90px;
+    z-index: 2;
+  }
+  .content{
+    z-index: 2;
+    overflow: scroll;
+    height: 100vh;
+  }
 }
