@@ -17,3 +17,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mat-fab{
+  margin: 0 ;
+  background-color: white;
+}

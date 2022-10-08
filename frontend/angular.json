@@ -27,14 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
-            "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "./node_modules/chart.js/dist/chart.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -99,7 +97,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -110,6 +107,6 @@
   },
   "defaultProject": "frontend",
   "cli": {
-    "analytics": "3b7b8a33-c237-4809-bb67-dd3a88a9ddcb"
+    "analytics": false
   }
 }

@@ -1,4 +1,4 @@
-<div class="card px-2" style="width: 24rem; justify-content: space-between;">
+<div class="info-block" style="width: 24rem; justify-content: space-between;">
   <div class="card-body">
     <div class="inline-spaces">
       <h2 class="card-title" style="color: dodgerblue">Обучение ребенка</h2>
@@ -16,8 +16,15 @@
       </div>
     </div>
     <p>Прогресс цели: 50 000/100 000 ₽</p>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+    <div class="card">
+      <h5>Dynamic</h5>
+      <p-progressBar [value]="value"></p-progressBar>
+
+      <h5>Static</h5>
+      <p-progressBar></p-progressBar>
+
+      <h5>Indeterminate</h5>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
     </div>
   </div>
 </div>
