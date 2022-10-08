@@ -12,6 +12,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { TargetComponent } from './target/target.component';
 import { TargetViewComponent } from './target-view/target-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {ChartModule} from "primeng/chart";
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
