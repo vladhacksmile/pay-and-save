@@ -15,7 +15,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {ChartModule} from "primeng/chart";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
