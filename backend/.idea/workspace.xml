@@ -5,20 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5de5854-f190-4341-bcdd-18eb40a05aba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hackathon/vtb/backend/BackendApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hackathon/vtb/backend/ServletInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hackathon/vtb/backend/controller/AuthorizeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hackathon/vtb/backend/entity/Target.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/hackathon/vtb/backend/BackendApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665227647517</updated>
-      <workItem from="1665227649578" duration="5533000" />
+      <workItem from="1665227649578" duration="5714000" />
     </task>
     <servers />
   </component>
