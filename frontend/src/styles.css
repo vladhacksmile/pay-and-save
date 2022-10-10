@@ -16,6 +16,10 @@ body {
   margin: 0.5rem;
 }
 
+app-navbar{
+  width:10%;
+}
+
 body{
   overflow: hidden;
 }
@@ -28,6 +32,15 @@ body{
   app-navbar{
     width: 100%;
     position: absolute;
+    top:0;
+  }
+
+  .content{
+    z-index: 2;
+    overflow: scroll;
+    height: 93vh;
+    width:100%;
+    display: block;
   }
 }
 
