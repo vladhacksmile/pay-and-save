@@ -1,30 +1,27 @@
-<div class="info-block" style="width: 24rem; justify-content: space-between;">
+<div class="info-block" >
   <div class="card-body">
     <div class="inline-spaces">
       <h2 class="card-title" style="color: dodgerblue">Обучение ребенка</h2>
-      <button mat-mini-fab color="primary">
+      <button mat-mini-fab>
         <span class="material-icons">chevron_right</span>
       </button>
     </div>
     <div class="inline-spaces">
-      <img src="/assets/img/mgu.jpeg" class="rounded" alt="Фотография этой цели" style="width: 120px;">
-      <div style="display: block">
+<!--
+-->
+      <div style="display: block" class="price-date">
         <div>Цель должна быть выполнена:</div>
         <div style="color: dodgerblue">10 дней</div>
         <div>Осталось собрать:</div>
         <div style="color: dodgerblue">50 000 ₽</div>
       </div>
+      <span class="material-icons" style="font-size:100px">school</span>
     </div>
-    <p>Прогресс цели: 50 000/100 000 ₽</p>
+    <div class="progress">
+      <p>Прогресс цели: 50 000/100 000 ₽</p>
+    </div>
     <div class="card">
-      <h5>Dynamic</h5>
       <p-progressBar [value]="value"></p-progressBar>
-
-      <h5>Static</h5>
-      <p-progressBar></p-progressBar>
-
-      <h5>Indeterminate</h5>
-      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
-    </div>
   </div>
+</div>
 </div>

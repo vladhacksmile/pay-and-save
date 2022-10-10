@@ -1,26 +1,53 @@
 <div class="home">
   <app-navbar></app-navbar>
-
-  <div class="content first-block">
-    <div class="hello-block info-block">
-      <h4>
-        Привет<br>
-        Борис!
-      </h4>
-      <div class="hello-img">
-        <img src="assets/img/hello.png" alt="hello">
+  <div class="content">
+    <div class=" first-block">
+      <div class="hello-block info-block p-card">
+        <h1>
+          Привет<br>
+          Борис!
+        </h1>
+        <div class="hello-img">
+          <img src="assets/img/hello.png" alt="hello">
+        </div>
       </div>
-    </div>
-    <div class="important-targets info-block">
-      <h4>
-        Важные цели
-      </h4>
-      <div class="mini-target">
-
+      <div class="important-targets card info-block p-card">
+        <h2>
+          Цели
+        </h2>
+        <p-scrollPanel [style]="{width: '100%', height: '65vh'}" styleClass="custombar1">
+          <p style="width: 100%">
+            <app-target></app-target>
+            <app-target></app-target>
+            <app-target></app-target>
+            <app-target></app-target>
+            <app-target></app-target>
+          </p>
+        </p-scrollPanel>
       </div>
+
     </div>
-    <div class="charts">
-      <p-chart type="pie" [data]="data"></p-chart>
+
+    <div class="graphics p-card info-block">
+      <p-carousel [value]="basicData" [numVisible]="1" [numScroll]="2" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template pTemplate="header">
+          <h5>Basic</h5>
+        </ng-template>
+        <ng-template let-product pTemplate="item">
+          <div class="product-item">
+            <div class="product-item-content">
+              <div class="mb-3">
+                <div class="currency-graphic">
+                  <div class="card">
+                    <h5>Basic</h5>
+                    <p-chart type="line" [data]="product" ></p-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </div>
