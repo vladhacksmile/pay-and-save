@@ -30,7 +30,7 @@ public class Account implements UserDetails {
     private String name;
     private String surname;
     private Long superPriorityTarget_id;
-    private boolean isDebitMoney;
+    private boolean isUseCashback;
     private boolean isEvenDistribution;
     private boolean usedService;
     @OneToMany(targetEntity = Target.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -41,6 +41,8 @@ public class Account implements UserDetails {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
+        this.name = "Иван";
+        this.surname = "Иванов";
     }
 
     @Override

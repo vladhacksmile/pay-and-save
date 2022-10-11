@@ -11,4 +11,9 @@ public class CardUtils {
         float remainder = amount % roundingStep;
         return remainder != 0 ? roundingStep - remainder : 0;
     }
+
+    public static int generateEncryptedPan(int min, int max) {
+        max -= min;
+        return (int) (Math.random() * ++max) + min;
+    }
 }

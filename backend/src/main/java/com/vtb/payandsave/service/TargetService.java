@@ -126,7 +126,7 @@ public class TargetService {
         if(targetById.isPresent()) {
             Target target = targetById.get();
             // if(cardService.replenishmentByCard(account, targetReplenishmentRequest)) {
-                target.setAmount(target.getAmount() + targetReplenishmentRequest.getAmount());
+                target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
                 targetRepository.save(target);
                 return ResponseEntity.ok(new MessageResponse("Target replenished!"));
 //            } else {
