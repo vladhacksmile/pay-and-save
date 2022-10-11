@@ -1,7 +1,7 @@
 package com.vtb.payandsave.controller;
 
 import com.vtb.payandsave.entity.Account;
-import com.vtb.payandsave.repository.TargetRepository;
+import com.vtb.payandsave.request.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.TargetRequest;
 import com.vtb.payandsave.service.TargetService;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +28,13 @@ public class TargetController {
         return account.getTargets();
     }
 
+    @PutMapping
+    public ResponseEntity<?> update(@AuthenticationPrincipal Account account, @RequestBody TargetRequest targetRequest) {
+        return targetService.update(account, targetRequest);
+    }
+
+    @PostMapping("/replenishment")
+    public ResponseEntity<?> replenishment(@AuthenticationPrincipal Account account, @RequestBody TargetReplenishmentRequest targetReplenishmentRequest) {
+        return targetService.replenishment(account, targetReplenishmentRequest);
+    }
 }

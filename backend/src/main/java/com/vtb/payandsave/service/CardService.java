@@ -2,17 +2,19 @@ package com.vtb.payandsave.service;
 
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.Card;
-import com.vtb.payandsave.entity.Transaction;
+import com.vtb.payandsave.entity.CardTransaction;
 import com.vtb.payandsave.repository.CardRepository;
 import com.vtb.payandsave.repository.TransactionRepository;
 import com.vtb.payandsave.request.CardRequest;
 import com.vtb.payandsave.request.PayByCardRequest;
+import com.vtb.payandsave.request.TargetReplenishmentRequest;
 import com.vtb.payandsave.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class CardService {
@@ -31,32 +33,55 @@ public class CardService {
         return ResponseEntity.ok(new MessageResponse("Card created!"));
     }
 
-    /**
-     * Метод для округления трат
-     * @param card карта, по которой прошел платеж
-     * @param transaction транзакция, по которой нужно произвести округление
-     * @return результат округления в большую сторону
-     */
-    public static float calculateRoundingByTransaction(Card card, Transaction transaction) {
-        int roundingStep = card.getCardRoundingStep().getRoundingStep();
-        float remainder = transaction.getAmount() % roundingStep;
-
-        return remainder != 0 ? roundingStep - remainder : 0;
-    }
-
     @Transactional
     public ResponseEntity<?> payByCard(Account account, PayByCardRequest payByCardRequest) {
-        Card card = cardRepository.findById(payByCardRequest.getCard_id()).get();
-        if(account.getAccount_id().equals(card.getAccount().getAccount_id()) && card.getAmount() >= payByCardRequest.getAmount()) {
-            Transaction transaction = new Transaction(card, payByCardRequest.getCategory(), payByCardRequest.getAmount());
-            transactionRepository.save(transaction);
+        Optional<Card> cardById = cardRepository.findById(payByCardRequest.getCard_id());
+        if(cardById.isPresent()) {
+            Card card = cardById.get();
+            if (account.getAccount_id().equals(card.getAccount().getAccount_id())) {
+                if(card.getAmount() >= payByCardRequest.getAmount()) {
+                    CardTransaction cardTransaction = new CardTransaction(card, payByCardRequest.getCategory(), payByCardRequest.getAmount());
 
-            cardRepository.save(card);
+                    if (cardTransaction.getRoundingAmount() != 0) {
+                        card.setAmount(card.getAmount() - cardTransaction.getAmount() - cardTransaction.getRoundingAmount() + cardTransaction.getCashback());
+                        targetService.allocateMoney(account, cardTransaction.getRoundingAmount());
+                    } else {
+                        card.setAmount(card.getAmount() - cardTransaction.getAmount() + cardTransaction.getCashback());
+                    }
 
-            System.out.println("NEW TRANSACTION " + transaction);
-            System.out.println("ROUNDING TRIGGERED " + calculateRoundingByTransaction(card, transaction));
-            return ResponseEntity.ok(new MessageResponse("Transaction done! Rounded " + calculateRoundingByTransaction(card, transaction) + "rub"));
+                    transactionRepository.save(cardTransaction);
+                    cardRepository.save(card);
+
+                    return ResponseEntity.ok(new MessageResponse("Transaction done!"));
+                }
+                return ResponseEntity.badRequest().body(new MessageResponse("Not enough money for transaction!"));
+            } else {
+                return ResponseEntity.badRequest().body(new MessageResponse("Permission denied!"));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Card not found!"));
         }
-        return ResponseEntity.badRequest().body(new MessageResponse("Permission denied!"));
     }
+
+    /* public boolean replenishmentByCard(Account account, TargetReplenishmentRequest targetReplenishmentRequest) {
+        Optional<Card> cardById = cardRepository.findById(targetReplenishmentRequest.getCard_id());
+        if(cardById.isPresent()) {
+            Card card = cardById.get();
+            if (account.getAccount_id().equals(card.getAccount().getAccount_id())) {
+                if(card.getAmount() >= targetReplenishmentRequest.getAmount()) {
+                    CardTransaction cardTransaction = new CardTransaction(card, "Пополнение цели", targetReplenishmentRequest.getAmount());
+
+                    transactionRepository.save(cardTransaction);
+                    cardRepository.save(card);
+
+                    return true;
+                }
+                return false;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } */
 }

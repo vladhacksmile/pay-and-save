@@ -1,7 +1,6 @@
 package com.vtb.payandsave.controller;
 
 import com.vtb.payandsave.entity.Account;
-import com.vtb.payandsave.entity.Card;
 import com.vtb.payandsave.request.CardRequest;
 import com.vtb.payandsave.request.PayByCardRequest;
 import com.vtb.payandsave.service.CardService;

@@ -10,8 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TargetRequest {
+    private int target_id;
     private String icon_id;
     private String name;
-    private Long amount;
+    private Float amount;
     private TargetPriority priority;
 }
