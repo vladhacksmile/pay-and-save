@@ -1,6 +1,7 @@
 package com.vtb.payandsave.controller;
 
 import com.vtb.payandsave.request.LoginRequest;
+import com.vtb.payandsave.request.SignupRequest;
 import com.vtb.payandsave.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ public class AuthController {
         return authService.authUser(loginRequest);
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<?> authUserTest() {
-        return ResponseEntity.ok("test is working get");
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
+        System.out.println(signupRequest);
+        return authService.registerUser(signupRequest);
     }
 
 }

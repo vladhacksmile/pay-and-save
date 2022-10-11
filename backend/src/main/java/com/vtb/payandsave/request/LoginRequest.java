@@ -1,6 +1,13 @@
 package com.vtb.payandsave.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
 public class LoginRequest {
-    private String phoneNumber;
+    private String username;
     private String password;
 }
+

@@ -5,7 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/CardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/jwt/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/jwt/AuthenticationEntryPointImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/jwt/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/card/CardPaymentSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/card/CardRoundingStep.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/CardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/TransactionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/CardRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/PayByCardRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/SignupRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/JwtResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/MessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/CardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/configuration/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/configuration/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Target.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetPriority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetPriority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/TargetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/TargetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/TargetRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/TargetRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Target.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Target.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Transaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.html" afterDir="false" />
     </list>
@@ -14,6 +51,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -21,6 +66,14 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -31,12 +84,15 @@
     </option>
   </component>
   <component name="ProjectId" id="2FwlYb3CtPPwkvnVAyeElFTdwV1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -45,6 +101,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
@@ -77,6 +134,12 @@
       <option name="presentableId" value="Default" />
       <updated>1665411077834</updated>
       <workItem from="1665411083859" duration="458000" />
+      <workItem from="1665411559739" duration="826000" />
+      <workItem from="1665412432086" duration="42000" />
+      <workItem from="1665412505296" duration="3095000" />
+      <workItem from="1665423143927" duration="11000" />
+      <workItem from="1665423173149" duration="15112000" />
+      <workItem from="1665485166624" duration="3120000" />
     </task>
     <task id="LOCAL-00001" summary="added backend skeleton">
       <created>1665411315552</created>
@@ -85,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665411315552</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added pom">
+      <created>1665411741686</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665411741686</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +163,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added backend skeleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="added backend skeleton" />
+    <MESSAGE value="added pom" />
+    <option name="LAST_COMMIT_MESSAGE" value="added pom" />
   </component>
 </project>
