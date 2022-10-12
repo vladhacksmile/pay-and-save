@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/ProfileRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/ProfileResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/ProfileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/card/CardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/card/CardUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" afterDir="false" />
@@ -40,6 +33,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="profile, card fields, fixes" />
         <option value="Vladislav Kharin &lt;54905627+vladhacksmile@users.noreply.github.com&gt;" />
       </list>
     </option>
@@ -122,7 +116,9 @@
       <workItem from="1665412505296" duration="3095000" />
       <workItem from="1665423143927" duration="11000" />
       <workItem from="1665423173149" duration="15112000" />
-      <workItem from="1665485166624" duration="25796000" />
+      <workItem from="1665485166624" duration="25944000" />
+      <workItem from="1665561984733" duration="502000" />
+      <workItem from="1665567727696" duration="1579000" />
     </task>
     <task id="LOCAL-00001" summary="added backend skeleton">
       <created>1665411315552</created>
@@ -152,17 +148,25 @@
       <option name="project" value="LOCAL" />
       <updated>1665509015864</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="profiles, card fields and fixes">
+      <created>1665513337014</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665513337014</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added backend skeleton" />
     <MESSAGE value="added pom" />
     <MESSAGE value="account, card and transactions, targets" />
     <MESSAGE value="saving accounts, transactions modify, services, logic targets" />
-    <option name="LAST_COMMIT_MESSAGE" value="saving accounts, transactions modify, services, logic targets" />
+    <MESSAGE value="added backend skeleton" />
+    <MESSAGE value="profiles, card fields and fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="profiles, card fields and fixes" />
   </component>
 </project>
