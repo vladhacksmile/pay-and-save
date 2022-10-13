@@ -1,0 +1,51 @@
+<div class="block info-block p-card">
+  <form class="settings-form" [formGroup]="form" (submit)="onSubmit()">
+    <div class="buttons-block">
+      <button pButton pRipple type="button" label="Назад" [routerLink]="['/home']" class="p-button-outlined"></button>
+      <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit"></button>
+    </div>
+    <div class="settings-main-info">
+      <span class="header-target">
+        <h1>
+          Настройки
+        </h1>
+      </span>
+      <div class="sample-input-target">
+            <span class="text-input-target">
+               Ваше имя:
+            </span>
+        <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" type="text" formControlName="name" placeholder="Название цели" pInputText>
+              </span>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Ваша фамилия:
+            </span>
+          <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" type="text" formControlName="surname" placeholder="Название цели" pInputText>
+              </span>
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Будет ли цель супер-приоритетной?
+            </span>
+          <div class="input-target">
+            <p-inputSwitch formControlName="isUseCashBack"></p-inputSwitch>
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Будет ли цель супер-приоритетной?
+            </span>
+          <div class="input-target">
+            <p-inputSwitch formControlName="isEvenDistribution"></p-inputSwitch>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

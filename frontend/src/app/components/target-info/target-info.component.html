@@ -1,0 +1,102 @@
+<div class="block info-block p-card">
+  <div class="buttons-block">
+    <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
+    <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit"></button>
+  </div>
+  <div class="main-content">
+    <span class="header-target">
+              <h1>
+                {{targetInfo.name}}
+              </h1>
+    </span>
+    <div class="info-target">
+
+      <div class="main-info-target">
+        <div class="sample-title-input-target">
+            <span class="text-input-target title-target">
+              Прогресс цели:
+            </span>
+          <div class="subtitle-target">
+            <div class="card">
+              <p-progressBar [value]="percentage"></p-progressBar>
+            </div>
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Сумма которую хотите накопить:
+            </span>
+          <div class="input-target">
+            {{targetInfo.amount}}
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Приоритет цели:
+            </span>
+          <div class="input-target">
+            {{targetInfo.priority == "HIGH"? "Высокий": targetInfo.priority == "MEDIUM"? "Средний": targetInfo.priority == "LOW"? "Низкий":null}}
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Супер-приоритет:
+            </span>
+          <div class="input-target">
+<!--            {{targetInfo.isSuperPriority == true? "Да": "Нет"}}-->
+          </div>
+        </div>
+        <div class="sample-input-target">
+            <span class="text-input-target">
+              Дата начала накопления:
+            </span>
+          <div class="input-target">
+            {{targetInfo.creationDate| date: 'dd.L.yyyy' }}
+          </div>
+        </div>
+        <div class="sample-title-input-target">
+            <span class="text-input-target title-target">
+              Сумма которую хотите внести сейчас:
+            </span>
+          <div class="subtitle-target">
+            <div class="card">
+              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU"></p-inputNumber>
+              <button pButton pRipple type="button" label="Пополнить цель" [routerLink]="['/home']" class="p-button-outlined"></button>
+            </div>
+          </div>
+        </div>
+        <span class="text-input-target title-target">
+              Прогресс цели:
+      </span>
+      </div>
+      <div class="image-target">
+        <span class="material-icons target-icon-big" >{{targetInfo.icon_id}}</span>
+      </div>
+    </div>
+    <div class="sample-title-input-target">
+      <div class="subtitle-target">
+        <div class="col-12 md:col-4">
+          <p-scrollPanel [style]="{width: '80%', height: '200px', margin: 'auto'}" styleClass="custombar1">
+            <div class="layout-transactions">
+              <div class="layout-transaction" *ngFor="let transaction of targetInfo.savingAccount.savingAccountTransactions; index as i;">
+                <div class="transaction">
+                  <span class="material-icons transaction-icon">shopping_cart</span>
+                </div>
+                <div class="transaction-category">
+                  {{transaction.category}}
+                </div>
+                <div class="transaction-data">
+                  {{transaction.date | date : 'dd.L.yyyy' }}
+                </div>
+                <div class="transaction-amount">
+                  {{transaction.amount}}
+                </div>
+              </div>
+            </div>
+          </p-scrollPanel>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

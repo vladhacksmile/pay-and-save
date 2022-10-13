@@ -1,6 +1,7 @@
 package com.vtb.payandsave.service;
 
 import com.vtb.payandsave.entity.*;
+import com.vtb.payandsave.model.target.TargetPriority;
 import com.vtb.payandsave.repository.AccountRepository;
 import com.vtb.payandsave.repository.SavingAccountRepository;
 import com.vtb.payandsave.repository.TargetRepository;
@@ -43,16 +44,14 @@ public class TargetService {
 
             for (Target target : account.getTargets()) {
                 // Возможно не оптимальный алгоритм, но это первое что придумал
-                switch (target.getPriority()) {
-                    case HIGH:
-                        highPriority++;
-                        break;
-                    case MIDDLE:
-                        middlePriority++;
-                    case LOW:
-                        lowPriority++;
-                    default:
-                        System.err.println("Обнаружена цель без приоритета!");
+                if (target.getPriority() == TargetPriority.HIGH) {
+                    highPriority++;
+                } else if (target.getPriority() == TargetPriority.MIDDLE) {
+                    middlePriority++;
+                } else if (target.getPriority() == TargetPriority.LOW) {
+                    lowPriority++;
+                } else {
+                    System.err.println("Обнаружена цель без приоритета!");
                 }
             }
 
@@ -98,9 +97,9 @@ public class TargetService {
                 return;
             }
 
-            float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / account.getTargets().size();
-            float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / account.getTargets().size();
-            float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / account.getTargets().size();
+            float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / highPriority;
+            float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / middlePriority;
+            float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / lowPriority;
 
             for (Target target : account.getTargets()) {
                 float moneyPerTarget = 0;

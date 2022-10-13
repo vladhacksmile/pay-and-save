@@ -1,0 +1,23 @@
+<div class="info-block" >
+  <div class="card-body">
+    <div class="inline-spaces">
+      <h2 class="card-title" style="color: dodgerblue">{{targetInfo.name}}</h2>
+      <button mat-mini-fab>
+        <span class="material-icons">chevron_right</span>
+      </button>
+    </div>
+    <div class="inline-spaces">
+      <div style="display: block" class="price-date">
+        <div>Осталось собрать:</div>
+        <div style="color: dodgerblue">{{targetInfo.amount - targetInfo.sum}} ₽</div>
+      </div>
+      <span class="material-icons" style="font-size:100px">{{targetInfo.icon_id}}</span>
+    </div>
+    <div class="progress">
+      <p>Прогресс цели: {{targetInfo.sum}}/{{targetInfo.amount}} ₽</p>
+    </div>
+    <div class="card">
+      <p-progressBar [value]="percentage"></p-progressBar>
+  </div>
+</div>
+</div>

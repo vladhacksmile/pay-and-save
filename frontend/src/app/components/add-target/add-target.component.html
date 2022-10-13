@@ -1,0 +1,72 @@
+<div class="block">
+  <form class="add-target-form" [formGroup]="form" (submit)="onSubmit()">
+  <div class="main-content info-block p-card">
+      <div class="buttons-block">
+        <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit"></button>
+        <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
+      </div>
+      <div class="info-target">
+        <div class="main-info-target">
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Название цели
+            </span>
+            <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" id="target-name" type="text" formControlName="name" placeholder="Название цели" pInputText>
+              </span>
+            </div>
+          </div>
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Сумма которую хотите накопить
+            </span>
+            <div class="input-target">
+              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" [(ngModel)]="value1" styleClass="abc" inputId="integeronly" formControlName="amount" placeholder="Введите сумму">
+              </p-inputNumber>
+            </div>
+          </div>
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Будет ли цель супер-приоритетной?
+            </span>
+            <div class="input-target">
+              <p-inputSwitch formControlName="isSuperPriority"></p-inputSwitch>
+            </div>
+          </div>
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Приоритет цели
+            </span>
+          <div class="input-target">
+            <p-dropdown [style]="{'width':'100%'}" [options]="priorities" formControlName="priority" placeholder="Выберите приоритет" optionLabel="name" optionValue="value" [showClear]="true"></p-dropdown>
+          </div>
+        </div>
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Выберите изображение цели
+            </span>
+            <div class="input-target">
+              <p-dropdown [style]="{'width':'100%'}" [options]="icons" [(ngModel)]="selectedIcon" formControlName="icon" optionLabel="name" placeholder="Выберите иконку" >
+                <ng-template pTemplate="selectedItem">
+                  <div class="icon-item icon-item-value"  *ngIf="selectedIcon">
+                    <div>{{selectedIcon.name}}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-icon pTemplate="item">
+                  <div class="icon-item">
+                    <span class="material-icons">{{icon.value}}</span>
+                    <div>{{icon.name}}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="image-target">
+          <span class="material-icons target-icon-big" *ngIf="selectedIcon">{{selectedIcon.value}}</span>
+        </div>
+      </div>
+  </div>
+  </form>
+</div>

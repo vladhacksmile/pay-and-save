@@ -20,13 +20,16 @@ app-navbar{
   width:10%;
 }
 
+app-home{
+  display: contents;
+}
+
 body{
   overflow: hidden;
 }
-@media (min-width: 576px) {
-
+.main-info{
+  width:90%
 }
-
 
 @media (max-width: 576px) {
   app-navbar{
@@ -34,13 +37,12 @@ body{
     position: absolute;
     top:0;
   }
-
-  .content{
+  .main-info{
     z-index: 2;
     overflow: scroll;
-    height: 93vh;
+    height: 77vh;
     width:100%;
-    display: block;
+    margin-top: 90px;
   }
 }
 
