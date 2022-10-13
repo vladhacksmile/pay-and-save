@@ -1,6 +1,6 @@
 package com.vtb.payandsave.repository;
 
-import com.vtb.payandsave.entity.CardTransaction;
+import com.vtb.payandsave.entity.card.CardTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

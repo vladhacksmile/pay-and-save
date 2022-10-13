@@ -1,6 +1,6 @@
-package com.vtb.payandsave.request;
+package com.vtb.payandsave.request.auth;
 
-import com.vtb.payandsave.entity.Card;
+import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.entity.Target;
 import lombok.Getter;
 import lombok.Setter;

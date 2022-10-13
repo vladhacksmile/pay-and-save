@@ -1,4 +1,4 @@
-package com.vtb.payandsave.request;
+package com.vtb.payandsave.request.target;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TargetReplenishmentRequest {
-    private Long target_id;
     private Long card_id;
     private float amount;
 }

@@ -1,4 +1,4 @@
-package com.vtb.payandsave.request;
+package com.vtb.payandsave.request.card;
 
 import com.vtb.payandsave.model.card.enums.CardPaymentSystem;
 import com.vtb.payandsave.model.card.enums.CardType;

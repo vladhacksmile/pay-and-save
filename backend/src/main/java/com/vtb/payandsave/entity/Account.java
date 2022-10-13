@@ -1,6 +1,7 @@
 package com.vtb.payandsave.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vtb.payandsave.entity.card.Card;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,7 +35,7 @@ public class Account implements UserDetails {
     private boolean isEvenDistribution;
     private boolean usedService;
     @OneToMany(targetEntity = Target.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Target> targets;
+    private Set<Target> targets;
     @OneToMany(targetEntity = Card.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Card> cards;
 

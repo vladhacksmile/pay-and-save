@@ -1,4 +1,4 @@
-package com.vtb.payandsave.request;
+package com.vtb.payandsave.request.target;
 
 import com.vtb.payandsave.model.target.TargetPriority;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TargetRequest {
-    private int target_id;
     private String icon_id;
     private String name;
     private Float amount;
     private TargetPriority priority;
+    private boolean isSuperPriority;
 }

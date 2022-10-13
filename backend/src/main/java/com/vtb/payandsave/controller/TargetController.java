@@ -1,8 +1,10 @@
 package com.vtb.payandsave.controller;
 
 import com.vtb.payandsave.entity.Account;
-import com.vtb.payandsave.request.TargetReplenishmentRequest;
-import com.vtb.payandsave.request.TargetRequest;
+import com.vtb.payandsave.entity.Target;
+import com.vtb.payandsave.exception.TargetNotFoundException;
+import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
+import com.vtb.payandsave.request.target.TargetRequest;
 import com.vtb.payandsave.service.TargetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,13 +30,18 @@ public class TargetController {
         return account.getTargets();
     }
 
-    @PutMapping
-    public ResponseEntity<?> update(@AuthenticationPrincipal Account account, @RequestBody TargetRequest targetRequest) {
-        return targetService.update(account, targetRequest);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetRequest targetRequest) {
+        return targetService.update(account, getTargetById(account, id), targetRequest);
     }
 
-    @PostMapping("/replenishment")
-    public ResponseEntity<?> replenishment(@AuthenticationPrincipal Account account, @RequestBody TargetReplenishmentRequest targetReplenishmentRequest) {
-        return targetService.replenishment(account, targetReplenishmentRequest);
+    @PostMapping("/{id}/replenishment")
+    public ResponseEntity<?> replenishment(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetReplenishmentRequest targetReplenishmentRequest) {
+        return targetService.replenishment(account, getTargetById(account, id), targetReplenishmentRequest);
+    }
+
+    @GetMapping("/{id}")
+    public Target getTargetById(@AuthenticationPrincipal Account account, @PathVariable long id) {
+        return account.getTargets().stream().filter(target -> target.getTarget_id().equals(id)).findFirst().orElseThrow(TargetNotFoundException::new);
     }
 }

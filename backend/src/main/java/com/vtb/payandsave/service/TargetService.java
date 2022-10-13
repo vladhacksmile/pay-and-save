@@ -1,11 +1,14 @@
 package com.vtb.payandsave.service;
 
 import com.vtb.payandsave.entity.*;
-import com.vtb.payandsave.repository.AccountRepository;
-import com.vtb.payandsave.repository.SavingAccountRepository;
-import com.vtb.payandsave.repository.TargetRepository;
-import com.vtb.payandsave.request.TargetReplenishmentRequest;
-import com.vtb.payandsave.request.TargetRequest;
+import com.vtb.payandsave.entity.card.Card;
+import com.vtb.payandsave.entity.card.CardTransaction;
+import com.vtb.payandsave.entity.savingAccount.SavingAccount;
+import com.vtb.payandsave.entity.savingAccount.SavingAccountTransaction;
+import com.vtb.payandsave.model.target.TargetAllocateMoneyType;
+import com.vtb.payandsave.repository.*;
+import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
+import com.vtb.payandsave.request.target.TargetRequest;
 import com.vtb.payandsave.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,117 +29,152 @@ public class TargetService {
     @Autowired
     AccountRepository accountRepository;
 
-//    @Autowired
-//    CardService cardService;
+    @Autowired
+    CardRepository cardRepository;
+    TransactionRepository transactionRepository;
+
+    private String getNameOfTransactionByTargetAllocateMoneyType(CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
+        return targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? "Округление трат" : "Кешбек за покупки";
+    }
 
     @Transactional
-    public void allocateMoney(Account account, float money) {
-        if(account.isEvenDistribution()) {
-            float moneyPerTarget = money / account.getTargets().size();
-            for (Target target : account.getTargets()) {
-                target.setSum(target.getSum() + moneyPerTarget);
+    public void allocateMoney(Account account, CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
+        float money = targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? transaction.getRoundingAmount() : transaction.getCashback();
+
+        if(account.getSuperPriorityTarget_id() != null) {
+            Optional<Target> targetById = targetRepository.findById(account.getSuperPriorityTarget_id());
+            if(targetById.isPresent()) {
+                Target target = targetById.get();
+                if(target.getAccount().getAccount_id().equals(account.getAccount_id())) {
+                    target.setSum(target.getSum() + money);
+                    target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), getNameOfTransactionByTargetAllocateMoneyType(transaction, targetAllocateMoneyType), transaction.getCategory(), money));
+                    targetRepository.save(target);
+                } else {
+                    System.err.println("Предотвращена попытка пополнить чужую цель!");
+                }
             }
         } else {
-            int highPriority = 0;
-            int middlePriority = 0;
-            int lowPriority = 0;
-
-            for (Target target : account.getTargets()) {
-                // Возможно не оптимальный алгоритм, но это первое что придумал
-                switch (target.getPriority()) {
-                    case HIGH:
-                        highPriority++;
-                        break;
-                    case MIDDLE:
-                        middlePriority++;
-                        break;
-                    case LOW:
-                        lowPriority++;
-                        break;
-                    default:
-                        System.err.println("Обнаружена цель без приоритета!");
+            if (account.isEvenDistribution()) {
+                float moneyPerTarget = money / account.getTargets().size();
+                for (Target target : account.getTargets()) {
+                    target.setSum(target.getSum() + moneyPerTarget);
+                    target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), getNameOfTransactionByTargetAllocateMoneyType(transaction, targetAllocateMoneyType), transaction.getCategory(), money));
                 }
-            }
-
-            float percentHighPriority;
-            float percentMiddlePriority;
-            float percentLowPriority;
-            if(highPriority > 0 && middlePriority > 0 && lowPriority > 0) {
-                percentHighPriority = 50;
-                percentMiddlePriority = 30;
-                percentLowPriority = 20;
-            } else if(highPriority == 0 && middlePriority > 0 && lowPriority > 0) {
-                percentHighPriority = 0;
-                percentMiddlePriority = 55;
-                percentLowPriority = 45;
-            } else if(highPriority > 0 && middlePriority == 0 && lowPriority > 0) {
-                percentHighPriority = 65;
-                percentMiddlePriority = 0;
-                percentLowPriority = 35;
-            } else if(highPriority > 0 && middlePriority > 0 && lowPriority == 0) {
-                percentHighPriority = 65;
-                percentMiddlePriority = 45;
-                percentLowPriority = 0;
-            } else if(highPriority > 0 && middlePriority == 0 && lowPriority == 0) {
-                percentHighPriority = 100;
-                percentMiddlePriority = 0;
-                percentLowPriority = 0;
-            } else if(highPriority == 0 && middlePriority > 0 && lowPriority == 0) {
-                percentHighPriority = 0;
-                percentMiddlePriority = 100;
-                percentLowPriority = 0;
-            } else if(highPriority == 0 && middlePriority == 0 && lowPriority > 0) {
-                percentHighPriority = 0;
-                percentMiddlePriority = 0;
-                percentLowPriority = 100;
-            } else if(highPriority == 0 && middlePriority == 0 && lowPriority == 0) {
-                // По идее мы сюда не должны попасть, но на всякий случай пусть будет
-                percentHighPriority = 0;
-                percentMiddlePriority = 0;
-                percentLowPriority = 0;
+                accountRepository.save(account);
             } else {
-                // По идее мы сюда не должны попасть, но на всякий случай пусть будет
-                System.err.println("Возможно какой-то случай в распределениии процентов на цели не обработан!");
-                return;
-            }
+                int highPriority = 0;
+                int middlePriority = 0;
+                int lowPriority = 0;
 
-            float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / highPriority;
-            float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / middlePriority;
-            float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / lowPriority;
-
-            for (Target target : account.getTargets()) {
-                float moneyPerTarget = 0;
-                switch (target.getPriority()) {
-                    case HIGH:
-                        moneyPerTarget = moneyPerHighPriorityTarget;
-                        break;
-                    case MIDDLE:
-                        moneyPerTarget = moneyPerMiddlePriorityTarget;
-                        break;
-                    case LOW:
-                        moneyPerTarget = moneyPerLowPriorityTarget;
-                        break;
+                for (Target target : account.getTargets()) {
+                    switch (target.getPriority()) {
+                        case HIGH:
+                            highPriority++;
+                            break;
+                        case MIDDLE:
+                            middlePriority++;
+                            break;
+                        case LOW:
+                            lowPriority++;
+                            break;
+                        default:
+                            System.err.println("Обнаружена цель без приоритета!");
+                            break;
+                    }
                 }
-                target.setSum(target.getSum() + moneyPerTarget);
-                target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Какая-то транзакция", moneyPerTarget));
-                targetRepository.save(target);
+
+                float percentHighPriority;
+                float percentMiddlePriority;
+                float percentLowPriority;
+                if (highPriority > 0 && middlePriority > 0 && lowPriority > 0) {
+                    percentHighPriority = 50;
+                    percentMiddlePriority = 30;
+                    percentLowPriority = 20;
+                } else if (highPriority == 0 && middlePriority > 0 && lowPriority > 0) {
+                    percentHighPriority = 0;
+                    percentMiddlePriority = 55;
+                    percentLowPriority = 45;
+                } else if (highPriority > 0 && middlePriority == 0 && lowPriority > 0) {
+                    percentHighPriority = 65;
+                    percentMiddlePriority = 0;
+                    percentLowPriority = 35;
+                } else if (highPriority > 0 && middlePriority > 0 && lowPriority == 0) {
+                    percentHighPriority = 65;
+                    percentMiddlePriority = 45;
+                    percentLowPriority = 0;
+                } else if (highPriority > 0 && middlePriority == 0 && lowPriority == 0) {
+                    percentHighPriority = 100;
+                    percentMiddlePriority = 0;
+                    percentLowPriority = 0;
+                } else if (highPriority == 0 && middlePriority > 0 && lowPriority == 0) {
+                    percentHighPriority = 0;
+                    percentMiddlePriority = 100;
+                    percentLowPriority = 0;
+                } else if (highPriority == 0 && middlePriority == 0 && lowPriority > 0) {
+                    percentHighPriority = 0;
+                    percentMiddlePriority = 0;
+                    percentLowPriority = 100;
+                } else {
+                    // По идее мы сюда не должны попасть, но на всякий случай пусть будет
+                    System.err.println("Возможно какой-то случай в распределениии процентов на цели не обработан!");
+                    return;
+                }
+
+                float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / highPriority;
+                float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / middlePriority;
+                float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / lowPriority;
+
+                for (Target target : account.getTargets()) {
+                    float moneyPerTarget = 0;
+                    switch (target.getPriority()) {
+                        case HIGH:
+                            moneyPerTarget = moneyPerHighPriorityTarget;
+                            break;
+                        case MIDDLE:
+                            moneyPerTarget = moneyPerMiddlePriorityTarget;
+                            break;
+                        case LOW:
+                            moneyPerTarget = moneyPerLowPriorityTarget;
+                            break;
+                    }
+                    target.setSum(target.getSum() + moneyPerTarget);
+                    target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), getNameOfTransactionByTargetAllocateMoneyType(transaction, targetAllocateMoneyType), transaction.getCategory(), moneyPerTarget));
+                    targetRepository.save(target);
+                }
             }
         }
     }
 
-   public ResponseEntity<?> replenishment(Account account, TargetReplenishmentRequest targetReplenishmentRequest) {
-        Optional<Target> targetById = targetRepository.findById(targetReplenishmentRequest.getTarget_id());
-        if(targetById.isPresent()) {
-            Target target = targetById.get();
-            // if(cardService.replenishmentByCard(account, targetReplenishmentRequest)) {
-                target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
-                targetRepository.save(target);
-                return ResponseEntity.ok(new MessageResponse("Target replenished!"));
-//            } else {
-//                return ResponseEntity.badRequest().body(new MessageResponse("Target not replenished! Check your balance or check card id!"));
-//            }
+    @Transactional
+    public boolean operationByCard(Account account, Long card_id, String name, String category, Float amount) {
+        // TODO это должно вызываться из сервиса карты, но из-за рекурсии пришлось вынести этот метод в сервис с целями
+        Optional<Card> cardById = cardRepository.findById(card_id);
+        if(cardById.isPresent()) {
+            Card card = cardById.get();
+            if (account.getAccount_id().equals(card.getAccount().getAccount_id())) {
+                if(card.getAmount() >= amount) {
+                    CardTransaction cardTransaction = new CardTransaction(card, name, category, amount);
+
+                    transactionRepository.save(cardTransaction);
+                    cardRepository.save(card);
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        return ResponseEntity.badRequest().body(new MessageResponse("Target not found!"));
+        return false;
+    }
+
+   public ResponseEntity<?> replenishment(Account account, Target target, TargetReplenishmentRequest targetReplenishmentRequest) {
+        if(operationByCard(account, targetReplenishmentRequest.getCard_id(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount())) {
+            target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
+            target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount()));
+            targetRepository.save(target);
+            return ResponseEntity.ok(new MessageResponse("Target replenished!"));
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Target not replenished! Check your balance or card id!"));
+        }
     }
 
     public ResponseEntity<?> add(Account account, TargetRequest targetRequest) {
@@ -144,20 +182,31 @@ public class TargetService {
         Target target = new Target(targetRequest.getIcon_id(), targetRequest.getName(), targetRequest.getAmount(), targetRequest.getPriority(), account, savingAccount);
         savingAccount.setTarget(target);
         targetRepository.save(target);
+        processingSuperPriority(account, target, targetRequest);
         return ResponseEntity.ok(new MessageResponse("Target added!"));
     }
 
-    public ResponseEntity<?> update(Account account, TargetRequest targetRequest) {
-        Target target = account.getTargets().get(targetRequest.getTarget_id());
-        if(target != null) {
-            target.setIcon_id(targetRequest.getIcon_id());
-            target.setName(targetRequest.getName());
-            target.setAmount(targetRequest.getAmount());
-            target.setPriority(targetRequest.getPriority());
-            targetRepository.save(target);
-            return ResponseEntity.ok(new MessageResponse("Target updated!"));
+    private void processingSuperPriority(Account account, Target target, TargetRequest targetRequest) {
+        // Обработка случая с супер-приоритетом
+        if (targetRequest.isSuperPriority() && !account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
+            account.setSuperPriorityTarget_id(target.getTarget_id());
+            accountRepository.save(account);
+        } else if(!targetRequest.isSuperPriority() && account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
+            account.setSuperPriorityTarget_id(null);
+            accountRepository.save(account);
         }
-        return ResponseEntity.badRequest().body(new MessageResponse("Target not found!"));
+    }
+
+    public ResponseEntity<?> update(Account account, Target target, TargetRequest targetRequest) {
+        target.setIcon_id(targetRequest.getIcon_id());
+        target.setName(targetRequest.getName());
+        target.setAmount(targetRequest.getAmount());
+        target.setPriority(targetRequest.getPriority());
+        targetRepository.save(target);
+
+        processingSuperPriority(account, target, targetRequest);
+
+        return ResponseEntity.ok(new MessageResponse("Target updated!"));
     }
 
 }
