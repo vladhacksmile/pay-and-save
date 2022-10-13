@@ -1,4 +1,5 @@
 # pay-and-save
-Finalists of Hackathon VTB API make a Pay And Save Service
-Hello, vlad
-It's Ali
+Pay And Save Service
+
+
+UI (доступ открыт): https://www.figma.com/file/nl61E5KHmGk1ndyGLa93bD/VTB-API?node-id=0%3A1
