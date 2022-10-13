@@ -49,8 +49,10 @@ public class TargetService {
                         break;
                     case MIDDLE:
                         middlePriority++;
+                        break;
                     case LOW:
                         lowPriority++;
+                        break;
                     default:
                         System.err.println("Обнаружена цель без приоритета!");
                 }
@@ -98,9 +100,9 @@ public class TargetService {
                 return;
             }
 
-            float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / account.getTargets().size();
-            float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / account.getTargets().size();
-            float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / account.getTargets().size();
+            float moneyPerHighPriorityTarget = ((money * percentHighPriority) / 100) / highPriority;
+            float moneyPerMiddlePriorityTarget = ((money * percentMiddlePriority) / 100) / middlePriority;
+            float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / lowPriority;
 
             for (Target target : account.getTargets()) {
                 float moneyPerTarget = 0;
@@ -113,6 +115,7 @@ public class TargetService {
                         break;
                     case LOW:
                         moneyPerTarget = moneyPerLowPriorityTarget;
+                        break;
                 }
                 target.setSum(target.getSum() + moneyPerTarget);
                 target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Какая-то транзакция", moneyPerTarget));

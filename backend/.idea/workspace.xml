@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" afterDir="false" />
@@ -118,7 +118,8 @@
       <workItem from="1665423173149" duration="15112000" />
       <workItem from="1665485166624" duration="25944000" />
       <workItem from="1665561984733" duration="502000" />
-      <workItem from="1665567727696" duration="1579000" />
+      <workItem from="1665567727696" duration="2215000" />
+      <workItem from="1665665143733" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="added backend skeleton">
       <created>1665411315552</created>
@@ -155,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665513337014</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="profile">
+      <created>1665569572311</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665569572311</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +175,7 @@
     <MESSAGE value="saving accounts, transactions modify, services, logic targets" />
     <MESSAGE value="added backend skeleton" />
     <MESSAGE value="profiles, card fields and fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="profiles, card fields and fixes" />
+    <MESSAGE value="profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile" />
   </component>
 </project>
