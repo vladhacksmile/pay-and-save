@@ -1,4 +1,4 @@
-package com.vtb.payandsave.request;
+package com.vtb.payandsave.request.auth;
 
 import lombok.Getter;
 import lombok.Setter;

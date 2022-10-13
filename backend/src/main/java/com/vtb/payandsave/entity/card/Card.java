@@ -1,6 +1,7 @@
-package com.vtb.payandsave.entity;
+package com.vtb.payandsave.entity.card;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.model.card.CardUtils;
 import com.vtb.payandsave.model.card.enums.CardPaymentSystem;
 import com.vtb.payandsave.model.card.enums.CardRoundingStep;
@@ -43,10 +44,10 @@ public class Card {
     private String cardNumber;
     private String embossingName;
 
-    public Card(CardType cardType, CardPaymentSystem cardPaymentSystem, Float amount, Account account) {
+    public Card(CardType cardType, CardPaymentSystem cardPaymentSystem, Account account) {
         this.cardType = cardType;
         this.cardPaymentSystem = cardPaymentSystem;
-        this.amount = amount;
+        this.amount = 0F;
         this.isActive = true;
         this.account = account;
         this.cardExpiry = "infinity";

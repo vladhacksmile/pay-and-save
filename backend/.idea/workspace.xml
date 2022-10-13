@@ -5,71 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
-      <change afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/main/main.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/main/main.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/app/model/saving-account.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/target/TargetWithdrawRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/CardResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/TargetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/TargetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/CardTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/CardTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetAllocateMoneyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetAllocateMoneyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/ProfileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/ProfileRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/ProfileResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/ProfileResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/CardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/ProfileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/PayAndSaveBackendApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/PayAndSaveBackendApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/SavingAccount.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Target.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Target.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Transaction.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/model/card/CardType.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/model/target/TargetPriority.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/model/target/TargetPriority.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/vtb/payandsave/PayandsaveBackendApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/vtb/payandsave/PayandsaveBackendApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/add-target/add-target.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/model/card.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/add-target/add-target.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/add-target/add-target.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/add-target/add-target.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/login/login.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/login.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/login/login.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/main.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/model/profile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/main.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/main.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/main/main.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/main/main.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/main/main.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/navbar/navbar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/navbar/navbar.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/settings/settings.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/settings/settings.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/settings/settings.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/model/saving-account-transaction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target/target.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/target/target.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target/target.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/target/target.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target/target.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/target/target.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target/target.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/target/target.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/target-view/target-view.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,79 +94,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.vtb.payandsave.response" />
+      <recent name="com.vtb.payandsave.exception" />
       <recent name="com.vtb.payandsave.request" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PayAndSaveBackendApplication (1)">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PayAndSaveBackendApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.vtb.payandsave.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.vtb.payandsave.PayAndSaveBackendApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -217,11 +118,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.PayAndSaveBackendApplication (1)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -239,7 +135,8 @@
       <workItem from="1665423173149" duration="15112000" />
       <workItem from="1665485166624" duration="25944000" />
       <workItem from="1665561984733" duration="502000" />
-      <workItem from="1665567727696" duration="1579000" />
+      <workItem from="1665567727696" duration="2215000" />
+      <workItem from="1665665143733" duration="15957000" />
     </task>
     <task id="LOCAL-00001" summary="added backend skeleton">
       <created>1665411315552</created>
@@ -276,23 +173,32 @@
       <option name="project" value="LOCAL" />
       <updated>1665513337014</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="profile">
+      <created>1665569572311</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665569572311</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed target logic">
+      <created>1665665870487</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665665870487</updated>
+    </task>
+    <task id="LOCAL-00008" summary="optimisations">
+      <created>1665678912722</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665678912722</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added pom" />
@@ -300,6 +206,9 @@
     <MESSAGE value="saving accounts, transactions modify, services, logic targets" />
     <MESSAGE value="added backend skeleton" />
     <MESSAGE value="profiles, card fields and fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="profiles, card fields and fixes" />
+    <MESSAGE value="profile" />
+    <MESSAGE value="fixed target logic" />
+    <MESSAGE value="optimisations" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimisations" />
   </component>
 </project>

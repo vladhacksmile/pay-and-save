@@ -12,4 +12,5 @@ public class ProfileRequest {
     private String surname;
     private boolean isUseCashBack;
     private boolean isEvenDistribution;
+    private boolean isPercentageOnBalance;
 }
