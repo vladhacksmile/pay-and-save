@@ -33,6 +33,7 @@ public class Account implements UserDetails {
     private Long superPriorityTarget_id;
     private boolean isUseCashback;
     private boolean isEvenDistribution;
+    private boolean isPercentageOnBalance;
     private boolean usedService;
     @OneToMany(targetEntity = Target.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Target> targets;

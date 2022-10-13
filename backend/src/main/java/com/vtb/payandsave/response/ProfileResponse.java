@@ -15,4 +15,5 @@ public class ProfileResponse {
     private Long superPriorityTarget_id;
     private boolean isUseCashBack;
     private boolean isEvenDistribution;
+    private boolean isPercentageOnBalance;
 }

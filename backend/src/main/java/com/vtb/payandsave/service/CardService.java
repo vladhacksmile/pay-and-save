@@ -10,6 +10,7 @@ import com.vtb.payandsave.request.card.CardReplenishmentRequest;
 import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
 import com.vtb.payandsave.request.card.PayByCardRequest;
+import com.vtb.payandsave.response.CardResponse;
 import com.vtb.payandsave.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -102,6 +103,10 @@ public class CardService {
         }
 
         return ResponseEntity.ok(new MessageResponse("Nothing to update card settings!"));
+    }
+
+    public ResponseEntity<?> getCardSettings(Account account, Card card) {
+        return ResponseEntity.ok(new CardResponse(card.isActive(), card.getCardRoundingStep()));
     }
 
     @Transactional

@@ -5,35 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/exception/CardNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/exception/TargetNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetAllocateMoneyType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/card/CardReplenishmentRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/card/CardSettingsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/target/TargetWithdrawRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/CardResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/CardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/TargetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/controller/TargetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/CardTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/CardTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/SavingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/savingAccount/SavingAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/SavingAccountTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/savingAccount/SavingAccountTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/Target.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/CardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/SavingAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/SavingAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/repository/TransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/CardRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/card/CardRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/auth/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/PayByCardRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/card/PayByCardRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/auth/SignupRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/TargetReplenishmentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/target/TargetReplenishmentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/TargetRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/target/TargetRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/CardTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/entity/card/CardTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetAllocateMoneyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/model/target/TargetAllocateMoneyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/ProfileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/request/ProfileRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/ProfileResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/response/ProfileResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/CardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/ProfileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vtb/payandsave/service/TargetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Card.class" beforeDir="false" />
@@ -109,6 +94,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.vtb.payandsave.response" />
       <recent name="com.vtb.payandsave.exception" />
       <recent name="com.vtb.payandsave.request" />
     </key>
@@ -150,7 +136,7 @@
       <workItem from="1665485166624" duration="25944000" />
       <workItem from="1665561984733" duration="502000" />
       <workItem from="1665567727696" duration="2215000" />
-      <workItem from="1665665143733" duration="12564000" />
+      <workItem from="1665665143733" duration="15957000" />
     </task>
     <task id="LOCAL-00001" summary="added backend skeleton">
       <created>1665411315552</created>
@@ -201,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665665870487</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="optimisations">
+      <created>1665678912722</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665678912722</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +208,7 @@
     <MESSAGE value="profiles, card fields and fixes" />
     <MESSAGE value="profile" />
     <MESSAGE value="fixed target logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed target logic" />
+    <MESSAGE value="optimisations" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimisations" />
   </component>
 </project>

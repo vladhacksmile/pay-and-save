@@ -29,6 +29,7 @@ public class CardTransaction {
     private Date date;
     private float cashback = 0;
     private float roundingAmount = 0;
+    private float percentageOnBalance;
     private String operationSecurityCode;
 
     public CardTransaction(Card card, String name, String category, Float amount) {

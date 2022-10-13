@@ -9,6 +9,7 @@ import com.vtb.payandsave.model.target.TargetAllocateMoneyType;
 import com.vtb.payandsave.repository.*;
 import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.target.TargetRequest;
+import com.vtb.payandsave.request.target.TargetWithdrawRequest;
 import com.vtb.payandsave.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,12 +35,14 @@ public class TargetService {
     TransactionRepository transactionRepository;
 
     private String getNameOfTransactionByTargetAllocateMoneyType(CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
-        return targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? "Округление трат" : "Кешбек за покупки";
+        return targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? "Округление трат" :
+                (targetAllocateMoneyType == TargetAllocateMoneyType.CASHBACK ? "Кешбек за покупки" : "Процент на остаток");
     }
 
     @Transactional
     public void allocateMoney(Account account, CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
-        float money = targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? transaction.getRoundingAmount() : transaction.getCashback();
+        float money = targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? transaction.getRoundingAmount()
+                : targetAllocateMoneyType == TargetAllocateMoneyType.CASHBACK ? transaction.getCashback() : transaction.getPercentageOnBalance();
 
         if(account.getSuperPriorityTarget_id() != null) {
             Optional<Target> targetById = targetRepository.findById(account.getSuperPriorityTarget_id());
@@ -146,13 +149,13 @@ public class TargetService {
     }
 
     @Transactional
-    public boolean operationByCard(Account account, Long card_id, String name, String category, Float amount) {
+    public boolean operationByCard(Account account, Long card_id, String name, String category, Float amount, boolean positive) {
         // TODO это должно вызываться из сервиса карты, но из-за рекурсии пришлось вынести этот метод в сервис с целями
         Optional<Card> cardById = cardRepository.findById(card_id);
         if(cardById.isPresent()) {
             Card card = cardById.get();
             if (account.getAccount_id().equals(card.getAccount().getAccount_id())) {
-                if(card.getAmount() >= amount) {
+                if(card.getAmount() >= amount || positive) {
                     CardTransaction cardTransaction = new CardTransaction(card, name, category, amount);
 
                     transactionRepository.save(cardTransaction);
@@ -167,13 +170,29 @@ public class TargetService {
     }
 
    public ResponseEntity<?> replenishment(Account account, Target target, TargetReplenishmentRequest targetReplenishmentRequest) {
-        if(operationByCard(account, targetReplenishmentRequest.getCard_id(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount())) {
+        if(operationByCard(account, targetReplenishmentRequest.getCard_id(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount(), false)) {
             target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
             target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount()));
             targetRepository.save(target);
             return ResponseEntity.ok(new MessageResponse("Target replenished!"));
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Target not replenished! Check your balance or card id!"));
+        }
+    }
+
+    public ResponseEntity<?> withdraw(Account account, Target target, TargetWithdrawRequest targetWithdrawRequest) {
+        if(targetWithdrawRequest.getAmount() <= 0) targetWithdrawRequest.setAmount(target.getSum());
+
+        if(operationByCard(account, targetWithdrawRequest.getCard_id(), "Вывод накопления с цели", "Пополнение карты", targetWithdrawRequest.getAmount(), true)) {
+            target.setSum(target.getSum() - targetWithdrawRequest.getAmount());
+            target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Вывод накопления с цели", "Пополнение карты", targetWithdrawRequest.getAmount()));
+            if(target.getSum() == 0) {
+                target.getSavingAccount().setOpened(false);
+            }
+            targetRepository.save(target);
+            return ResponseEntity.ok(new MessageResponse("Money withdrawn from the target!" + (target.getSavingAccount().isOpened() ? "" : "Saving account was closed!")));
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Money withdrawn from the target! Check your amount or card id!"));
         }
     }
 

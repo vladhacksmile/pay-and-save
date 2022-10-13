@@ -5,6 +5,7 @@ import com.vtb.payandsave.entity.Target;
 import com.vtb.payandsave.exception.TargetNotFoundException;
 import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.target.TargetRequest;
+import com.vtb.payandsave.request.target.TargetWithdrawRequest;
 import com.vtb.payandsave.service.TargetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -38,6 +39,11 @@ public class TargetController {
     @PostMapping("/{id}/replenishment")
     public ResponseEntity<?> replenishment(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetReplenishmentRequest targetReplenishmentRequest) {
         return targetService.replenishment(account, getTargetById(account, id), targetReplenishmentRequest);
+    }
+
+    @PostMapping("/{id}/withdraw")
+    public ResponseEntity<?> withdraw(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetWithdrawRequest targetWithdrawRequest) {
+        return targetService.withdraw(account, getTargetById(account, id), targetWithdrawRequest);
     }
 
     @GetMapping("/{id}")

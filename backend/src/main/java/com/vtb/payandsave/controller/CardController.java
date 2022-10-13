@@ -7,7 +7,6 @@ import com.vtb.payandsave.request.card.CardReplenishmentRequest;
 import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
 import com.vtb.payandsave.request.card.PayByCardRequest;
-import com.vtb.payandsave.response.MessageResponse;
 import com.vtb.payandsave.service.CardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -46,6 +45,11 @@ public class CardController {
     @PostMapping("/{id}/settings")
     public ResponseEntity<?> cardSettings(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody CardSettingsRequest cardSettingsRequest) {
         return cardService.cardSettings(account, getCardById(account, id), cardSettingsRequest);
+    }
+
+    @GetMapping("/{id}/settings")
+    public ResponseEntity<?> cardSettings(@AuthenticationPrincipal Account account, @PathVariable long id) {
+        return cardService.getCardSettings(account, getCardById(account, id));
     }
 
     @GetMapping("/{id}")

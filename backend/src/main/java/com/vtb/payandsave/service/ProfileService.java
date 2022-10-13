@@ -18,7 +18,7 @@ public class ProfileService {
     public ResponseEntity<?> get(Account account) {
         ProfileResponse profileResponse = new ProfileResponse(account.getAccount_id(), account.getUsername(),
                 account.getName(), account.getSurname(), account.getSuperPriorityTarget_id(),
-                account.isUseCashback(), account.isEvenDistribution());
+                account.isUseCashback(), account.isEvenDistribution(), account.isPercentageOnBalance());
         return ResponseEntity.ok(profileResponse);
     }
 
@@ -41,6 +41,11 @@ public class ProfileService {
 
         if(!account.isEvenDistribution() == profileRequest.isEvenDistribution()) {
             account.setEvenDistribution(profileRequest.isEvenDistribution());
+            needToUpdate = true;
+        }
+
+        if(!account.isPercentageOnBalance() == profileRequest.isPercentageOnBalance()) {
+            account.setPercentageOnBalance(profileRequest.isPercentageOnBalance());
             needToUpdate = true;
         }
 
