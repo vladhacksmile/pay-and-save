@@ -28,6 +28,8 @@ import {InputSwitchModule} from "primeng/inputswitch";
 import { TargetInfoComponent } from './components/target-info/target-info.component';
 import {AvatarModule} from "primeng/avatar";
 import {CardModule} from "primeng/card";
+import { HelpComponent } from './components/help/help.component';
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import {CardModule} from "primeng/card";
     MainComponent,
     AddTargetComponent,
     SettingsComponent,
-    TargetInfoComponent
+    TargetInfoComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import {CardModule} from "primeng/card";
     DropdownModule,
     InputSwitchModule,
     AvatarModule,
-    CardModule
+    CardModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

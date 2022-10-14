@@ -1,0 +1,102 @@
+<div class="block info-block p-card">
+  <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
+  <div class="help-main">
+    <div class="help-item">
+      <p-card header="Шаг 1" [style]="{margin: '0.8rem'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="subtitle">
+          <img alt="Card" src="assets/img/help/1.png" class="help-image">
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="low-level-info">
+            <p style="height: 10vh;">Войдите на платформу
+              Pay and Save</p>
+            <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+            <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                      [draggable]="false" [resizable]="false">
+              <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </ng-template>
+      </p-card>
+
+    </div>
+    <div class="help-item">
+      <p-card header="Шаг 2" [style]="{margin: '0.8rem'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="subtitle">
+          <img alt="Card" src="assets/img/help/2.png" class="help-image">
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="low-level-info">
+            <p style="height: 10vh;">Создайте
+              цель</p>
+            <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+            <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                      [draggable]="false" [resizable]="false">
+              <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </ng-template>
+      </p-card>
+
+    </div>
+    <div class="help-item">
+      <p-card header="Шаг 3" [style]="{margin: '0.8rem'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="subtitle">
+          <img alt="Card" src="assets/img/help/3.png" class="help-image">
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="low-level-info">
+            <p style="height: 10vh;">Настройте
+              списание средств</p>
+            <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+            <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                      [draggable]="false" [resizable]="false">
+              <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </ng-template>
+      </p-card>
+
+    </div>
+    <div class="help-item">
+      <p-card header="Шаг 4" [style]="{margin: '0.8rem'}" styleClass="p-card-help">
+        <ng-template pTemplate="subtitle">
+          <img alt="Card" src="assets/img/help/4.png" class="help-image">
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="low-level-info">
+            <p style="height: 10vh;">Выполните
+              цель</p>
+            <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+            <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                      [draggable]="false" [resizable]="false">
+              <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+        </ng-template>
+      </p-card>
+
+    </div>
+  </div>
+</div>
+

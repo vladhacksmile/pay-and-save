@@ -19,32 +19,33 @@
                 <input [style]="{'width':'100%'}" type="text" formControlName="name" placeholder="Название цели" pInputText>
               </span>
         </div>
-        <div class="sample-input-target">
+    </div>
+      <div class="sample-input-target">
             <span class="text-input-target">
               Ваша фамилия:
             </span>
-          <div class="input-target">
+        <div class="input-target">
               <span class="p-float-label">
                 <input [style]="{'width':'100%'}" type="text" formControlName="surname" placeholder="Название цели" pInputText>
               </span>
-          </div>
         </div>
-        <div class="sample-input-target">
-            <span class="text-input-target">
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div >
+          <p-inputSwitch formControlName="isUseCashBack"></p-inputSwitch>
+        </div>
+        <span class="text-input-target">
               Будет ли цель супер-приоритетной?
             </span>
-          <div class="input-target">
-            <p-inputSwitch formControlName="isUseCashBack"></p-inputSwitch>
-          </div>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+
+        <div>
+          <p-inputSwitch formControlName="isEvenDistribution"></p-inputSwitch>
         </div>
-        <div class="sample-input-target">
-            <span class="text-input-target">
+        <span class="text-input-target">
               Будет ли цель супер-приоритетной?
-            </span>
-          <div class="input-target">
-            <p-inputSwitch formControlName="isEvenDistribution"></p-inputSwitch>
-          </div>
-        </div>
+          </span>
       </div>
     </div>
   </form>

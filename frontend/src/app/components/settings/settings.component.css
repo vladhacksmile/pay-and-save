@@ -3,3 +3,69 @@
   font-size: 1.1rem;
   font-weight: bold;
 }
+
+.block{
+  height: 98vh;
+}
+
+.flex-sample-input-target {
+  display: flex;
+  align-items: center;
+}
+
+.flex-sample-input-target span{
+  margin-left: 10px;
+}
+
+.settings-main-info{
+  width: 90%;
+  margin: auto;
+}
+
+.buttons-block{
+  display: flex;
+  justify-content: space-around;
+}
+
+.p-button-outlined{
+  margin-top:20px;
+}
+
+
+.info-target{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 90%;
+}
+
+.text-input-target{
+  color: #009FDF;
+}
+
+.input-target{
+  margin-top: 5px;
+}
+
+.sample-input-target{
+  margin-bottom: 15px;
+}
+
+p-inputnumber {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .target-icon-big{
+    font-size: 20vh;
+  }
+
+  .info-target{
+    flex-direction: column-reverse;
+  }
+}
+
+
+
+
+

@@ -1,0 +1,47 @@
+.help-image{
+  width:90%;
+  margin: auto;
+}
+
+.block{
+  height: 98vh;
+  text-align-last: center;
+}
+
+
+.help-main{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+.help-item{
+
+}
+
+.p-card-help{
+  background-color: #009FDF;
+}
+
+@media (max-width: 576px) {
+
+  .info-target{
+    flex-direction: column-reverse;
+  }
+
+  .block{
+    height: unset;
+  }
+  .help-main{
+    flex-direction: column;
+  }
+
+  /*.p-card-shadow{*/
+  /*  width: 90%;*/
+  /*  !* height: 65vh; *!*/
+  /*  margin: auto;*/
+  /*  margin-top: 1rem;*/
+  /*}*/
+
+}

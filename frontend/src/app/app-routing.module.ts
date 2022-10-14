@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MainComponent} from "./components/main/main.component";
 import {HomeComponent} from "./components/home/home.component";
 import {AddTargetComponent} from "./components/add-target/add-target.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {TargetInfoComponent} from "./components/target-info/target-info.component";
+import {HelpComponent} from "./components/help/help.component";
 
 
 const routes: Routes = [
@@ -19,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'target-info', component: TargetInfoComponent,
+  },
+  {
+    path: 'help', component: HelpComponent,
   }
 ];
 
