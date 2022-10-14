@@ -1,0 +1,170 @@
+<div class="block">
+  <div class="cards-carousel" *ngIf="cards?.length">
+    <p-carousel [value]="cards" [numVisible]="1" [numScroll]="2" [circular]="false">
+
+      <ng-template let-card pTemplate="item">
+        <div class="product-item">
+                  <ng-credit-card [name]="card.embossingName" [number]="card.cardNumber" [cvc]="card.cvv" [expiry]="card.cardExpiry" ></ng-credit-card>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+
+  <div class="empty-card-block" *ngIf="!cards?.length">
+    <div class="product-item">
+<!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
+      <form class="add-target-form" [formGroup]="formAddCard" (submit)="onSubmitAddCard()">
+      <p-button (click)="displayAddCardModal = true" icon="pi pi-external-link" label="Создать карту"></p-button>
+      <p-dialog header="Header" [(visible)]="displayAddCardModal" [modal]="true" [style]="{width: '50vw', height: '100vh'}"
+                [draggable]="false" [resizable]="false">
+        <p-dropdown [style]="{'width':'100%'}" [options]="paymentSystem" [(ngModel)]="selectedPaymentSystem" formControlName="paymentSystem" optionLabel="name"  placeholder="Выберите платежную систему" >
+          <ng-template pTemplate="selectedItem">
+            <div class="icon-item icon-item-value"  *ngIf="selectedPaymentSystem">
+              <div>{{selectedPaymentSystem.name}}</div>
+            </div>
+          </ng-template>
+          <ng-template let-ps pTemplate="item">
+            <div class="icon-item">
+              <div>{{ps.name}}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <p-dropdown [style]="{'width':'100%'}" [options]="type" [(ngModel)]="selectedType" formControlName="type" optionLabel="name"  placeholder="Выберите тип карты" >
+          <ng-template pTemplate="selectedItem">
+            <div class="icon-item icon-item-value"  *ngIf="selectedType">
+              <div>{{selectedType.name}}</div>
+            </div>
+          </ng-template>
+          <ng-template let-ps pTemplate="item">
+            <div class="icon-item">
+              <div>{{ps.name}}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-dialog>
+
+      </form>
+    </div>
+  </div>
+
+
+  <div class="settings-block" *ngIf="cards?.length">
+    <div class="product-item">
+      <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
+      <form class="add-target-form" [formGroup]="formSettings" (submit)="onSubmitSettings()">
+        <p-button (click)="displaySettingsModal = true" icon="pi pi-external-link" label="Изменить"></p-button>
+        <p-dialog header="Header" [(visible)]="displaySettingsModal" [modal]="true" [style]="{width: '50vw', height: '100vh'}"
+                  [draggable]="false" [resizable]="false">
+          <p-dropdown [style]="{'width':'100%'}" [options]="activity" [(ngModel)]="selectedActivity" formControlName="active" optionLabel="name"  placeholder="Активировать карту?" >
+            <ng-template pTemplate="selectedItem">
+              <div class="icon-item icon-item-value"  *ngIf="selectedActivity">
+                <div>{{selectedActivity.name}}</div>
+              </div>
+            </ng-template>
+            <ng-template let-ps pTemplate="item">
+              <div class="icon-item">
+                <div>{{ps.name}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <p-dropdown [style]="{'width':'100%'}" [options]="roundingStep" [(ngModel)]="selectedRound" formControlName="roundingStep" optionLabel="name"  placeholder="Выберите шаг округления" >
+            <ng-template pTemplate="selectedItem">
+              <div class="icon-item icon-item-value"  *ngIf="selectedRound">
+                <div>{{selectedRound.name}}</div>
+              </div>
+            </ng-template>
+            <ng-template let-ps pTemplate="item">
+              <div class="icon-item">
+                <div>{{ps.name}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="replenishment-block" *ngIf="cards?.length">
+    <div class="product-item">
+      <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
+      <form class="add-target-form" [formGroup]="formReplenishment" (submit)="onSubmitReplenishment()">
+        <p-button (click)="displayReplenishmentModal = true" icon="pi pi-external-link" label="Пополнить карту"></p-button>
+        <p-dialog header="Header" [(visible)]="displayReplenishmentModal" [modal]="true" [style]="{width: '50vw', height: '100vh'}"
+                  [draggable]="false" [resizable]="false">
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Сумма на которую хотите пополнить
+            </span>
+            <div class="input-target">
+              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="amount" placeholder="Введите сумму">
+              </p-inputNumber>
+            </div>
+          </div>
+          <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="transaction-block" *ngIf="cards?.length">
+    <div class="product-item">
+      <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
+      <form class="add-target-form" [formGroup]="formTransaction" (submit)="onSubmitTransaction()">
+        <p-button (click)="displayTransactionModal = true" icon="pi pi-external-link" label="Выполнить покупку"></p-button>
+        <p-dialog header="Header" [(visible)]="displayTransactionModal" [modal]="true" [style]="{width: '50vw', height: '100vh'}"
+                  [draggable]="false" [resizable]="false">
+
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Название покупки
+            </span>
+            <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" type="text" formControlName="name" placeholder="Название покупки" pInputText>
+              </span>
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Название категории
+            </span>
+            <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" type="text" formControlName="category" placeholder="Название категории" pInputText>
+              </span>
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Сумма покупки
+            </span>
+            <div class="input-target">
+              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="amount" placeholder="Введите сумму">
+              </p-inputNumber>
+            </div>
+          </div>
+          <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+
+      </form>
+    </div>
+  </div>
+
+</div>
