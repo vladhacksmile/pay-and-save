@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="741aa09a-dd01-4233-b5d5-b73fbfa58124" name="Changes" comment="added backend skeleton">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/img/help/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/img/help/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/img/help/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/img/help/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/controller/AuthController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/entity/Account.class" afterDir="false" />
@@ -19,13 +14,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/model/target/TargetPriority.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/model/target/TargetPriority.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/request/LoginRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/vtb/payandsave/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/add-target/add-target.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/navbar/navbar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/settings/settings.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +83,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
