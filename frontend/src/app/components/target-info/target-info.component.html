@@ -99,22 +99,51 @@
           </div>
         </div>
 
+        <span class="text-input-target title-target">
+              История операций:
+      </span>
+      </div>
+      </form>
+      <div class="cards-carousel" *ngIf="cards?.length">
+        <p-dropdown [style]="{'width':'50vh', 'text-align': 'center'}" [options]="cards" [(ngModel)]="selectedCard" optionLabel="cardNumber" placeholder="Выберите карту" >
+          <ng-template pTemplate="selectedItem">
+            <div class="product-item">
+              <ng-credit-card [name]="selectedCard.embossingName" [number]="selectedCard.cardNumber" [cvc]="selectedCard.cvv" [expiry]="selectedCard.cardExpiry" ></ng-credit-card>
+            </div>
+          </ng-template>
+          <ng-template let-ps pTemplate="item">
+            <div class="product-item">
+              <ng-credit-card [name]="ps.embossingName" [number]="ps.cardNumber" [cvc]="ps.cvv" [expiry]="ps.cardExpiry" ></ng-credit-card>
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <form class="replenishment-target-form" [formGroup]="replenishmentForm" (submit)="onReplenishment()">
         <div class="sample-title-input-target">
             <span class="text-input-target title-target">
               Сумма которую хотите внести сейчас:
             </span>
           <div class="subtitle-target">
             <div class="card">
-              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU"></p-inputNumber>
-              <button pButton pRipple type="button" label="Пополнить цель" [routerLink]="['/home']" class="p-button-outlined"></button>
+              <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU" formControlName="amount"></p-inputNumber>
+              <button pButton pRipple type="button" label="Пополнить цель" class="p-button-outlined" type="submit"></button>
             </div>
           </div>
         </div>
-        <span class="text-input-target title-target">
-              История операций:
-      </span>
+        </form>
+        <form class="withdraw-target-form" [formGroup]="withdrawForm" (submit)="onWithdraw()">
+          <div class="sample-title-input-target">
+            <span class="text-input-target title-target">
+              Сумма которую хотите вывести сейчас:
+            </span>
+            <div class="subtitle-target">
+              <div class="card">
+                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU" formControlName="amount"></p-inputNumber>
+                <button pButton pRipple type="button" label="Вывести деньги с цели" class="p-button-outlined" type="submit"></button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      </form>
       <div class="image-target">
         <span class="material-icons target-icon-big" *ngIf="selectedIcon">{{selectedIcon.value}}</span>
       </div>

@@ -32,6 +32,8 @@ public class TargetService {
 
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
     TransactionRepository transactionRepository;
 
     private String getNameOfTransactionByTargetAllocateMoneyType(CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
@@ -170,6 +172,8 @@ public class TargetService {
     }
 
    public ResponseEntity<?> replenishment(Account account, Target target, TargetReplenishmentRequest targetReplenishmentRequest) {
+       System.out.println(targetReplenishmentRequest.getAmount());
+       System.out.println(targetReplenishmentRequest.getCard_id());
         if(operationByCard(account, targetReplenishmentRequest.getCard_id(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount(), false)) {
             target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
             target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount()));

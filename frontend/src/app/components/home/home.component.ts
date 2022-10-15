@@ -119,7 +119,7 @@ export class HomeComponent implements OnInit {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'May', 'Jdune', 'Judly', 'Mady', 'Juness', 'Julssy'],
       datasets: [
         {
-          label: 'First Dataset',
+          label: 'Тестовая цель',
           data: [110, 120, 130],
           fill: true,
           backgroundColor:'#42A5F573',
@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'May', 'Jdune', 'Judly', 'Mady', 'Juness', 'Julssy'],
         datasets: [
           {
-            label: 'Second Dataset',
+            label: 'Вторая тестовая цель',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: true,
             backgroundColor:'#42A5F573',

@@ -7,6 +7,9 @@ import {TargetService} from "../../service/target.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TargetRequest} from "../../request/TargetRequest";
+import {CardService} from "../../service/card.service";
+import {Card} from "../../model/card";
+import {TargetReplenishmentRequest} from "../../request/TargetReplenishmentRequest";
 
 @Component({
   selector: 'app-target-info',
@@ -67,6 +70,10 @@ export class TargetInfoComponent implements OnInit {
   info: any;
   sourceName: string = this.targetInfo.name;
   form!: FormGroup;
+  withdrawForm!: FormGroup;
+  replenishmentForm!: FormGroup;
+  cards!: Card [];
+  selectedCard!: Card;
 
   icons = [
     {name: "Покупки", value: "shopping_cart"},
@@ -103,7 +110,7 @@ export class TargetInfoComponent implements OnInit {
   currentPriority: number = 2;
   currentIcon: string = "shopping_cart";
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private token: TokenStorageService, private targetService: TargetService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private token: TokenStorageService, private targetService: TargetService, private cardService: CardService) { }
 
   ngOnInit(): void {
     this.info = {
@@ -117,6 +124,14 @@ export class TargetInfoComponent implements OnInit {
       priority: null,
       isSuperPriority: false,
       icon: null
+    });
+
+    this.replenishmentForm = this.formBuilder.group({
+      amount: null
+    });
+
+    this.withdrawForm = this.formBuilder.group({
+      amount: null
     });
 
     this.route.paramMap.pipe(
@@ -145,6 +160,16 @@ export class TargetInfoComponent implements OnInit {
       }
     )
 
+    this.cardService.getCards().subscribe(
+      data => {
+        this.cards = data;
+        this.selectedCard = this.cards[0];
+      },
+      error => {
+        //
+      }
+    )
+
     this.selectedPriority = this.targetInfo.priority == 'HIGH'? "Высокий": this.targetInfo.priority == 'MEDIUM'? "Средний": this.targetInfo.priority == 'LOW'? "Низкий":null
 
   }
@@ -162,6 +187,28 @@ export class TargetInfoComponent implements OnInit {
       }
     );
     // here must be code that check response, if all is good than return to main page
+  }
+
+  onReplenishment() {
+    this.targetService.replenishmentTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
+      data => {
+        location.href = "/target/" + this.id;
+      },
+      error => {
+        //
+      }
+    );
+  }
+
+  onWithdraw() {
+    this.targetService.withdrawTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
+      data => {
+        location.href = "/target/" + this.id;
+      },
+      error => {
+        //
+      }
+    );
   }
 
 }
