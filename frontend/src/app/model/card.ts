@@ -1,18 +1,12 @@
+import {CardTransaction} from "./card-transaction";
+
 export interface Card{
   "card_id": number,
   "cardType": string,
   "cardPaymentSystem": string,
   "cardRoundingStep": string,
   "amount": number,
-  "cardTransactions": [
-    {
-      "category": string,
-      "amount": number,
-      "date": Date,
-      "cashback": number,
-      "roundingAmount": number
-    }
-  ],
+  "cardTransactions": CardTransaction [],
   "cardExpiry": string,
   "encryptedPan": string,
   "cvv": string,

@@ -16,7 +16,7 @@
             </span>
         <div class="input-target">
               <span class="p-float-label">
-                <input [style]="{'width':'100%'}" type="text" formControlName="name" placeholder="Название цели" pInputText>
+                <input [style]="{'width':'100%'}" type="text" formControlName="name" [(ngModel)]="profileData.name" placeholder="Введите ваше имя" pInputText>
               </span>
         </div>
     </div>
@@ -26,26 +26,33 @@
             </span>
         <div class="input-target">
               <span class="p-float-label">
-                <input [style]="{'width':'100%'}" type="text" formControlName="surname" placeholder="Название цели" pInputText>
+                <input [style]="{'width':'100%'}" type="text" formControlName="surname" [(ngModel)]="profileData.surname" placeholder="Введите вашу фамилию" pInputText>
               </span>
         </div>
       </div>
       <div class="sample-input-target flex-sample-input-target">
-        <div >
-          <p-inputSwitch formControlName="isUseCashBack"></p-inputSwitch>
-        </div>
-        <span class="text-input-target">
-              Будет ли цель супер-приоритетной?
-            </span>
-      </div>
-      <div class="sample-input-target flex-sample-input-target">
-
         <div>
           <p-inputSwitch formControlName="isEvenDistribution"></p-inputSwitch>
         </div>
         <span class="text-input-target">
-              Будет ли цель супер-приоритетной?
-          </span>
+              Равномерное распределение средств
+        </span>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div >
+          <p-inputSwitch [(ngModel)]="isUsedCashback" formControlName="isUseCashBack"></p-inputSwitch>
+        </div>
+        <span class="text-input-target">
+              Переводить кешбек с покупок на цели
+            </span>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div>
+          <p-inputSwitch formControlName="isPercentageOnBalance"></p-inputSwitch>
+        </div>
+        <span class="text-input-target">
+          Переводить остаток по счету на цели
+        </span>
       </div>
     </div>
   </form>

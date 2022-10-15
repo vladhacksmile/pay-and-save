@@ -42,7 +42,7 @@ public class AuthService {
 
         Account userDetails = (Account) authentication.getPrincipal();
 
-        return ResponseEntity.ok(new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername()));
+        return ResponseEntity.ok(new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname()));
     }
 
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {

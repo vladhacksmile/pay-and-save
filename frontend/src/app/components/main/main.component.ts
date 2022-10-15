@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../../model/auth/TokenStorageService";
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  info: any;
+  data: any;
+  username: string = "";
+  constructor(private token: TokenStorageService) {
+    this.username = token.getUsername();
   }
 
+  ngOnInit(): void {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername()
+    };
+  }
+
+  logout() {
+    this.token.signOut();
+    window.location.reload();
+  }
 }

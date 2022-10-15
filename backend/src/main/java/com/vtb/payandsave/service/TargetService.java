@@ -207,12 +207,18 @@ public class TargetService {
 
     private void processingSuperPriority(Account account, Target target, TargetRequest targetRequest) {
         // Обработка случая с супер-приоритетом
-        if (targetRequest.isSuperPriority() && !account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
-            account.setSuperPriorityTarget_id(target.getTarget_id());
-            accountRepository.save(account);
-        } else if(!targetRequest.isSuperPriority() && account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
-            account.setSuperPriorityTarget_id(null);
-            accountRepository.save(account);
+        if (targetRequest.isSuperPriority()) {
+            if(account.getSuperPriorityTarget_id() == null || !account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
+                account.setSuperPriorityTarget_id(target.getTarget_id());
+                accountRepository.save(account);
+            }
+        } else if(!targetRequest.isSuperPriority()) {
+            if(account.getSuperPriorityTarget_id() != null) {
+                if(account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
+                    account.setSuperPriorityTarget_id(null);
+                    accountRepository.save(account);
+                }
+            }
         }
     }
 
