@@ -1,4 +1,4 @@
-export interface CardTransaction{
+export interface CardTransaction {
   "name": string,
   "category": string,
   "amount": number,

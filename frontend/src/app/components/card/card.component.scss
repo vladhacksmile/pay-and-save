@@ -31,3 +31,148 @@
 .product-item{
 
 }
+
+.buttons-block{
+  display: flex;
+  justify-content: space-around;
+}
+
+.block-big{
+  height: 59vh;
+}
+
+.block-small{
+  height: 39vh;
+  padding: 1rem;
+}
+
+.header-target{
+  text-align: center;
+}
+
+.buttons-block{
+  display: flex;
+  justify-content: space-around;
+}
+
+.p-button-outlined{
+  margin-top:20px;
+}
+
+p-dropdown{
+  width: 20%;
+}
+
+.main-info-target{
+  display: flex;
+  flex-direction: column;
+  width: 50vh;
+  padding: 1rem;
+}
+
+.info-target{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.target-icon-big{
+  font-size: 25vh;
+  padding: 1rem;
+  border: #e5e5e5e5 solid;
+  border-radius: 2rem;
+}
+
+.text-input-target{
+  color: #0A2973;
+}
+
+.input-target{
+  margin-left: 8px;
+  color: #009FDF;
+  font-weight: bolder;
+}
+
+.title-target{
+  color: #0A2973;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+
+.subtitle-target{
+  margin-top: 10px;
+}
+
+.subtitle-target .p-button{
+  background-color: #0A2973;
+  color: white;
+  width: 100%;
+
+}
+
+.sample-input-target{
+  margin-bottom: 15px;
+  display: flex;
+  align-content: center;
+}
+
+.sample-title-input-target{
+  margin-bottom: 15px;
+}
+
+p-inputnumber {
+  width: 100%;
+}
+
+.p-scrollpanel {
+  p {
+    padding: .5rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &.custombar1 {
+    .p-scrollpanel-wrapper {
+      border-right: 9px solid var(--layer-1);
+    }
+
+    .p-scrollpanel-bar {
+      background-color: var(--primary-color);
+      opacity: 1;
+      transition: background-color .2s;
+
+      &:hover {
+        background-color: #007ad9;
+      }
+    }
+  }
+}
+
+.layout-transaction{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  background: #e5e5e5;
+  margin-bottom: 10px;
+  padding: 1rem;
+  align-items: center;
+}
+
+
+
+@media (max-width: 576px) {
+  .target-icon-big{
+    font-size: 20vh;
+  }
+
+  .info-target{
+    flex-direction: column-reverse;
+  }
+
+  .block{
+    height: unset;
+  }
+}

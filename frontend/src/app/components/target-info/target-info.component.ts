@@ -153,12 +153,12 @@ export class TargetInfoComponent implements OnInit {
     this.form.controls['icon'].setValue(this.selectedIcon.value);
     // alert(JSON.stringify(this.form.value));
 
-    this.targetService.addTarget(new TargetRequest(this.form.value.icon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority)).subscribe(
+    this.targetService.updateTarget(new TargetRequest(this.form.value.icon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority), this.id).subscribe(
       data => {
         location.href = "/main";
       },
       error => {
-
+      //
       }
     );
     // here must be code that check response, if all is good than return to main page

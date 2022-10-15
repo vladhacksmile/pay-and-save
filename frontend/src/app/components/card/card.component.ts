@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Card} from "../../model/card";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
+import {TokenStorageService} from "../../model/auth/TokenStorageService";
+import {TargetService} from "../../service/target.service";
+import {CardService} from "../../service/card.service";
+import {CardRequest} from "../../request/CardRequest";
+import {CardReplenishRequest} from "../../request/CardReplenishRequest";
+import {PayByCardRequest} from "../../request/PayByCardRequest";
+import {CardSettingsRequest} from "../../request/CardSettingsRequest";
 
 @Component({
   selector: 'app-card',
@@ -9,43 +17,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CardComponent implements OnInit {
 
-  cards = [
-    {
-      "card_id": 1,
-      "cardType": "DEBIT",
-      "cardPaymentSystem": "MASTERCARD",
-      "cardRoundingStep": "STEP10",
-      "amount": 99574.3,
-      "cardTransactions": [
-        {
-          "name": "Пополнение карты",
-          "category": "Банковская операция",
-          "amount": 100000.0,
-          "date": "2022-10-15T02:33:30.737+00:00",
-          "cashback": 0.0,
-          "roundingAmount": 0.0,
-          "percentageOnBalance": 0.0,
-          "operationSecurityCode": "1791078220"
-        },
-        {
-          "name": "Теремок",
-          "category": "Кафе и рестораны",
-          "amount": 430.0,
-          "date": "2022-10-15T02:36:22.549+00:00",
-          "cashback": 4.3,
-          "roundingAmount": 0.0,
-          "percentageOnBalance": 0.0,
-          "operationSecurityCode": "119491981"
-        }
-      ],
-      "cardExpiry": "infinity",
-      "encryptedPan": "300076836",
-      "cvv": "473",
-      "cardNumber": "1000 6309 9981 3356",
-      "embossingName": "ИВАНОВ ИВАН",
-      "active": true
-    }
-  ];
+  cards!: Card [];
 
 
   displayAddCardModal!: boolean;
@@ -88,13 +60,29 @@ export class CardComponent implements OnInit {
   selectedActivity: any;
   selectedRound: any;
   selectedCard!: Card;
+  info: any;
+
 
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute, private token: TokenStorageService, private cardService: CardService
   ) {
   }
   ngOnInit(): void {
-    //Помести тут код для http request
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername()
+    };
+
+    this.cardService.getCards().subscribe(
+      data => {
+        this.cards = data;
+        this.selectedCard = this.cards[0];
+      },
+      error => {
+        //
+      }
+    )
 
     this.formAddCard = this.formBuilder.group({
       "paymentSystem": null,
@@ -115,28 +103,58 @@ export class CardComponent implements OnInit {
       "category": null,
       "amount": null
     });
-
-    this.selectedCard = this.cards[0];
   }
 
   onSubmitAddCard(): void {
     this.displayAddCardModal = false;
     this.formAddCard.controls['paymentSystem'].setValue(this.selectedPaymentSystem.value);
     this.formAddCard.controls['type'].setValue(this.selectedType.value);
-    alert(JSON.stringify(this.formAddCard.value));
+    // alert(JSON.stringify(this.formAddCard.value));
+    this.cardService.addCard(new CardRequest(this.formAddCard.value.paymentSystem, this.formAddCard.value.type)).subscribe(
+      data => {
+        location.href = "/card";
+      },
+      error => {
+      }
+    );
   }
   onSubmitSettings(): void {
     this.displaySettingsModal = false;
     this.formSettings.controls['active'].setValue(this.selectedActivity.value);
     this.formSettings.controls['roundingStep'].setValue(this.selectedRound.value);
-    alert(JSON.stringify(this.formSettings.value));
+    // alert(JSON.stringify(this.formSettings.value));
+    this.cardService.settingsCardById(new CardSettingsRequest(this.formSettings.value.active, this.formSettings.value.roundingStep), this.selectedCard.card_id).subscribe(
+      data => {
+        location.href = "/card";
+      },
+      error => {
+
+      }
+    );
   }
+
   onSubmitReplenishment(): void {
     this.displayReplenishmentModal = false;
-    alert(JSON.stringify(this.formReplenishment.value));
+    //alert(JSON.stringify(this.formReplenishment.value));
+    this.cardService.replenishCardById(new CardReplenishRequest(this.formReplenishment.value.amount), this.selectedCard.card_id).subscribe(
+      data => {
+        location.href = "/card";
+      },
+      error => {
+
+      }
+    );
   }
   onSubmitTransaction(): void {
     this.displayTransactionModal = false;
-    alert(JSON.stringify(this.formTransaction.value));
+    //alert(JSON.stringify(this.formTransaction.value));
+    this.cardService.payByCardById(new PayByCardRequest(this.formTransaction.value.name, this.formTransaction.value.category, this.formTransaction.value.amount), this.selectedCard.card_id).subscribe(
+      data => {
+        location.href = "/card";
+      },
+      error => {
+
+      }
+    );
   }
 }

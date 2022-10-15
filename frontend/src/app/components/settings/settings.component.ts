@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit {
     };
   }
 
-  async ngOnInit(){
+  ngOnInit(): void {
       this.userService.getProfile().subscribe(
           data => {
               this.profileData = data;
@@ -46,7 +46,6 @@ export class SettingsComponent implements OnInit {
           isEvenDistribution: false,
           isPercentageOnBalance: false
       })
-      await new Promise(f => setTimeout(f, 1000));
   }
 
     ngOnChanges() {

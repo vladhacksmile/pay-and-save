@@ -1,6 +1,6 @@
 import {CardTransaction} from "./card-transaction";
 
-export interface Card{
+export interface Card {
   "card_id": number,
   "cardType": string,
   "cardPaymentSystem": string,
