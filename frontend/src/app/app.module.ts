@@ -30,7 +30,11 @@ import {AvatarModule} from "primeng/avatar";
 import {CardModule} from "primeng/card";
 import { HelpComponent } from './components/help/help.component';
 import {DialogModule} from "primeng/dialog";
-import { CardComponent } from './components/card/card.component';
+import {httpInterceptorProviders} from "./model/auth/auth-interceptor";
+import { HttpClientModule } from '@angular/common/http';
+import {AuthComponent} from "./components/auth/auth.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {CardComponent} from "./components/card/card.component";
 import {NgCreditCardModule} from "angular-credit-card";
 
 @NgModule({
@@ -45,6 +49,8 @@ import {NgCreditCardModule} from "angular-credit-card";
     SettingsComponent,
     TargetInfoComponent,
     HelpComponent,
+    AuthComponent,
+    RegisterComponent,
     CardComponent
   ],
   imports: [
@@ -68,10 +74,11 @@ import {NgCreditCardModule} from "angular-credit-card";
     AvatarModule,
     CardModule,
     DialogModule,
-    NgCreditCardModule,
-
+    HttpClientModule,
+    NgCreditCardModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}

@@ -1,8 +1,8 @@
 <div class="info-block" >
   <div class="card-body">
     <div class="inline-spaces">
-      <h2 class="card-title" style="color: dodgerblue">{{targetInfo.name}}</h2>
-      <button mat-mini-fab>
+      <h2 class="card-title" style="color: dodgerblue" routerLink="/target/{{targetInfo.target_id}}">{{targetInfo.name}}</h2>
+      <button routerLink="/target/{{targetInfo.target_id}}" mat-mini-fab>
         <span class="material-icons">chevron_right</span>
       </button>
     </div>

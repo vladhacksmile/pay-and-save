@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {AuthService} from "../../model/auth/auth.service";
+import {TokenStorageService} from "../../model/auth/TokenStorageService";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private token: TokenStorageService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
 }

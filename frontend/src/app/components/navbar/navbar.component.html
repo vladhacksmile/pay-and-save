@@ -38,12 +38,12 @@
   </ul>
   <ul class="last-group">
     <li class="nav-item">
-        <button class="logout-button"  routerLink="/help" mat-fab>
+        <button class="logout-button" (click)="logout()" mat-fab>
           <span class="material-icons">logout</span>
         </button>
     </li>
     <li class="nav-item">
-        <button class="instruction-button" routerLink="/target-info" mat-fab>
+        <button class="instruction-button" routerLink="/help" mat-fab>
           <span class="material-icons">question_mark</span>
         </button>
     </li>

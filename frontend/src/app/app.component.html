@@ -1,1 +1,6 @@
-<app-main></app-main>
+<div class="home">
+  <app-navbar *ngIf="authority"></app-navbar>
+  <div class="main-info">
+    <router-outlet></router-outlet>
+  </div>
+</div>
