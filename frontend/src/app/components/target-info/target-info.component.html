@@ -1,11 +1,6 @@
 <div class="block info-block p-card">
   <p-scrollPanel [style]="{width: '100%', height: '100%', margin: 'auto'}" styleClass="custombar1">
 
-
-  <div class="buttons-block">
-  <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
-    <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit"></button>
-  </div>
   <div class="main-content">
     <span class="header-target">
               <h1>
@@ -14,6 +9,10 @@
     </span>
     <div class="info-target">
       <form class="add-target-form" [formGroup]="form" (submit)="onSubmit()">
+        <div class="buttons-block">
+          <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
+          <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit"></button>
+        </div>
       <div class="main-info-target">
         <div class="sample-title-input-target">
             <span class="text-input-target title-target">
@@ -133,7 +132,7 @@
                   {{transaction.category}}
                 </div>
                 <div class="transaction-data">
-<!--                  {{transaction.date | date : 'dd.L.yyyy' }}-->
+                  {{transaction.date | date : 'dd.L.yyyy' }}
                 </div>
                 <div class="transaction-amount">
                   {{transaction.amount}}

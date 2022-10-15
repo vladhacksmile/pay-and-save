@@ -1,4 +1,4 @@
-<div class="block info-block p-card">
+<div class="block-big info-block p-card">
   <div class="cards-carousel" *ngIf="cards?.length">
 
 <!--    <p-carousel [value]="cards" [numVisible]="1" [numScroll]="2" [circular]="false" [(ngModel)]="selectedCard">-->
@@ -23,13 +23,13 @@
       </p-dropdown>
     </div>
   <div class="forms-block">
-
-    <div class="empty-card-block" *ngIf="!cards?.length">
+<!-- ! cards? возможность создания/не создания -->
+    <div class="empty-card-block">
       <div class="product-item">
         <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
         <form class="add-target-form" [formGroup]="formAddCard" (submit)="onSubmitAddCard()">
           <p-button (click)="displayAddCardModal = true" icon="pi pi-external-link" label="Создать карту" class="p-button-outlined"></p-button>
-          <p-dialog header="Header" [(visible)]="displayAddCardModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
+          <p-dialog header="Добавление карты" [(visible)]="displayAddCardModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
                     [draggable]="false" [resizable]="false">
             <p-dropdown [style]="{'width':'100%'}" [options]="paymentSystem" [(ngModel)]="selectedPaymentSystem" formControlName="paymentSystem" optionLabel="name"  placeholder="Выберите платежную систему" >
               <ng-template pTemplate="selectedItem">
@@ -70,7 +70,7 @@
         <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
         <form class="add-target-form" [formGroup]="formSettings" (submit)="onSubmitSettings()">
           <p-button (click)="displaySettingsModal = true" icon="pi pi-external-link" label="Изменить" class="p-button-outlined"></p-button>
-          <p-dialog header="Header" [(visible)]="displaySettingsModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
+          <p-dialog header="Настройки карты" [(visible)]="displaySettingsModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
                     [draggable]="false" [resizable]="false">
             <p-dropdown [style]="{'width':'100%'}" [options]="activity" [(ngModel)]="selectedActivity" formControlName="active" optionLabel="name"  placeholder="Активировать карту?" >
               <ng-template pTemplate="selectedItem">
@@ -111,7 +111,7 @@
         <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
         <form class="add-target-form" [formGroup]="formReplenishment" (submit)="onSubmitReplenishment()">
           <p-button (click)="displayReplenishmentModal = true" icon="pi pi-external-link" label="Пополнить карту" class="p-button-outlined"></p-button>
-          <p-dialog header="Header" [(visible)]="displayReplenishmentModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
+          <p-dialog header="Пополнение карты" [(visible)]="displayReplenishmentModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
                     [draggable]="false" [resizable]="false">
             <div class="sample-input-target">
             <span class="text-input-target">
@@ -137,7 +137,7 @@
         <!--      <button pButton pRipple label="Создать карту" class="p-button-outlined" (click)="onSubmitAddCard()"></button>-->
         <form class="add-target-form" [formGroup]="formTransaction" (submit)="onSubmitTransaction()">
           <p-button (click)="displayTransactionModal = true" icon="pi pi-external-link"   label="Выполнить покупку" class="p-button-outlined"></p-button>
-          <p-dialog header="Header" [(visible)]="displayTransactionModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
+          <p-dialog header="Проведение виртуальной транзакции" [(visible)]="displayTransactionModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
                     [draggable]="false" [resizable]="false">
 
             <div class="sample-input-target">
@@ -182,16 +182,19 @@
     </div>
 
 </div>
-<div class="block p-card info-block">
-  <span>
-    Транзакции
-  </span>
+<div class="block-small p-card info-block">
+
+  <span class="header-target">
+        <h2>
+          Транзакции по карте
+        </h2>
+      </span>
   <div class="sample-title-input-target">
     <div class="subtitle-target">
       <div class="col-12 md:col-4">
         <p-scrollPanel [style]="{width: '80%', height: '200px', margin: 'auto'}" styleClass="custombar1">
           <div class="layout-transactions">
-            <div class="layout-transaction" *ngFor="let card of cards; index as i;">
+            <div *ngFor="let card of cards; index as i;">
               <div class="layout-transaction" *ngFor="let transaction of card.cardTransactions; index as i;">
               <div class="transaction">
                 <span class="material-icons transaction-icon">shopping_cart</span>
@@ -204,6 +207,12 @@
               </div>
               <div class="transaction-amount">
                 {{transaction.amount}}
+              </div>
+              <div class="transaction-rounding">
+                {{transaction.roundingAmount}}
+              </div>
+              <div class="transaction-cashback">
+                {{transaction.cashback}}
               </div>
             </div>
             </div>

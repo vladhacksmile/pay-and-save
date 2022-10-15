@@ -32,4 +32,9 @@ export class TargetService {
     return this.http.post<any>(this.addTargetUrl, credentials, httpOptions);
   }
 
+  updateTarget(credentials: TargetRequest, id: number | undefined): Observable<any> {
+    return this.http.put<any>(this.addTargetUrl + "/" + id, credentials, httpOptions);
+  }
+
+
 }
