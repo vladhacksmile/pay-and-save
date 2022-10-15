@@ -7,6 +7,9 @@ import {TargetService} from "../../service/target.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TargetRequest} from "../../request/TargetRequest";
+import {CardService} from "../../service/card.service";
+import {Card} from "../../model/card";
+import {TargetReplenishmentRequest} from "../../request/TargetReplenishmentRequest";
 
 @Component({
   selector: 'app-target-info',
@@ -67,18 +70,10 @@ export class TargetInfoComponent implements OnInit {
   info: any;
   sourceName: string = this.targetInfo.name;
   form!: FormGroup;
-
-  iconDict = [
-    {"shopping_cart": "Покупки"},
-    {"school": "Обучение"},
-    {"precision_manufacturing":"Техника"},
-    {"checkroom":"Одежда"},
-    {"restaurant":"Питание"},
-    {"flight":"Путешествие"},
-    {"chair":"Дом"},
-    {"drive_eta":"Машина"},
-    {"sports_esports":"Игры"}
-  ];
+  withdrawForm!: FormGroup;
+  replenishmentForm!: FormGroup;
+  cards!: Card [];
+  selectedCard!: Card;
 
   icons = [
     {name: "Покупки", value: "shopping_cart"},
@@ -92,6 +87,18 @@ export class TargetInfoComponent implements OnInit {
     {name: "Игры", value : "sports_esports"}
   ];
 
+  iconsZ = [
+    {name: "shopping_cart", value: "Покупки"},
+    {name: "school", value: "Обучение"},
+    {name: "precision_manufacturing", value : "Техника"},
+    {name: "checkroom", value : "Одежда"},
+    {name: "restaurant", value : "Питание"},
+    {name: "flight", value : "Путешествие"},
+    {name: "chair", value : "Дом"},
+    {name: "drive_eta", value : "Машина"},
+    {name: "sports_esports", value : "Игры"}
+  ];
+
   priorities = [
     {name: "Высокий", value: 2, tooltip: "Here, is some message "},
     {name: "Средний", value: 1},
@@ -103,7 +110,7 @@ export class TargetInfoComponent implements OnInit {
   currentPriority: number = 2;
   currentIcon: string = "shopping_cart";
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private token: TokenStorageService, private targetService: TargetService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private token: TokenStorageService, private targetService: TargetService, private cardService: CardService) { }
 
   ngOnInit(): void {
     this.info = {
@@ -117,6 +124,14 @@ export class TargetInfoComponent implements OnInit {
       priority: null,
       isSuperPriority: false,
       icon: null
+    });
+
+    this.replenishmentForm = this.formBuilder.group({
+      amount: null
+    });
+
+    this.withdrawForm = this.formBuilder.group({
+      amount: null
     });
 
     this.route.paramMap.pipe(
@@ -136,8 +151,19 @@ export class TargetInfoComponent implements OnInit {
           this.currentPriority = 0;
         }
 
+        this.selectedIcon = this.targetInfo.icon_id;
         this.currentIcon = this.targetInfo.icon_id;
         this.percentage = (this.targetInfo.sum / this.targetInfo.amount * 100).toFixed(0);
+      },
+      error => {
+        //
+      }
+    )
+
+    this.cardService.getCards().subscribe(
+      data => {
+        this.cards = data;
+        this.selectedCard = this.cards[0];
       },
       error => {
         //
@@ -149,21 +175,40 @@ export class TargetInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.form.controls['icon'].setValue(this.currentIcon);
-    alert(JSON.stringify(this.form.value));
-    this.targetService.addTarget(new TargetRequest(this.currentIcon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority)).subscribe(
+    this.form.controls['icon'].setValue(this.selectedIcon.value);
+    // alert(JSON.stringify(this.form.value));
+
+    this.targetService.updateTarget(new TargetRequest(this.form.value.icon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority), this.id).subscribe(
       data => {
         location.href = "/main";
       },
       error => {
-
+      //
       }
     );
     // here must be code that check response, if all is good than return to main page
   }
 
-  onChange($event: any) {
-    this.currentIcon = this.selectedIcon['value'];
-    alert(this.currentIcon);
+  onReplenishment() {
+    this.targetService.replenishmentTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
+      data => {
+        location.href = "/target/" + this.id;
+      },
+      error => {
+        //
+      }
+    );
   }
+
+  onWithdraw() {
+    this.targetService.withdrawTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
+      data => {
+        location.href = "/target/" + this.id;
+      },
+      error => {
+        //
+      }
+    );
+  }
+
 }

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {TargetResponse} from "../response/TargetResponse";
 import {TargetRequest} from "../request/TargetRequest";
 import {Target} from "../model/target";
+import {TargetReplenishmentRequest} from "../request/TargetReplenishmentRequest";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,5 +37,12 @@ export class TargetService {
     return this.http.put<any>(this.addTargetUrl + "/" + id, credentials, httpOptions);
   }
 
+  replenishmentTarget(credentials: TargetReplenishmentRequest, id: number | undefined) {
+    return this.http.post<any>(this.addTargetUrl + "/" + id + "/replenishment", credentials, httpOptions);
+  }
+
+  withdrawTarget(credentials: TargetReplenishmentRequest, id: number | undefined) {
+    return this.http.post<any>(this.addTargetUrl + "/" + id + "/withdraw", credentials, httpOptions);
+  }
 
 }
