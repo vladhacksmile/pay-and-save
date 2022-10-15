@@ -84,7 +84,7 @@
               Выберите изображение цели
             </span>
           <div class="input-target">
-            <p-dropdown [style]="{'width':'100%'}" [options]="icons" [(ngModel)]="selectedIcon" formControlName="icon" optionLabel="name" placeholder="Выберите иконку" >
+            <p-dropdown [style]="{'width':'100%'}" [options]="icons" [(ngModel)]="selectedIcon" formControlName="icon" optionLabel="name" (ngModelChange)="onChange($event)" placeholder="Выберите иконку" >
               <ng-template pTemplate="selectedItem">
                 <div class="icon-item icon-item-value"  *ngIf="selectedIcon">
                   <div>{{selectedIcon.name}}</div>
@@ -117,7 +117,7 @@
       </div>
       </form>
       <div class="image-target">
-        <span class="material-icons target-icon-big" *ngIf="selectedIcon">{{selectedIcon.value}}</span>
+        <span class="material-icons target-icon-big" *ngIf="currentIcon">{{currentIcon}}</span>
       </div>
     </div>
     <div class="sample-title-input-target">

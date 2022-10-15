@@ -68,6 +68,18 @@ export class TargetInfoComponent implements OnInit {
   sourceName: string = this.targetInfo.name;
   form!: FormGroup;
 
+  iconDict = [
+    {"shopping_cart": "Покупки"},
+    {"school": "Обучение"},
+    {"precision_manufacturing":"Техника"},
+    {"checkroom":"Одежда"},
+    {"restaurant":"Питание"},
+    {"flight":"Путешествие"},
+    {"chair":"Дом"},
+    {"drive_eta":"Машина"},
+    {"sports_esports":"Игры"}
+  ];
+
   icons = [
     {name: "Покупки", value: "shopping_cart"},
     {name: "Обучение", value: "school"},
@@ -78,18 +90,6 @@ export class TargetInfoComponent implements OnInit {
     {name: "Дом", value : "chair"},
     {name: "Машина", value : "drive_eta"},
     {name: "Игры", value : "sports_esports"}
-  ];
-
-  iconsZ = [
-    {name: "shopping_cart", value: "Покупки"},
-    {name: "school", value: "Обучение"},
-    {name: "precision_manufacturing", value : "Техника"},
-    {name: "checkroom", value : "Одежда"},
-    {name: "restaurant", value : "Питание"},
-    {name: "flight", value : "Путешествие"},
-    {name: "chair", value : "Дом"},
-    {name: "drive_eta", value : "Машина"},
-    {name: "sports_esports", value : "Игры"}
   ];
 
   priorities = [
@@ -136,7 +136,6 @@ export class TargetInfoComponent implements OnInit {
           this.currentPriority = 0;
         }
 
-        this.selectedIcon = this.targetInfo.icon_id;
         this.currentIcon = this.targetInfo.icon_id;
         this.percentage = (this.targetInfo.sum / this.targetInfo.amount * 100).toFixed(0);
       },
@@ -150,10 +149,9 @@ export class TargetInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.form.controls['icon'].setValue(this.selectedIcon.value);
-    // alert(JSON.stringify(this.form.value));
-
-    this.targetService.addTarget(new TargetRequest(this.form.value.icon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority)).subscribe(
+    this.form.controls['icon'].setValue(this.currentIcon);
+    alert(JSON.stringify(this.form.value));
+    this.targetService.addTarget(new TargetRequest(this.currentIcon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority)).subscribe(
       data => {
         location.href = "/main";
       },
@@ -164,4 +162,8 @@ export class TargetInfoComponent implements OnInit {
     // here must be code that check response, if all is good than return to main page
   }
 
+  onChange($event: any) {
+    this.currentIcon = this.selectedIcon['value'];
+    alert(this.currentIcon);
+  }
 }

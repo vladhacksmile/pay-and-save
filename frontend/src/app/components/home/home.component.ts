@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   responsiveOptions: any;
   info: any;
   profileData!: ProfileResponse;
+  dataOneGraphicTime!: string[];
+  dataOneGraphicValue!: number[];
 
   constructor(private token: TokenStorageService, private targetService: TargetService, private userService: UserService) {
     this.info = {
@@ -52,6 +54,12 @@ export class HomeComponent implements OnInit {
         //   this.showDanger(`${error.status}: ${error.error.message}`);
       }
     );
+
+    // for(let target in this.targets){
+    //   // for(const targetItem of target){
+    //     console.log(JSON.stringify(target));
+    //   // }
+    // }
 //     this.targets = [{
 //       "target_id": 3,
 //       "icon_id": "sports_esports",
@@ -115,7 +123,11 @@ export class HomeComponent implements OnInit {
 //     ]
 
     //data content of graphics
-    this.basicData = [{
+
+
+    this.basicData = [
+      {name: "Graphic №1",
+      other: {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'May', 'Jdune', 'Judly', 'Mady', 'Juness', 'Julssy'],
       datasets: [
         {
@@ -126,18 +138,21 @@ export class HomeComponent implements OnInit {
           borderColor: '#42A5F5',
         }
       ]
+    }
     },
-      {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'May', 'Jdune', 'Judly', 'Mady', 'Juness', 'Julssy'],
-        datasets: [
-          {
-            label: 'Second Dataset',
-            data: [28, 48, 40, 19, 86, 27, 90],
-            fill: true,
-            backgroundColor:'#42A5F573',
-            borderColor: '#42A5F5'
-          }
-        ]
+      {name: "Graphic №2",
+        other: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'May', 'Jdune', 'Judly', 'Mady', 'Juness', 'Julssy'],
+          datasets: [
+            {
+              label: 'First Dataset',
+              data: [110, 120, 130],
+              fill: true,
+              backgroundColor:'#42A5F573',
+              borderColor: '#42A5F5',
+            }
+          ]
+        }
       }];
 
     //values of progress bar
