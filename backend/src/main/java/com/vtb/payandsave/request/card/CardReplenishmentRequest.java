@@ -1,6 +1,5 @@
 package com.vtb.payandsave.request.card;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import lombok.Setter;
 public class CardReplenishmentRequest {
     private float amount;
 
-    public CardReplenishmentRequest(float amount) {
+    public CardReplenishmentRequest(float amount){
         this.amount = amount;
     }
 }
