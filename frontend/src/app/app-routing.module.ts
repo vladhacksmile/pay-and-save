@@ -5,6 +5,7 @@ import {AddTargetComponent} from "./components/add-target/add-target.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {TargetInfoComponent} from "./components/target-info/target-info.component";
 import {HelpComponent} from "./components/help/help.component";
+import {CardComponent} from "./components/card/card.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'help', component: HelpComponent,
+  },
+  {
+    path: 'card', component: CardComponent,
   }
 ];
 

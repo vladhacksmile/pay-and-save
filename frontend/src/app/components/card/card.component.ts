@@ -5,11 +5,49 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
 
-  cards: Card[];
+  cards = [
+    {
+      "card_id": 1,
+      "cardType": "DEBIT",
+      "cardPaymentSystem": "MASTERCARD",
+      "cardRoundingStep": "STEP10",
+      "amount": 99574.3,
+      "cardTransactions": [
+        {
+          "name": "Пополнение карты",
+          "category": "Банковская операция",
+          "amount": 100000.0,
+          "date": "2022-10-15T02:33:30.737+00:00",
+          "cashback": 0.0,
+          "roundingAmount": 0.0,
+          "percentageOnBalance": 0.0,
+          "operationSecurityCode": "1791078220"
+        },
+        {
+          "name": "Теремок",
+          "category": "Кафе и рестораны",
+          "amount": 430.0,
+          "date": "2022-10-15T02:36:22.549+00:00",
+          "cashback": 4.3,
+          "roundingAmount": 0.0,
+          "percentageOnBalance": 0.0,
+          "operationSecurityCode": "119491981"
+        }
+      ],
+      "cardExpiry": "infinity",
+      "encryptedPan": "300076836",
+      "cvv": "473",
+      "cardNumber": "1000 6309 9981 3356",
+      "embossingName": "ИВАНОВ ИВАН",
+      "active": true
+    }
+  ];
+
+
   displayAddCardModal!: boolean;
   displaySettingsModal!: boolean;
   displayReplenishmentModal!: boolean;
@@ -49,40 +87,11 @@ export class CardComponent implements OnInit {
   selectedPaymentSystem: any;
   selectedActivity: any;
   selectedRound: any;
+  selectedCard!: Card;
 
   constructor(
     private formBuilder: FormBuilder,
   ) {
-    this.cards = [
-      {
-        "card_id": 1,
-        "cardType": "DEBIT",
-        "cardPaymentSystem": "MASTERCARD",
-        "cardRoundingStep": "STEP1000",
-        "amount": 0.0,
-        "cardTransactions": [],
-        "cardExpiry": "infinity",
-        "encryptedPan": "1301234413",
-        "cvv": "204",
-        "cardNumber": "1000 6272 2772 2554",
-        "embossingName": "ИВАНОВ ИВАН",
-        "active": true
-      },
-      {
-        "card_id": 2,
-        "cardType": "DEBIT",
-        "cardPaymentSystem": "MASTERCARD",
-        "cardRoundingStep": "STEP1000",
-        "amount": 0.0,
-        "cardTransactions": [],
-        "cardExpiry": "infinity",
-        "encryptedPan": "1301234413",
-        "cvv": "204",
-        "cardNumber": "1000 6272 2772 2554",
-        "embossingName": "ИВАНОВ ИВАН",
-        "active": true
-      }
-    ];
   }
   ngOnInit(): void {
     //Помести тут код для http request
@@ -106,6 +115,8 @@ export class CardComponent implements OnInit {
       "category": null,
       "amount": null
     });
+
+    this.selectedCard = this.cards[0];
   }
 
   onSubmitAddCard(): void {

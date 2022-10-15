@@ -1,0 +1,33 @@
+.forms-block{
+  display: flex;
+  flex-direction: column;
+  /* align-content: flex-end; */
+  height: 45%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.block{
+  height: 49vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cards-carousel{
+  text-align: center;
+}
+
+:host ::ng-deep .p-button {
+  width: 50vh;
+}
+
+:host ::ng-deep .p-buttonset {
+  .p-button {
+    width: 50vh;
+  }
+}
+
+.product-item{
+
+}
