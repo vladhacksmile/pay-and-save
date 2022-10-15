@@ -1,15 +1,13 @@
 <div class="login-block">
   <img src="../../../assets/img/vtb-logo.png" alt="vtb-logo" class="vtb-logo"/>
   <form name="form" [formGroup]="form" (submit)="onSubmit()" #f="ngForm">
-    <h5>Регистрация</h5>
+    <span class="title-target">Регистрация</span>
     <span class="p-float-label">
-      <input id="username" type="email" pInputText formControlName="username" required>
-      <label for="username">Номер телефона</label>
+      <input id="username" type="email" pInputText formControlName="username" placeholder="Номер телефона" required>
     </span>
 
     <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" required>
-      <label for="username">Пароль</label>
+      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
     </span>
 
     <button pButton pRipple type="button" label="Зарегистрироваться" class="p-button-rounded" type="submit"></button>
