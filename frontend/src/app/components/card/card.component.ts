@@ -60,7 +60,20 @@ export class CardComponent implements OnInit {
   selectedPaymentSystem: any;
   selectedActivity: any;
   selectedRound: any;
-  selectedCard!: Card;
+  selectedCard: Card = {
+    active: false,
+    amount: 0,
+    cardExpiry: "",
+    cardNumber: "",
+    cardPaymentSystem: "",
+    cardRoundingStep: "",
+    cardTransactions: [],
+    cardType: "",
+    card_id: 0,
+    cvv: "",
+    embossingName: "",
+    encryptedPan: ""
+  };
   info: any;
 
 
@@ -71,6 +84,8 @@ export class CardComponent implements OnInit {
     private cardService: CardService,
     private msg: MessageService
   ) {
+    this.cards = [];
+
   }
   ngOnInit(): void {
     this.info = {
@@ -78,15 +93,8 @@ export class CardComponent implements OnInit {
       username: this.token.getUsername()
     };
 
-    this.cardService.getCards().subscribe(
-      data => {
-        this.cards = data;
-        this.selectedCard = this.cards[0];
-      },
-      error => {
-        //
-      }
-    )
+    this.getCards();
+
 
     this.formAddCard = this.formBuilder.group({
       "paymentSystem": null,
@@ -109,6 +117,18 @@ export class CardComponent implements OnInit {
     });
   }
 
+  getCards(): void{
+    this.cardService.getCards().subscribe(
+      data => {
+        this.cards = data;
+        this.selectedCard = this.cards[0];
+      },
+      error => {
+        //
+      }
+    )
+  }
+
   onSubmitAddCard(): void {
     this.displayAddCardModal = false;
     this.formAddCard.controls['paymentSystem'].setValue(this.selectedPaymentSystem.value);
@@ -121,7 +141,6 @@ export class CardComponent implements OnInit {
       error => {
       }
     );
-    this.ngOnInit();
   }
   onSubmitSettings(): void {
     this.displaySettingsModal = false;
@@ -131,12 +150,12 @@ export class CardComponent implements OnInit {
     this.cardService.settingsCardById(new CardSettingsRequest(this.formSettings.value.active, this.formSettings.value.roundingStep), this.selectedCard.card_id).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Настройки успешно изменены!'});
+        this.ngOnInit();
       },
       error => {
 
       }
     );
-    this.ngOnInit();
   }
 
   onSubmitReplenishment(): void {
@@ -145,12 +164,13 @@ export class CardComponent implements OnInit {
     this.cardService.replenishCardById(new CardReplenishRequest(this.formReplenishment.value.amount), this.selectedCard.card_id).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Деньги успешно пополнены!'});
+        this.ngOnInit();
       },
       error => {
 
       }
     );
-    this.ngOnInit();
+
   }
   onSubmitTransaction(): void {
     this.displayTransactionModal = false;
@@ -158,11 +178,11 @@ export class CardComponent implements OnInit {
     this.cardService.payByCardById(new PayByCardRequest(this.formTransaction.value.name, this.formTransaction.value.category, this.formTransaction.value.amount), this.selectedCard.card_id).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Транзакция успешно проведена!'});
+        this.ngOnInit();
       },
       error => {
         this.msg.add({severity:'error', summary: 'Карты', detail: 'На балансе не достаточно средств!'});
       }
     );
-    this.ngOnInit();
   }
 }
