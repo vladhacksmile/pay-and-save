@@ -1,6 +1,6 @@
 # Pay And Save Service
 
-###Service that rounds a costs from each transaction on your card and allows to save this money to your targets
+### Service that rounds a costs from each transaction on your card and allows to save this money to your targets
 :mechanical_arm: winner of hackathon 7th place\
 :mechanical_leg: 131 teams and over 700 participants
 
