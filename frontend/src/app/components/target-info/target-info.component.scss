@@ -34,7 +34,16 @@ p-dropdown{
 .info-target{
   display: flex;
   justify-content: space-around;
-  align-items: center;
+}
+
+.layout-transaction div {
+  width: 25%;
+  text-align: -webkit-center;
+}
+
+.layout-transaction div {
+  width: 25%;
+  text-align: -webkit-center;
 }
 
 .target-icon-big{
@@ -62,7 +71,9 @@ p-dropdown{
 
 
 .subtitle-target{
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
+  text-align: center;
+
 }
 
 .subtitle-target .p-button{
@@ -73,14 +84,19 @@ p-dropdown{
 }
 
 .sample-input-target{
-  margin-bottom: 15px;
+  margin-bottom: 7px;
+  margin-top: 9px;
   display: flex;
   align-content: center;
 }
 
 .sample-title-input-target{
   margin-bottom: 15px;
+  div {
+    margin-top: 15px;
+  }
 }
+
 
 p-inputnumber {
   width: 100%;
@@ -122,6 +138,13 @@ p-inputnumber {
   align-items: center;
 }
 
+.image-target{
+  text-align: center;
+}
+
+.cards-info{
+  margin-top: 5rem;
+}
 
 
 @media (max-width: 576px) {

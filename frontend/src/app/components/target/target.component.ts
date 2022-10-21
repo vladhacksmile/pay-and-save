@@ -12,13 +12,16 @@ export class TargetComponent implements OnInit {
 
   @Input()
   targetInfo!: Target;
-  percentage!: string;
+  percentage!: number;
   constructor(private token: TokenStorageService, private targetService: TargetService, private userService: UserService) {
 
   }
 
   ngOnInit() {
-    this.percentage = (this.targetInfo.sum/this.targetInfo.amount*100).toFixed(0);
+    this.percentage = Number((this.targetInfo.sum / this.targetInfo.amount * 100).toFixed(0));
+    if(this.percentage>100){
+      this.percentage = 100;
+    }
   }
 
 }

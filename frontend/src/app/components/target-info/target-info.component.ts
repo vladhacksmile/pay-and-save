@@ -1,79 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import {Target} from "../../model/target";
 import {ActivatedRoute} from "@angular/router";
-import {switchMap} from "rxjs";
+import {async, switchMap} from "rxjs";
 import {TokenStorageService} from "../../model/auth/TokenStorageService";
 import {TargetService} from "../../service/target.service";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TargetRequest} from "../../request/TargetRequest";
-import {CardService} from "../../service/card.service";
 import {Card} from "../../model/card";
+import {CardService} from "../../service/card.service";
+import {MessageService} from "primeng/api";
 import {TargetReplenishmentRequest} from "../../request/TargetReplenishmentRequest";
+import {Profile} from "../../model/profile";
+import {SavingAccount} from "../../model/saving-account";
+
+export class TrObj implements Target {
+  amount!: number;
+  completed!: boolean;
+  creationDate!: string;
+  icon_id!: string;
+  name!: string;
+  priority!: string;
+  savingAccount!: SavingAccount;
+  sum!: number;
+  target_id!: number;
+}
 
 @Component({
   selector: 'app-target-info',
   templateUrl: './target-info.component.html',
-  styleUrls: ['./target-info.component.scss']
+  styleUrls: ['./target-info.component.scss'],
+  providers: [MessageService]
 })
 export class TargetInfoComponent implements OnInit {
-  targetInfo = {
-    "target_id": 3,
-    "icon_id": "sports_esports",
-    "name": "Target example",
-    "sum": 6.5,
-    "amount": 1000.0,
-    "priority": "HIGH",
-    "creationDate": "2022-10-12T18:05:39.091+00:00",
-    "savingAccount": {
-      "percent": 10.0,
-      "savingAccountTransactions": [
-        {
-          "amount": 1.625,
-          "date": "2022-10-12T18:08:26.814+00:00",
-          "category": "Какая-то транзакция"
-        },
-        {
-          "amount": 3.25,
-          "date": "2022-10-12T18:19:53.554+00:00",
-          "category": "Какая-то транзакция"
-        },
-        {
-          "amount": 1.625,
-          "date": "2022-10-12T18:07:39.141+00:00",
-          "category": "Какая-то транзакция"
-        },
-        {
-          "amount": 1.625,
-          "date": "2022-10-12T18:08:26.814+00:00",
-          "category": "Какая-то транзакция"
-        },
-        {
-          "amount": 3.25,
-          "date": "2022-10-12T18:19:53.554+00:00",
-          "category": "Какая-то транзакция"
-        },
-        {
-          "amount": 1.625,
-          "date": "2022-10-12T18:07:39.141+00:00",
-          "category": "Какая-то транзакция"
-        }
-      ]
+  targetInfo: Target = {
+    amount: 0,
+    completed: false,
+    creationDate: "",
+    icon_id: "",
+    name: "",
+    priority: "",
+    savingAccount: {
+      percent: 0,
+      savingAccountTransactions: [{
+        amount: 0,
+        date: "",
+        category: ""
+      }],
     },
-    "completed": false
+    sum: 0,
+    target_id: 0
   };
-  sourceTargetInfo = this.targetInfo;
-  percentage = (this.targetInfo.sum/this.targetInfo.amount*100).toFixed(0);
 
 
+  percentage!: number;
   id: number | undefined;
   info: any;
-  sourceName: string = this.targetInfo.name;
+  sourceName!: string;
+
   form!: FormGroup;
-  withdrawForm!: FormGroup;
-  replenishmentForm!: FormGroup;
-  cards!: Card [];
-  selectedCard!: Card;
+  formReplenish!: FormGroup;
+  formWithdraw!: FormGroup;
 
   icons = [
     {name: "Покупки", value: "shopping_cart"},
@@ -87,32 +74,45 @@ export class TargetInfoComponent implements OnInit {
     {name: "Игры", value : "sports_esports"}
   ];
 
-  iconsZ = [
-    {name: "shopping_cart", value: "Покупки"},
-    {name: "school", value: "Обучение"},
-    {name: "precision_manufacturing", value : "Техника"},
-    {name: "checkroom", value : "Одежда"},
-    {name: "restaurant", value : "Питание"},
-    {name: "flight", value : "Путешествие"},
-    {name: "chair", value : "Дом"},
-    {name: "drive_eta", value : "Машина"},
-    {name: "sports_esports", value : "Игры"}
-  ];
 
   priorities = [
-    {name: "Высокий", value: 2, tooltip: "Here, is some message "},
+    {name: "Высокий", value: 2},
     {name: "Средний", value: 1},
     {name: "Низкий", value : 0}
   ];
 
+
+  hasCards: boolean = true;
+  isSuper!: boolean;
+
+  profileData: Profile = {
+    account_id: 0,
+    evenDistribution: false,
+    name: "",
+    percentageOnBalance: false,
+    phoneNumber: "",
+    superPriorityTarget_id: 0,
+    surname: "",
+    useCashBack: false
+
+  };
+  cards!: Card [];
+  selectedCard!: Card;
   selectedIcon!: any;
   selectedPriority!: string | null;
-  currentPriority: number = 2;
-  currentIcon: string = "shopping_cart";
+  currentPriority!: number;
+  currentIcon!: string;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private token: TokenStorageService, private targetService: TargetService, private cardService: CardService) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private token: TokenStorageService,
+              private targetService: TargetService,
+              private cardService: CardService,
+              private userService: UserService,
+              private msg: MessageService)
+  {
 
-  ngOnInit(): void {
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername()
@@ -126,61 +126,96 @@ export class TargetInfoComponent implements OnInit {
       icon: null
     });
 
-    this.replenishmentForm = this.formBuilder.group({
-      amount: null
-    });
+    this.formReplenish = this.formBuilder.group({
+        amount: null
+      }
+    );
 
-    this.withdrawForm = this.formBuilder.group({
-      amount: null
-    });
+    this.formWithdraw = this.formBuilder.group({
+        amount: null
+      }
+    )
 
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
-    )
-      .subscribe(data=> this.id = +data);
+    ).subscribe(data=> this.id = +data);
+  }
 
+
+
+  ngOnInit(): void {
+    this.getTargetInfo();
+    this.getCards();
+    this.getProfile();
+  }
+
+  getTargetInfo(): void{
     this.targetService.getTargetById(this.id).subscribe(
       data => {
         this.targetInfo = data;
         this.sourceName = data.name;
-        if (this.targetInfo.priority == "HIGH") {
+
+        if (this.targetInfo.priority === "HIGH"){
           this.currentPriority = 2;
-        } else if (this.targetInfo.priority == "MIDDLE") {
+        }else if (this.targetInfo.priority === "MEDIUM"){
           this.currentPriority = 1;
-        } else {
+        }else {
           this.currentPriority = 0;
         }
 
+
         this.selectedIcon = this.targetInfo.icon_id;
         this.currentIcon = this.targetInfo.icon_id;
-        this.percentage = (this.targetInfo.sum / this.targetInfo.amount * 100).toFixed(0);
+
+
+        this.percentage = Number((this.targetInfo.sum / this.targetInfo.amount * 100).toFixed(0));
+        if(this.percentage>100){
+          this.percentage = 100;
+        }
       },
       error => {
-        //
-      }
-    )
 
+      }
+    );
+  }
+
+  getCards(): void {
     this.cardService.getCards().subscribe(
       data => {
         this.cards = data;
-        this.selectedCard = this.cards[0];
+        if (this.cards.length === 0 ){
+          this.msg.add({severity:'error', summary: 'Цель', detail: 'Нет существующих карт!'});
+          this.hasCards = false;
+        }else {
+          this.selectedCard = this.cards[0];
+        }
+      },
+      error => {
+      }
+    )
+  }
+
+  getProfile(): void {
+    this.userService.getProfile().subscribe(
+      data => {
+        this.profileData = data;
+        this.isSuper = this.profileData.superPriorityTarget_id == this.id;
       },
       error => {
         //
       }
     )
-
-    this.selectedPriority = this.targetInfo.priority == 'HIGH'? "Высокий": this.targetInfo.priority == 'MEDIUM'? "Средний": this.targetInfo.priority == 'LOW'? "Низкий":null
-
   }
 
   onSubmit() {
-    this.form.controls['icon'].setValue(this.selectedIcon.value);
-    // alert(JSON.stringify(this.form.value));
+    if ((typeof this.selectedIcon).valueOf() === "object"){
+      this.form.controls['icon'].setValue(this.selectedIcon.value);
+    }
 
     this.targetService.updateTarget(new TargetRequest(this.form.value.icon, this.form.value.name, this.form.value.amount, this.form.value.priority, this.form.value.isSuperPriority), this.id).subscribe(
       data => {
-        location.href = "/main";
+        this.msg.add({severity:'success', summary: 'Цель', detail: 'Цель успешно обновлена!'});
+        this.getTargetInfo();
       },
       error => {
       //
@@ -189,26 +224,32 @@ export class TargetInfoComponent implements OnInit {
     // here must be code that check response, if all is good than return to main page
   }
 
-  onReplenishment() {
-    this.targetService.replenishmentTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
+  onSubmitReplenish() {
+
+
+    this.targetService.replenishmentTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.formReplenish.value.amount), this.id).subscribe(
       data => {
-        location.href = "/target/" + this.id;
+        this.msg.add({severity:'success', summary: 'Цель', detail: 'Цель успешно пополнена!'});
+        this.getTargetInfo();
       },
       error => {
-        //
+        this.msg.add({severity:'error', summary: 'Цель', detail: 'Нет средств на карте!'});
+      }
+    );
+
+  }
+
+  onSubmitWithdraw() {
+    this.targetService.withdrawTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.formWithdraw.value.amount), this.id).subscribe(
+      data => {
+        this.msg.add({severity:'success', summary: 'Цель', detail: 'Деньги с цели успешно выведены!'});
+        this.getTargetInfo();
+      },
+      error => {
+        this.msg.add({severity:'error', summary: 'Цель', detail: 'Нет средств на цели!'});
       }
     );
   }
 
-  onWithdraw() {
-    this.targetService.withdrawTarget(new TargetReplenishmentRequest(this.selectedCard.card_id, this.replenishmentForm.value.amount), this.id).subscribe(
-      data => {
-        location.href = "/target/" + this.id;
-      },
-      error => {
-        //
-      }
-    );
-  }
 
 }

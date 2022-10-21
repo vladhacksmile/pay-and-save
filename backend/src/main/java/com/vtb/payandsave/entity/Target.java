@@ -1,6 +1,7 @@
 package com.vtb.payandsave.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.entity.savingAccount.SavingAccount;
 import com.vtb.payandsave.model.target.TargetPriority;
 import lombok.Getter;

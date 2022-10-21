@@ -6,7 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/home/home.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { TargetComponent } from './components/target/target.component';
@@ -16,7 +16,7 @@ import { ChartModule } from "primeng/chart";
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { CarouselModule } from "primeng/carousel";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MainComponent } from './components/main/main.component';
 import { AddTargetComponent } from './components/add-target/add-target.component';
 import { SettingsComponent } from './components/settings/settings.component';
@@ -36,6 +36,8 @@ import {AuthComponent} from "./components/auth/auth.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {CardComponent} from "./components/card/card.component";
 import {NgCreditCardModule} from "angular-credit-card";
+import {ToastModule} from "primeng/toast";
+import {InputMaskModule} from "primeng/inputmask";
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import {NgCreditCardModule} from "angular-credit-card";
     CardModule,
     DialogModule,
     HttpClientModule,
-    NgCreditCardModule
+    NgCreditCardModule,
+    ToastModule,
+    InputMaskModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

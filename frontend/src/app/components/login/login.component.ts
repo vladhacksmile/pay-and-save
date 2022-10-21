@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from "../../model/auth/auth.service";
 import {TokenStorageService} from "../../model/auth/TokenStorageService";
+import {MessageModule} from "primeng/message";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ import {TokenStorageService} from "../../model/auth/TokenStorageService";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private token: TokenStorageService) { }
+  constructor(
+    private token: TokenStorageService,
+  ) { }
 
   ngOnInit() {}
 

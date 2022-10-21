@@ -1,9 +1,11 @@
+<p-toast></p-toast>
 <div class="login-block">
   <img src="../../../assets/img/vtb-logo.png" alt="vtb-logo" class="vtb-logo"/>
   <form name="form" [formGroup]="form" (submit)="onSubmit()" #f="ngForm">
     <span class="title-target">Регистрация</span>
     <span class="p-float-label">
-      <input id="username" type="email" pInputText formControlName="username" placeholder="Номер телефона" required>
+
+      <p-inputMask formControlName="username" placeholder="+7 999 999-99-99" mask="+7 999 999-99-99" ></p-inputMask>
     </span>
 
     <span class="p-float-label">

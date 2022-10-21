@@ -9,7 +9,7 @@
     <div class="inline-spaces">
       <div style="display: block" class="price-date">
         <div>Осталось собрать:</div>
-        <div style="color: dodgerblue">{{targetInfo.amount - targetInfo.sum}} ₽</div>
+        <div style="color: dodgerblue">{{targetInfo.amount - targetInfo.sum>0? targetInfo.amount - targetInfo.sum + " ₽": "Цель выполнена"}}</div>
       </div>
       <span class="material-icons" style="font-size:100px">{{targetInfo.icon_id}}</span>
     </div>

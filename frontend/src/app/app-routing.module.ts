@@ -5,12 +5,10 @@ import {AddTargetComponent} from "./components/add-target/add-target.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {TargetInfoComponent} from "./components/target-info/target-info.component";
 import {HelpComponent} from "./components/help/help.component";
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthComponent} from "./components/auth/auth.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {MainComponent} from "./components/main/main.component";
-import {TargetComponent} from "./components/target/target.component";
 import {CardComponent} from "./components/card/card.component";
 
 

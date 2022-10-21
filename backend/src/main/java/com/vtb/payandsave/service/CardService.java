@@ -63,7 +63,7 @@ public class CardService {
                 }
 
                 if (account.isUseCashback()) {
-                    card.setAmount(card.getAmount() - cardTransaction.getCashback());
+//                    card.setAmount(card.getAmount() - cardTransaction.getCashback());
                     targetService.allocateMoney(account, cardTransaction, TargetAllocateMoneyType.CASHBACK);
                 } else {
                     card.setAmount(card.getAmount() + cardTransaction.getCashback());

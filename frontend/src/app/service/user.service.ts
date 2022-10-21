@@ -5,6 +5,7 @@ import {Target} from "../model/target";
 import {ProfileResponse} from "../response/ProfileResponse";
 import {TargetRequest} from "../request/TargetRequest";
 import {ProfileRequest} from "../request/ProfileRequest";
+import {Profile} from "../model/profile";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +20,7 @@ export class UserService {
   constructor(private token: TokenStorageService, private http: HttpClient) {}
 
   public getProfile() {
-    return this.http.get<ProfileResponse>(this.profileUrl);
+    return this.http.get<Profile>(this.profileUrl);
   }
 
   public updateProfile(credentials: ProfileRequest) {

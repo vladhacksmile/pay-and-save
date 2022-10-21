@@ -46,6 +46,7 @@ public class TargetService {
         float money = targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? transaction.getRoundingAmount()
                 : targetAllocateMoneyType == TargetAllocateMoneyType.CASHBACK ? transaction.getCashback() : transaction.getPercentageOnBalance();
 
+
         if(account.getSuperPriorityTarget_id() != null) {
             Optional<Target> targetById = targetRepository.findById(account.getSuperPriorityTarget_id());
             if(targetById.isPresent()) {

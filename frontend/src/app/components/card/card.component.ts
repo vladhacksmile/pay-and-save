@@ -3,17 +3,18 @@ import {Card} from "../../model/card";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {TokenStorageService} from "../../model/auth/TokenStorageService";
-import {TargetService} from "../../service/target.service";
 import {CardService} from "../../service/card.service";
 import {CardRequest} from "../../request/CardRequest";
 import {CardReplenishRequest} from "../../request/CardReplenishRequest";
 import {PayByCardRequest} from "../../request/PayByCardRequest";
 import {CardSettingsRequest} from "../../request/CardSettingsRequest";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
+  providers: [MessageService]
 })
 export class CardComponent implements OnInit {
 
@@ -42,8 +43,8 @@ export class CardComponent implements OnInit {
   ];
 
   activity = [
-    {name: "Да", value: 0},
-    {name: "Нет", value: 1}
+    {name: "Да", value: 1},
+    {name: "Нет", value: 0}
   ];
 
   roundingStep = [
@@ -65,7 +66,10 @@ export class CardComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private token: TokenStorageService, private cardService: CardService
+    private route: ActivatedRoute,
+    private token: TokenStorageService,
+    private cardService: CardService,
+    private msg: MessageService
   ) {
   }
   ngOnInit(): void {
@@ -112,11 +116,12 @@ export class CardComponent implements OnInit {
     // alert(JSON.stringify(this.formAddCard.value));
     this.cardService.addCard(new CardRequest(this.formAddCard.value.paymentSystem, this.formAddCard.value.type)).subscribe(
       data => {
-        location.href = "/card";
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Карта успешно добавлена!'});
       },
       error => {
       }
     );
+    this.ngOnInit();
   }
   onSubmitSettings(): void {
     this.displaySettingsModal = false;
@@ -125,12 +130,13 @@ export class CardComponent implements OnInit {
     // alert(JSON.stringify(this.formSettings.value));
     this.cardService.settingsCardById(new CardSettingsRequest(this.formSettings.value.active, this.formSettings.value.roundingStep), this.selectedCard.card_id).subscribe(
       data => {
-        location.href = "/card";
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Настройки успешно изменены!'});
       },
       error => {
 
       }
     );
+    this.ngOnInit();
   }
 
   onSubmitReplenishment(): void {
@@ -138,23 +144,25 @@ export class CardComponent implements OnInit {
     //alert(JSON.stringify(this.formReplenishment.value));
     this.cardService.replenishCardById(new CardReplenishRequest(this.formReplenishment.value.amount), this.selectedCard.card_id).subscribe(
       data => {
-        location.href = "/card";
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Деньги успешно пополнены!'});
       },
       error => {
 
       }
     );
+    this.ngOnInit();
   }
   onSubmitTransaction(): void {
     this.displayTransactionModal = false;
     //alert(JSON.stringify(this.formTransaction.value));
     this.cardService.payByCardById(new PayByCardRequest(this.formTransaction.value.name, this.formTransaction.value.category, this.formTransaction.value.amount), this.selectedCard.card_id).subscribe(
       data => {
-        location.href = "/card";
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Транзакция успешно проведена!'});
       },
       error => {
-
+        this.msg.add({severity:'error', summary: 'Карты', detail: 'На балансе не достаточно средств!'});
       }
     );
+    this.ngOnInit();
   }
 }

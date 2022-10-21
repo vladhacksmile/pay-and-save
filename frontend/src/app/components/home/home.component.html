@@ -3,7 +3,7 @@
       <div class="hello-block info-block p-card">
         <h1>
           Привет,<br>
-          {{ profileData.name }}!
+          {{ profileData.name}}
         </h1>
         <div class="hello-img">
           <img src="../../../assets/img/hello.png" alt="hello">
@@ -25,7 +25,7 @@
     <div class="graphics p-card info-block">
       <p-carousel [value]="basicData" [numVisible]="1" [numScroll]="2" [circular]="false" [responsiveOptions]="responsiveOptions">
         <ng-template pTemplate="header">
-          <h5 style="text-align: center;">Графики накоплений</h5>
+          <h1 style="text-align: center;">Графики накоплений</h1>
         </ng-template>
         <ng-template let-product pTemplate="item">
           <div class="product-item">
