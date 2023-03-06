@@ -172,20 +172,18 @@ public class TargetService {
         return false;
     }
 
-   public ResponseEntity<?> replenishment(Account account, Target target, TargetReplenishmentRequest targetReplenishmentRequest) {
-       System.out.println(targetReplenishmentRequest.getAmount());
-       System.out.println(targetReplenishmentRequest.getCard_id());
+   public MessageResponse replenishment(Account account, Target target, TargetReplenishmentRequest targetReplenishmentRequest) {
         if(operationByCard(account, targetReplenishmentRequest.getCard_id(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount(), false)) {
             target.setSum(target.getSum() + targetReplenishmentRequest.getAmount());
             target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), "Пополнение цели", "Пополнение счета", targetReplenishmentRequest.getAmount()));
             targetRepository.save(target);
-            return ResponseEntity.ok(new MessageResponse("Target replenished!"));
+            return new MessageResponse("Target replenished!");
         } else {
-            return ResponseEntity.badRequest().body(new MessageResponse("Target not replenished! Check your balance or card id!"));
+            return new MessageResponse("Target not replenished! Check your balance or card id!");
         }
     }
 
-    public ResponseEntity<?> withdraw(Account account, Target target, TargetWithdrawRequest targetWithdrawRequest) {
+    public MessageResponse withdraw(Account account, Target target, TargetWithdrawRequest targetWithdrawRequest) {
         if(targetWithdrawRequest.getAmount() <= 0) targetWithdrawRequest.setAmount(target.getSum());
 
         if(operationByCard(account, targetWithdrawRequest.getCard_id(), "Вывод накопления с цели", "Пополнение карты", targetWithdrawRequest.getAmount(), true)) {
@@ -195,19 +193,19 @@ public class TargetService {
                 target.getSavingAccount().setOpened(false);
             }
             targetRepository.save(target);
-            return ResponseEntity.ok(new MessageResponse("Money withdrawn from the target!" + (target.getSavingAccount().isOpened() ? "" : "Saving account was closed!")));
+            return new MessageResponse("Money withdrawn from the target!" + (target.getSavingAccount().isOpened() ? "" : "Saving account was closed!"));
         } else {
-            return ResponseEntity.badRequest().body(new MessageResponse("Money withdrawn from the target! Check your amount or card id!"));
+            return new MessageResponse("Money withdrawn from the target! Check your amount or card id!");
         }
     }
 
-    public ResponseEntity<?> add(Account account, TargetRequest targetRequest) {
+    public MessageResponse add(Account account, TargetRequest targetRequest) {
         SavingAccount savingAccount = new SavingAccount(10);
         Target target = new Target(targetRequest.getIcon_id(), targetRequest.getName(), targetRequest.getAmount(), targetRequest.getPriority(), account, savingAccount);
         savingAccount.setTarget(target);
         targetRepository.save(target);
         processingSuperPriority(account, target, targetRequest);
-        return ResponseEntity.ok(new MessageResponse("Target added!"));
+        return new MessageResponse("Target added!");
     }
 
     private void processingSuperPriority(Account account, Target target, TargetRequest targetRequest) {
@@ -217,7 +215,7 @@ public class TargetService {
                 account.setSuperPriorityTarget_id(target.getTarget_id());
                 accountRepository.save(account);
             }
-        } else if(!targetRequest.isSuperPriority()) {
+        } else {
             if(account.getSuperPriorityTarget_id() != null) {
                 if(account.getSuperPriorityTarget_id().equals(target.getTarget_id())) {
                     account.setSuperPriorityTarget_id(null);
@@ -227,7 +225,7 @@ public class TargetService {
         }
     }
 
-    public ResponseEntity<?> update(Account account, Target target, TargetRequest targetRequest) {
+    public MessageResponse update(Account account, Target target, TargetRequest targetRequest) {
         target.setIcon_id(targetRequest.getIcon_id());
         target.setName(targetRequest.getName());
         target.setAmount(targetRequest.getAmount());
@@ -236,7 +234,7 @@ public class TargetService {
 
         processingSuperPriority(account, target, targetRequest);
 
-        return ResponseEntity.ok(new MessageResponse("Target updated!"));
+        return new MessageResponse("Target updated!");
     }
 
 }

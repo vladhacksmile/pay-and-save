@@ -1,4 +1,5 @@
 scalar Date
+
 type Mutation {
     # Регистрация нового пользователя
     registerUser(signupRequest: SignupRequest!): MessageResponse
@@ -13,4 +14,13 @@ type Mutation {
     payByCard(id: ID, payByCardRequest: PayByCardRequest!): MessageResponse
     # Смена настроек карты по ID
     changeCardSettings(id: ID, cardSettingsRequest: CardSettingsRequest!): MessageResponse
+
+    # Добавление новой цели
+    addTarget(targetRequest: TargetRequest!): MessageResponse
+    # Обновление цели по ID
+    updateTargetById(id: ID, targetRequest: TargetRequest!): MessageResponse
+    # Пополнение цели по ID с карты
+    replenishTargetById(id: ID, targetReplenishmentRequest: TargetReplenishmentRequest!): MessageResponse
+    # Снятие денег с цели по ID и вывод на карту
+    withdrawTargetById(id: ID, targetWithdrawRequest: TargetWithdrawRequest!): MessageResponse
 }

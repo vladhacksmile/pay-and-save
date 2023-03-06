@@ -1,0 +1,7 @@
+# Запрос на вывод денег с цели
+input TargetWithdrawRequest {
+    # ID карты, куда будут выведены деньги
+    card_id: Int
+    # Сумма для вывода
+    amount: Float
+}

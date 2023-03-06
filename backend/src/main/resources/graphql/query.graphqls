@@ -10,4 +10,9 @@ type Query {
     getCardSettings(id: ID): CardResponse
     # Получение информации о конкретной карте по ID
     getCardById(id: ID): Card
+
+    # Получение списка целей
+    getAllTargets: [Target]
+    # Получение информации о конкретной цели по ID
+    getTargetById(id: ID): Target
 }

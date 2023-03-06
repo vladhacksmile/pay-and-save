@@ -1,0 +1,13 @@
+# Транзакция накопительного счета
+type SavingAccountTransaction {
+    # Сумма
+    amount: Float
+    # Дата проведения транзакции
+    date: Date
+    # Имя
+    name: String
+    # Категория
+    category: String
+    # Защитный код операции
+    operationSecurityCode: String
+}

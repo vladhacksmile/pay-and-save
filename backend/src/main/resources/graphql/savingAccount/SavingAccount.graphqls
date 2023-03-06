@@ -1,0 +1,13 @@
+# Накопительный счет
+type SavingAccount {
+    # Процент, начисляемый каждый месяц
+    percent: Float
+    # Количество средств, заработанных на цели
+    profit: Float
+    # Дата создания накопительного счета
+    date: Date
+    # Открыт ли накопительный счет
+    opened: Boolean
+    # Список транзакций по накопительному счету
+    savingAccountTransactions: [SavingAccountTransaction]
+}

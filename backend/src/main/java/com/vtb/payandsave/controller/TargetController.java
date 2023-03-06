@@ -7,6 +7,7 @@ import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.target.TargetRequest;
 import com.vtb.payandsave.request.target.TargetWithdrawRequest;
 import com.vtb.payandsave.service.TargetService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,8 @@ public class TargetController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@AuthenticationPrincipal Account account, @RequestBody TargetRequest targetRequest) {
-        return targetService.add(account, targetRequest);
+    public ResponseEntity<?> addTarget(@AuthenticationPrincipal Account account, @RequestBody TargetRequest targetRequest) {
+        return new ResponseEntity<>(targetService.add(account, targetRequest), HttpStatus.OK);
     }
 
     @GetMapping
@@ -32,18 +33,18 @@ public class TargetController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetRequest targetRequest) {
-        return targetService.update(account, getTargetById(account, id), targetRequest);
+    public ResponseEntity<?> updateTarget(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetRequest targetRequest) {
+        return new ResponseEntity<>(targetService.update(account, getTargetById(account, id), targetRequest), HttpStatus.OK);
     }
 
     @PostMapping("/{id}/replenishment")
     public ResponseEntity<?> replenishment(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetReplenishmentRequest targetReplenishmentRequest) {
-        return targetService.replenishment(account, getTargetById(account, id), targetReplenishmentRequest);
+        return new ResponseEntity<>(targetService.replenishment(account, getTargetById(account, id), targetReplenishmentRequest), HttpStatus.OK);
     }
 
     @PostMapping("/{id}/withdraw")
     public ResponseEntity<?> withdraw(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody TargetWithdrawRequest targetWithdrawRequest) {
-        return targetService.withdraw(account, getTargetById(account, id), targetWithdrawRequest);
+        return new ResponseEntity<>(targetService.withdraw(account, getTargetById(account, id), targetWithdrawRequest), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -1,0 +1,13 @@
+# Запрос на добавление/обновление цели
+input TargetRequest {
+    # Иконка цели
+    icon_id: String
+    # Имя цели
+    name: String
+    # Сумма цели
+    amount: Float
+    # Приоритет цели
+    priority: TargetPriority
+    # Является ли цель супер-приоритетной
+    isSuperPriority: Boolean
+}

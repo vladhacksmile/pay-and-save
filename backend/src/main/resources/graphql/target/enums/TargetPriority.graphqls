@@ -1,0 +1,4 @@
+# Приоритет цели
+enum TargetPriority {
+    LOW, MIDDLE, HIGH
+}
