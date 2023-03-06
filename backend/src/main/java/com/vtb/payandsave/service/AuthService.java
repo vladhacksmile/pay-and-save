@@ -31,7 +31,7 @@ public class AuthService {
     @Autowired
     JwtUtils jwtUtils;
 
-    public ResponseEntity<?> authUser(LoginRequest loginRequest) {
+    public JwtResponse authUser(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
@@ -42,19 +42,17 @@ public class AuthService {
 
         Account userDetails = (Account) authentication.getPrincipal();
 
-        return ResponseEntity.ok(new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname()));
+        return new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname());
     }
 
-    public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
+    public MessageResponse registerUser(@RequestBody SignupRequest signupRequest) {
         if (accountRepository.existsByUsername(signupRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Phone number already exists!"));
+            return new MessageResponse("Phone number already exists!");
         }
 
         Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()));
 
         accountRepository.save(account);
-        return ResponseEntity.ok(new MessageResponse("Phone number registered!"));
+        return new MessageResponse("Phone number registered!");
     }
 }

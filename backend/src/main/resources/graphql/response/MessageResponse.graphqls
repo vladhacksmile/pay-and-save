@@ -1,0 +1,5 @@
+# Ответ, который приходит в виде сообщения
+type MessageResponse {
+    # Текст сообщения
+    message: String
+}

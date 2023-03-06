@@ -5,6 +5,7 @@ import com.vtb.payandsave.entity.card.Card;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,7 +15,6 @@ import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "accounts",
         uniqueConstraints = {

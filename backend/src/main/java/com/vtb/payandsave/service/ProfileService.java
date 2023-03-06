@@ -15,14 +15,13 @@ public class ProfileService {
     @Autowired
     AccountRepository accountRepository;
 
-    public ResponseEntity<?> get(Account account) {
-        ProfileResponse profileResponse = new ProfileResponse(account.getAccount_id(), account.getUsername(),
+    public ProfileResponse get(Account account) {
+        return new ProfileResponse(account.getAccount_id(), account.getUsername(),
                 account.getName(), account.getSurname(), account.getSuperPriorityTarget_id(),
                 account.isUseCashback(), account.isEvenDistribution(), account.isPercentageOnBalance());
-        return ResponseEntity.ok(profileResponse);
     }
 
-    public ResponseEntity<?> update(Account account, ProfileRequest profileRequest) {
+    public MessageResponse update(Account account, ProfileRequest profileRequest) {
         boolean needToUpdate = false;
         if(!account.getName().equals(profileRequest.getName())) {
             account.setName(profileRequest.getName());
@@ -51,9 +50,9 @@ public class ProfileService {
 
         if(needToUpdate) {
             accountRepository.save(account);
-            return ResponseEntity.ok(new MessageResponse("Profile updated!"));
+            return new MessageResponse("Profile updated!");
         }
 
-        return ResponseEntity.ok(new MessageResponse("Nothing to update!"));
+        return new MessageResponse("Nothing to update!");
     }
 }

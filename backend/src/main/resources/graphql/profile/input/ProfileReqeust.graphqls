@@ -1,0 +1,13 @@
+# Запрос на обновление данных пользователя
+input ProfileRequest {
+    # Имя
+    name: String
+    # Фамилия
+    surname: String
+    # Использовать ли кешбек
+    isUseCashBack: Boolean
+    # Использовать ли равномерное распределение средств между целями
+    isEvenDistribution: Boolean
+    # Использовать ли зачисление процента от остатка по счету на цели
+    isPercentageOnBalance: Boolean
+}

@@ -1,0 +1,7 @@
+# Запрос для регистрации
+input SignupRequest {
+    # Имя пользователя
+    username: String!
+    # Пароль
+    password: String!
+}

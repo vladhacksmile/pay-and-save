@@ -1,0 +1,6 @@
+type Query {
+    # Аутентификация пользователя
+    authUser(loginRequest: LoginRequest!): JwtResponse
+    # Получение информации о пользователе
+    getProfile: ProfileResponse
+}

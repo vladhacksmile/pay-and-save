@@ -1,0 +1,6 @@
+type Mutation {
+    # Регистрация нового пользователя
+    registerUser(signupRequest: SignupRequest!): MessageResponse
+    # Обновление профиля пользователя
+    updateProfile(profileRequest: ProfileRequest!): MessageResponse
+}

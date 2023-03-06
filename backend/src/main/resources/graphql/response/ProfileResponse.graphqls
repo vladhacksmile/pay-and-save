@@ -1,0 +1,19 @@
+# Ответ, возвращающий информацию о конкретном пользователе
+type ProfileResponse {
+    # ID аккаунта
+    account_id: Int
+    # Номер телефона
+    phoneNumber: String
+    # Имя
+    name: String
+    # Фамилия
+    surname: String
+    # ID цели с супер-приоритетом
+    superPriorityTarget_id: Int
+    # Использует ли кешбек
+    isUseCashBack: Boolean
+    # Использует ли равномерное распределение средств между целями
+    isEvenDistribution: Boolean
+    # Использует ли зачисление процента от остатка по счету на цели
+    isPercentageOnBalance: Boolean
+}

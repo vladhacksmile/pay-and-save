@@ -1,0 +1,13 @@
+# Ответ, который приходит после логина
+type JwtResponse {
+    # ID пользователя
+    id: Int
+    # Access token (следует отправлять на каждый запрос)
+    token: String
+    # Имя пользователя
+    username: String
+    # Имя
+    name: String
+    # Фамилия
+    surname: String
+}
