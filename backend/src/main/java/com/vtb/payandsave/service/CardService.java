@@ -30,27 +30,27 @@ public class CardService {
     @Autowired
     TransactionRepository transactionRepository;
 
-    public ResponseEntity<?> add(Account account, CardRequest cardRequest) {
-        Card card = new Card(cardRequest.getType(), cardRequest.getPaymentSystem(), account);
+    public MessageResponse add(Account account, CardRequest cardRequest) {
+        Card card = new Card(cardRequest.getCardType(), cardRequest.getPaymentSystem(), account);
         cardRepository.save(card);
-        return ResponseEntity.ok(new MessageResponse("Card created!"));
+        return new MessageResponse("Card created!");
     }
 
     @Transactional
-    public ResponseEntity<?> replenishCard(Account account, Card card, CardReplenishmentRequest cardReplenishmentRequest) {
+    public MessageResponse replenishCard(Account account, Card card, CardReplenishmentRequest cardReplenishmentRequest) {
         if(cardReplenishmentRequest.getAmount() > 0) {
             CardTransaction cardTransaction = new CardTransaction(card, "Пополнение карты", "Банковская операция", cardReplenishmentRequest.getAmount());
             card.setAmount(card.getAmount() + cardReplenishmentRequest.getAmount());
             transactionRepository.save(cardTransaction);
             cardRepository.save(card);
 
-            return ResponseEntity.ok(new MessageResponse("Card replenished"));
+            return new MessageResponse("Card replenished");
         }
-        return ResponseEntity.badRequest().body(new MessageResponse("Card didn't replenish! Amount must be positive!"));
+        return new MessageResponse("Card didn't replenish! Amount must be positive!");
     }
 
     @Transactional
-    public ResponseEntity<?> payByCard(Account account, Card card, PayByCardRequest payByCardRequest) {
+    public MessageResponse payByCard(Account account, Card card, PayByCardRequest payByCardRequest) {
         if(card.isActive()) {
             if (card.getAmount() >= payByCardRequest.getAmount()) {
                 CardTransaction cardTransaction = new CardTransaction(card, payByCardRequest.getName(), payByCardRequest.getCategory(), payByCardRequest.getAmount());
@@ -72,15 +72,15 @@ public class CardService {
                 transactionRepository.save(cardTransaction);
                 cardRepository.save(card);
 
-                return ResponseEntity.ok(new MessageResponse("Transaction done!"));
+                return new MessageResponse("Transaction done!");
             }
-            return ResponseEntity.badRequest().body(new MessageResponse("Not enough money for transaction!"));
+            return new MessageResponse("Not enough money for transaction!");
         } else {
-            return ResponseEntity.badRequest().body(new MessageResponse("Sorry, but card with this id blocked!"));
+            return new MessageResponse("Sorry, but card with this id blocked!");
         }
     }
 
-    public ResponseEntity<?> cardSettings(Account account, Card card, CardSettingsRequest cardSettingsRequest) {
+    public MessageResponse cardSettings(Account account, Card card, CardSettingsRequest cardSettingsRequest) {
         boolean needToUpdate = false;
 
         if(card.getCardRoundingStep() != cardSettingsRequest.getRoundingStep()) {
@@ -96,17 +96,17 @@ public class CardService {
         if(needToUpdate) {
             cardRepository.save(card);
             if(!card.isActive()) {
-                return ResponseEntity.ok(new MessageResponse("Settings for card saved! Card is blocking!"));
+                return new MessageResponse("Settings for card saved! Card is blocking!");
             } else {
-                return ResponseEntity.ok(new MessageResponse("Settings for card saved! Card is active!"));
+                return new MessageResponse("Settings for card saved! Card is active!");
             }
         }
 
-        return ResponseEntity.ok(new MessageResponse("Nothing to update card settings!"));
+        return new MessageResponse("Nothing to update card settings!");
     }
 
-    public ResponseEntity<?> getCardSettings(Account account, Card card) {
-        return ResponseEntity.ok(new CardResponse(card.isActive(), card.getCardRoundingStep()));
+    public CardResponse getCardSettings(Account account, Card card) {
+        return new CardResponse(card.isActive(), card.getCardRoundingStep());
     }
 
     @Transactional

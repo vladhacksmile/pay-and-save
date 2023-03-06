@@ -1,0 +1,4 @@
+# Платежная система карты
+enum CardPaymentSystem {
+    VISA, MASTERCARD, MIR
+}

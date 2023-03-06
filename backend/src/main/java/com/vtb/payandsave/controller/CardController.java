@@ -8,6 +8,7 @@ import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
 import com.vtb.payandsave.request.card.PayByCardRequest;
 import com.vtb.payandsave.service.CardService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CardController {
 
     @PostMapping
     public ResponseEntity<?> add(@AuthenticationPrincipal Account account, @RequestBody CardRequest cardRequest) {
-        return cardService.add(account, cardRequest);
+        return new ResponseEntity<>(cardService.add(account, cardRequest), HttpStatus.OK);
     }
 
     @GetMapping
@@ -34,22 +35,22 @@ public class CardController {
 
     @PostMapping("/{id}/replenish")
     public ResponseEntity<?> replenishCardById(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody CardReplenishmentRequest cardReplenishmentRequest) {
-        return cardService.replenishCard(account, getCardById(account, id), cardReplenishmentRequest);
+        return new ResponseEntity<>(cardService.replenishCard(account, getCardById(account, id), cardReplenishmentRequest), HttpStatus.OK);
     }
 
     @PostMapping("/{id}/pay")
     public ResponseEntity<?> payByCard(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody PayByCardRequest payByCardRequest) {
-        return cardService.payByCard(account, getCardById(account, id), payByCardRequest);
+        return new ResponseEntity<>(cardService.payByCard(account, getCardById(account, id), payByCardRequest), HttpStatus.OK);
     }
 
     @PostMapping("/{id}/settings")
     public ResponseEntity<?> cardSettings(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody CardSettingsRequest cardSettingsRequest) {
-        return cardService.cardSettings(account, getCardById(account, id), cardSettingsRequest);
+        return new ResponseEntity<>(cardService.cardSettings(account, getCardById(account, id), cardSettingsRequest), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/settings")
     public ResponseEntity<?> cardSettings(@AuthenticationPrincipal Account account, @PathVariable long id) {
-        return cardService.getCardSettings(account, getCardById(account, id));
+        return new ResponseEntity<>(cardService.getCardSettings(account, getCardById(account, id)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

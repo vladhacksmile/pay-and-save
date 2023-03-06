@@ -3,4 +3,11 @@ type Query {
     authUser(loginRequest: LoginRequest!): JwtResponse
     # Получение информации о пользователе
     getProfile: ProfileResponse
+
+    # Получение списка карт
+    getAllCards: [Card]
+    # Получение настроек карт по ID
+    getCardSettings(id: ID): CardResponse
+    # Получение информации о конкретной карте по ID
+    getCardById(id: ID): Card
 }

@@ -1,6 +1,16 @@
+scalar Date
 type Mutation {
     # Регистрация нового пользователя
     registerUser(signupRequest: SignupRequest!): MessageResponse
     # Обновление профиля пользователя
     updateProfile(profileRequest: ProfileRequest!): MessageResponse
+
+    # Выпуск новой карты
+    addCard(cardRequest: CardRequest!): MessageResponse
+    # Пополнение карты по ID
+    replenishCardById(id: ID, cardReplenishmentRequest: CardReplenishmentRequest!): MessageResponse
+    # Оплата с карты по ID (проведение виртуальной транзакции)
+    payByCard(id: ID, payByCardRequest: PayByCardRequest!): MessageResponse
+    # Смена настроек карты по ID
+    changeCardSettings(id: ID, cardSettingsRequest: CardSettingsRequest!): MessageResponse
 }

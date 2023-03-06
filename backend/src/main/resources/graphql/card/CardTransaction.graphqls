@@ -1,0 +1,19 @@
+# Транзакция по карте
+type CardTransaction {
+    # Название покупки
+    name: String
+    # Категория покупки
+    category: String
+    # Сумма покупки
+    amount: Float
+    # Дата транзакции
+    date: Date
+    # Начисленный кешбек по операции
+    cashback: Float
+    # Округление трат по операции
+    roundingAmount: Float
+    # Зачисление процента остатка по счету
+    percentageOnBalance: Float
+    # Защитный код операции
+    operationSecurityCode: String
+}

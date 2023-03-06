@@ -1,0 +1,4 @@
+# Тип карты
+enum CardType {
+    DEBIT, CREDIT
+}

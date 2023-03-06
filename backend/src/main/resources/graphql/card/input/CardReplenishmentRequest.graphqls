@@ -1,0 +1,5 @@
+# Запрос на пополнение карты
+input CardReplenishmentRequest {
+    # Сумма, на которую хочется пополнить карту
+    amount: Float!
+}

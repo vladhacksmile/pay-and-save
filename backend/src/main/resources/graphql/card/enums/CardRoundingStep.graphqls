@@ -1,0 +1,7 @@
+# Шаг округления по покупкам с карты
+enum CardRoundingStep {
+    STEP10,
+    STEP50,
+    STEP100,
+    STEP1000
+}

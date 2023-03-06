@@ -1,0 +1,27 @@
+# Банковская карта
+type Card {
+    # ID карты
+    card_id: Int
+    # Тип карты
+    cardType: CardType
+    # Платежная система
+    cardPaymentSystem: CardPaymentSystem
+    # Шаг округления трат по карте
+    cardRoundingStep: CardRoundingStep
+    # Сумма
+    amount: Float
+    # Активная ли карта
+    isActive: Boolean
+    # Список транзакций по карте
+    cardTransactions: [CardTransaction]
+    # Срок действия карты
+    cardExpiry: String
+    # Защифрованный код карты
+    encryptedPan: String
+    # CVV код
+    cvv: String
+    # Номер карты
+    cardNumber: String
+    # Владелец карты
+    embossingName: String
+}

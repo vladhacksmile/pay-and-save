@@ -13,5 +13,5 @@ import lombok.Setter;
 @Data
 public class CardRequest {
     private CardPaymentSystem paymentSystem;
-    private CardType type;
+    private CardType cardType;
 }
