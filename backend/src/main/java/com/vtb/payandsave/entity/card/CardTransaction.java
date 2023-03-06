@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "card_transactions")
 public class CardTransaction {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long transaction_id;
     @ManyToOne

@@ -22,7 +22,7 @@ import java.util.Set;
 @Table(name = "account_cards")
 public class Card {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long card_id;
     @Enumerated(EnumType.ORDINAL)
     private CardType cardType;

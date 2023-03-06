@@ -19,7 +19,7 @@ import java.util.Date;
 @Table(name = "account_targets")
 public class Target {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long target_id;
     private String icon_id;
     private String name;

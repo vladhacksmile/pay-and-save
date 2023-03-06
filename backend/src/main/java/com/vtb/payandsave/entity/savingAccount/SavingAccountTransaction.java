@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "saving_account_transactions")
 public class SavingAccountTransaction {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long saving_account_transaction_id;
     private Float amount;

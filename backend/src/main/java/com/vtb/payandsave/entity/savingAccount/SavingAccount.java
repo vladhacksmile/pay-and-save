@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "target_saving_accounts")
 public class SavingAccount {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long saving_account_id;
     private float percent;
