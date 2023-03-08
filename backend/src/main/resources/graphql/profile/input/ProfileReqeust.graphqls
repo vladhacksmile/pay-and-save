@@ -1,9 +1,9 @@
 # Запрос на обновление данных пользователя
 input ProfileRequest {
     # Имя
-    name: String
+    name: String!
     # Фамилия
-    surname: String
+    surname: String!
     # Использовать ли кешбек
     isUseCashBack: Boolean
     # Использовать ли равномерное распределение средств между целями

@@ -9,6 +9,7 @@ import com.vtb.payandsave.model.card.enums.CardType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Locale;
@@ -38,10 +39,15 @@ public class Card {
     private Account account;
     @OneToMany(targetEntity = CardTransaction.class, mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CardTransaction> cardTransactions;
+    @NotNull
     private String cardExpiry;
+    @NotNull
     private String encryptedPan;
+    @NotNull
     private String cvv;
+    @NotNull
     private String cardNumber;
+    @NotNull
     private String embossingName;
 
     public Card(CardType cardType, CardPaymentSystem cardPaymentSystem, Account account) {

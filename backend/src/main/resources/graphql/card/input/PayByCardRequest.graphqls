@@ -1,9 +1,9 @@
 # Запрос на оплату с карты (проведение виртуальной транзакции)
 input PayByCardRequest {
     # Имя покупки
-    name: String
+    name: String!
     # Категория покупки
-    category: String
+    category: String!
     # Сумма покупки
-    amount: Float
+    amount: Float!
 }

@@ -3,11 +3,11 @@ input TargetRequest {
     # Иконка цели
     icon_id: String
     # Имя цели
-    name: String
+    name: String!
     # Сумма цели
-    amount: Float
+    amount: Float!
     # Приоритет цели
-    priority: TargetPriority
+    priority: TargetPriority!
     # Является ли цель супер-приоритетной
     isSuperPriority: Boolean
 }

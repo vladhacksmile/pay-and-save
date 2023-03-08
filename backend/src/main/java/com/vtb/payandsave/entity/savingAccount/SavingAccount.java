@@ -5,6 +5,7 @@ import com.vtb.payandsave.entity.Target;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class SavingAccount {
     private Long saving_account_id;
     private float percent;
     private float profit;
+    @NotNull
     private Date date;
     private boolean opened;
     @OneToOne

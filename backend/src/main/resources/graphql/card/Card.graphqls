@@ -1,27 +1,27 @@
 # Банковская карта
 type Card {
     # ID карты
-    card_id: Int
+    card_id: ID!
     # Тип карты
-    cardType: CardType
+    cardType: CardType!
     # Платежная система
-    cardPaymentSystem: CardPaymentSystem
+    cardPaymentSystem: CardPaymentSystem!
     # Шаг округления трат по карте
     cardRoundingStep: CardRoundingStep
     # Сумма
-    amount: Float
+    amount: Float!
     # Активная ли карта
-    isActive: Boolean
+    isActive: Boolean!
     # Список транзакций по карте
     cardTransactions: [CardTransaction]
     # Срок действия карты
-    cardExpiry: String
+    cardExpiry: String!
     # Защифрованный код карты
-    encryptedPan: String
+    encryptedPan: String!
     # CVV код
-    cvv: String
+    cvv: String!
     # Номер карты
-    cardNumber: String
+    cardNumber: String!
     # Владелец карты
-    embossingName: String
+    embossingName: String!
 }

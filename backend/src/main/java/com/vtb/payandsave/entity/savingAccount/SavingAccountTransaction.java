@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,9 +21,13 @@ public class SavingAccountTransaction {
     @JsonIgnore
     private Long saving_account_transaction_id;
     private Float amount;
+    @NotNull
     private Date date;
+    @NotNull
     private String name;
+    @NotNull
     private String category;
+    @NotNull
     private String operationSecurityCode;
     @ManyToOne
     @JoinColumn(name = "saving_account_id")

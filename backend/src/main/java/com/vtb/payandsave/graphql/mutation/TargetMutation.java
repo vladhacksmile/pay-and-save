@@ -31,7 +31,7 @@ public class TargetMutation implements GraphQLMutationResolver {
     public TargetMutation(TargetService targetService) {
         this.targetService = targetService;
     }
-
+    
     public MessageResponse addTarget(@GraphQLNonNull TargetRequest targetRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {

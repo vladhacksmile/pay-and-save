@@ -1,7 +1,7 @@
 # Запрос для логина
 input LoginRequest {
     # Имя пользователя
-    username: String
+    username: String!
     # Пароль
-    password: String
+    password: String!
 }

@@ -1,13 +1,13 @@
 # Ответ, возвращающий информацию о конкретном пользователе
 type ProfileResponse {
     # ID аккаунта
-    account_id: Int
+    account_id: ID!
     # Номер телефона
-    phoneNumber: String
+    phoneNumber: String!
     # Имя
-    name: String
+    name: String!
     # Фамилия
-    surname: String
+    surname: String!
     # ID цели с супер-приоритетом
     superPriorityTarget_id: Int
     # Использует ли кешбек

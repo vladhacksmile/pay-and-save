@@ -5,6 +5,7 @@ import com.vtb.payandsave.model.card.CardUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,13 +24,17 @@ public class CardTransaction {
     @JoinColumn(name = "card_id")
     @JsonIgnore
     private Card card;
+    @NotNull
     private String name;
+    @NotNull
     private String category;
     private Float amount;
+    @NotNull
     private Date date;
     private float cashback = 0;
     private float roundingAmount = 0;
     private float percentageOnBalance;
+    @NotNull
     private String operationSecurityCode;
 
     public CardTransaction(Card card, String name, String category, Float amount) {

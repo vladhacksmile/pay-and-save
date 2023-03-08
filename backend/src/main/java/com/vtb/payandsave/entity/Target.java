@@ -7,8 +7,10 @@ import com.vtb.payandsave.model.target.TargetPriority;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -22,12 +24,14 @@ public class Target {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long target_id;
     private String icon_id;
+    @NotNull
     private String name;
     private Float sum; // * (возможно оно будет считаться автоматически)
     private Float amount; // всего нужно денег для цели
     @Enumerated(EnumType.ORDINAL)
     private TargetPriority priority;
     private boolean isCompleted;
+    @NotNull
     private Date creationDate;
     @ManyToOne
     @JoinColumn(name = "account_id")

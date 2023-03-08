@@ -1,7 +1,7 @@
 # Запрос на пополнение цели
 input TargetReplenishmentRequest {
     # ID карты, с которй будут сняты деньги
-    card_id: Int
+    card_id: ID!
     # Сумма для пополнения
-    amount: Float
+    amount: Float!
 }

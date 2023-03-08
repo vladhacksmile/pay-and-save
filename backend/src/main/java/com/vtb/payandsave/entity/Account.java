@@ -6,10 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.*;
 
 @NoArgsConstructor
@@ -25,10 +27,14 @@ public class Account implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long account_id;
+    @NotNull
     private String username;
+    @NotNull
     @JsonIgnore
     private String password;
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
     private Long superPriorityTarget_id;
     private boolean isUseCashback;

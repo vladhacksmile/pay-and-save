@@ -3,7 +3,6 @@ package com.vtb.payandsave.graphql.mutation;
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.exception.CardNotFoundException;
-import com.vtb.payandsave.request.ProfileRequest;
 import com.vtb.payandsave.request.card.CardReplenishmentRequest;
 import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
@@ -34,6 +33,7 @@ public class CardMutation implements GraphQLMutationResolver {
             return null;
         }
     }
+
     public MessageResponse replenishCardById(@GraphQLNonNull long id, @GraphQLNonNull CardReplenishmentRequest cardReplenishmentRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
@@ -44,7 +44,7 @@ public class CardMutation implements GraphQLMutationResolver {
         }
     }
 
-    private Card cardById(Account account, long id) {
+    private Card cardById(Account account, long id) throws CardNotFoundException {
         return account.getCards().stream().filter(card -> card.getCard_id().equals(id)).findFirst().orElseThrow(CardNotFoundException::new);
     }
 

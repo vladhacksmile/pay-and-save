@@ -1,7 +1,7 @@
 # Информация о настройках карты
 type CardResponse {
     # Активная ли карта
-    active: Boolean
+    active: Boolean!
     # Текущий шаг округления по карте
-    roundingStep: CardRoundingStep
+    roundingStep: CardRoundingStep!
 }

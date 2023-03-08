@@ -1,7 +1,7 @@
 # Запрос на выпуск карты
 input CardRequest {
     # Платежная система карты
-    paymentSystem: CardPaymentSystem
+    paymentSystem: CardPaymentSystem!
     # Тип карты
-    cardType: CardType
+    cardType: CardType!
 }

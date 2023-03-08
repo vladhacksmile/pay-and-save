@@ -1,21 +1,21 @@
 # Цель
 type Target {
     # ID цели
-    target_id: Int
+    target_id: ID!
     # Иконка цели
     icon_id: String
     # Имя цели
-    name: String
+    name: String!
     # Текущее количество средств на цели
     sum: Float
     # Сумма цели
-    amount: Float
+    amount: Float!
     # Приоритет цели
-    priority: TargetPriority
+    priority: TargetPriority!
     # Является ли цель завершенной
     isCompleted: Boolean
     # Дата добавления цели
-    creationDate: Date
+    creationDate: Date!
     # Накопительный счет, привязанный к цели
-    savingAccount: SavingAccount
+    savingAccount: SavingAccount!
 }
