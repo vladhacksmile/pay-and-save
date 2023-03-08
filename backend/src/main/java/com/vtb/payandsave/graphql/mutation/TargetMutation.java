@@ -11,10 +11,14 @@ import com.vtb.payandsave.service.TargetService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Component
+@Validated
 public class TargetMutation implements GraphQLMutationResolver {
     final TargetService targetService;
 
@@ -22,7 +26,7 @@ public class TargetMutation implements GraphQLMutationResolver {
         this.targetService = targetService;
     }
 
-    public MessageResponse addTarget(@GraphQLNonNull TargetRequest targetRequest) {
+    public MessageResponse addTarget(@Valid @GraphQLNonNull TargetRequest targetRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -32,7 +36,7 @@ public class TargetMutation implements GraphQLMutationResolver {
         }
     }
 
-    public MessageResponse replenishTargetById(@GraphQLNonNull long id, @GraphQLNonNull TargetReplenishmentRequest targetReplenishmentRequest) {
+    public MessageResponse replenishTargetById(long id, @Valid@GraphQLNonNull TargetReplenishmentRequest targetReplenishmentRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -46,7 +50,7 @@ public class TargetMutation implements GraphQLMutationResolver {
         return account.getTargets().stream().filter(target -> target.getTarget_id().equals(id)).findFirst().orElseThrow(TargetNotFoundException::new);
     }
 
-    public MessageResponse withdrawTargetById(@GraphQLNonNull long id, @GraphQLNonNull TargetWithdrawRequest targetWithdrawRequest) {
+    public MessageResponse withdrawTargetById(long id, @Valid @GraphQLNonNull TargetWithdrawRequest targetWithdrawRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -56,7 +60,7 @@ public class TargetMutation implements GraphQLMutationResolver {
         }
     }
 
-    public MessageResponse updateTargetById(@GraphQLNonNull long id, @GraphQLNonNull TargetRequest targetRequest) {
+    public MessageResponse updateTargetById(long id, @Valid @GraphQLNonNull TargetRequest targetRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;

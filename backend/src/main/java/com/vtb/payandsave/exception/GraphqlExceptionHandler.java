@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Component
 public class GraphqlExceptionHandler {
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler({RuntimeException.class})
     public ThrowableGraphQLError handle(RuntimeException e) {
         return new ThrowableGraphQLError(e);
     }

@@ -1,6 +1,7 @@
 package com.vtb.payandsave.service;
 
-import com.vtb.payandsave.entity.*;
+import com.vtb.payandsave.entity.Account;
+import com.vtb.payandsave.entity.Target;
 import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.entity.card.CardTransaction;
 import com.vtb.payandsave.entity.savingAccount.SavingAccount;
@@ -11,8 +12,6 @@ import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.target.TargetRequest;
 import com.vtb.payandsave.request.target.TargetWithdrawRequest;
 import com.vtb.payandsave.response.MessageResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -77,18 +76,10 @@ public class TargetService {
 
                 for (Target target : account.getTargets()) {
                     switch (target.getPriority()) {
-                        case HIGH:
-                            highPriority++;
-                            break;
-                        case MIDDLE:
-                            middlePriority++;
-                            break;
-                        case LOW:
-                            lowPriority++;
-                            break;
-                        default:
-                            System.err.println("Обнаружена цель без приоритета!");
-                            break;
+                        case HIGH -> highPriority++;
+                        case MIDDLE -> middlePriority++;
+                        case LOW -> lowPriority++;
+                        default -> System.err.println("Обнаружена цель без приоритета!");
                     }
                 }
 
@@ -134,18 +125,11 @@ public class TargetService {
                 float moneyPerLowPriorityTarget = ((money * percentLowPriority) / 100) / lowPriority;
 
                 for (Target target : account.getTargets()) {
-                    float moneyPerTarget = 0;
-                    switch (target.getPriority()) {
-                        case HIGH:
-                            moneyPerTarget = moneyPerHighPriorityTarget;
-                            break;
-                        case MIDDLE:
-                            moneyPerTarget = moneyPerMiddlePriorityTarget;
-                            break;
-                        case LOW:
-                            moneyPerTarget = moneyPerLowPriorityTarget;
-                            break;
-                    }
+                    float moneyPerTarget = switch (target.getPriority()) {
+                        case HIGH -> moneyPerHighPriorityTarget;
+                        case MIDDLE -> moneyPerMiddlePriorityTarget;
+                        case LOW -> moneyPerLowPriorityTarget;
+                    };
                     target.setSum(target.getSum() + moneyPerTarget);
                     target.getSavingAccount().getSavingAccountTransactions().add(new SavingAccountTransaction(target.getSavingAccount(), getNameOfTransactionByTargetAllocateMoneyType(transaction, targetAllocateMoneyType), transaction.getCategory(), moneyPerTarget));
                     targetRepository.save(target);

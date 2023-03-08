@@ -35,7 +35,7 @@ public class CardResolver implements GraphQLQueryResolver {
         return account.getCards().stream().filter(card -> card.getCard_id().equals(id)).findFirst().orElseThrow(CardNotFoundException::new);
     }
 
-    public CardResponse getCardSettings(@GraphQLNonNull long id) {
+    public CardResponse getCardSettings(long id) {
         Object object = getContext().getAuthentication().getPrincipal();
         if (object instanceof Account) {
             Account account = (Account) object;

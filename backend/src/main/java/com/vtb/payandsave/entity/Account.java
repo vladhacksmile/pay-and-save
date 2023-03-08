@@ -5,14 +5,14 @@ import com.vtb.payandsave.entity.card.Card;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Value;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import java.util.*;
+import javax.validation.constraints.NotBlank;
+import java.util.Collection;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -28,6 +28,7 @@ public class Account implements UserDetails {
     @JsonIgnore
     private Long account_id;
     @NotNull
+    @NotBlank(message = "Имя пользователя не может быть пустым!")
     private String username;
     @NotNull
     @JsonIgnore

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import java.util.List;
 @Setter
 @Data
 public class SignupRequest {
+    @NotBlank(message = "Имя пользователя не должно быть пустым!")
     private String username;
+    @NotBlank(message = "Пароль не должен быть пустым!")
     private String password;
     private List<Target> targets = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();

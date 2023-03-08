@@ -12,10 +12,14 @@ import com.vtb.payandsave.service.CardService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Component
+@Validated
 public class CardMutation implements GraphQLMutationResolver {
     final CardService cardService;
 
@@ -23,7 +27,7 @@ public class CardMutation implements GraphQLMutationResolver {
         this.cardService = cardService;
     }
 
-    public MessageResponse addCard(@GraphQLNonNull CardRequest cardRequest) {
+    public MessageResponse addCard(@Valid @GraphQLNonNull CardRequest cardRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -33,7 +37,7 @@ public class CardMutation implements GraphQLMutationResolver {
         }
     }
 
-    public MessageResponse replenishCardById(@GraphQLNonNull long id, @GraphQLNonNull CardReplenishmentRequest cardReplenishmentRequest) {
+    public MessageResponse replenishCardById(long id, @Valid @GraphQLNonNull CardReplenishmentRequest cardReplenishmentRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -47,7 +51,7 @@ public class CardMutation implements GraphQLMutationResolver {
         return account.getCards().stream().filter(card -> card.getCard_id().equals(id)).findFirst().orElseThrow(CardNotFoundException::new);
     }
 
-    public MessageResponse payByCard(@GraphQLNonNull long id, @GraphQLNonNull PayByCardRequest payByCardRequest) {
+    public MessageResponse payByCard(long id, @Valid @GraphQLNonNull PayByCardRequest payByCardRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;
@@ -57,7 +61,7 @@ public class CardMutation implements GraphQLMutationResolver {
         }
     }
 
-    public MessageResponse changeCardSettings(@GraphQLNonNull long id, @GraphQLNonNull CardSettingsRequest cardSettingsRequest) {
+    public MessageResponse changeCardSettings(long id, @Valid @GraphQLNonNull CardSettingsRequest cardSettingsRequest) {
         Object object = getContext().getAuthentication().getPrincipal();
         if(object instanceof Account) {
             Account account = (Account) object;

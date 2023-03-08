@@ -4,7 +4,6 @@ import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.Target;
 import com.vtb.payandsave.exception.TargetNotFoundException;
 import com.vtb.payandsave.service.TargetService;
-import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,7 +36,7 @@ public class TargetResolver implements GraphQLQueryResolver {
         return account.getTargets().stream().filter(target -> target.getTarget_id().equals(id)).findFirst().orElseThrow(TargetNotFoundException::new);
     }
 
-    public Target getTargetById(@GraphQLNonNull long id) {
+    public Target getTargetById(long id) {
         Object object = getContext().getAuthentication().getPrincipal();
         if (object instanceof Account) {
             Account account = (Account) object;

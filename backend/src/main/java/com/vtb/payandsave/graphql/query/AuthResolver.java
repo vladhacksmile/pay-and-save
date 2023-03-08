@@ -7,8 +7,12 @@ import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 @Component
+@Validated
 public class AuthResolver implements GraphQLQueryResolver {
     final AuthService authService;
 
@@ -17,7 +21,7 @@ public class AuthResolver implements GraphQLQueryResolver {
         this.authService = authService;
     }
 
-    public JwtResponse authUser(@GraphQLNonNull LoginRequest loginRequest) {
+    public JwtResponse authUser(@Valid @GraphQLNonNull LoginRequest loginRequest) {
         return authService.authUser(loginRequest);
     }
 }
