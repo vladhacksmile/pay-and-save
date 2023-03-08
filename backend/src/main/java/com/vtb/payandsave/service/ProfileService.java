@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProfileService {
 
-    @Autowired
-    AccountRepository accountRepository;
+    final AccountRepository accountRepository;
+
+    public ProfileService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     public ProfileResponse get(Account account) {
         return new ProfileResponse(account.getAccount_id(), account.getUsername(),

@@ -7,7 +7,6 @@ import com.vtb.payandsave.request.card.CardReplenishmentRequest;
 import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
 import com.vtb.payandsave.request.card.PayByCardRequest;
-import com.vtb.payandsave.response.CardResponse;
 import com.vtb.payandsave.response.MessageResponse;
 import com.vtb.payandsave.service.CardService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;

@@ -5,9 +5,8 @@ import com.vtb.payandsave.response.ProfileResponse;
 import com.vtb.payandsave.service.ProfileService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Component

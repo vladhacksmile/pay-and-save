@@ -6,7 +6,6 @@ import com.vtb.payandsave.service.AuthService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component

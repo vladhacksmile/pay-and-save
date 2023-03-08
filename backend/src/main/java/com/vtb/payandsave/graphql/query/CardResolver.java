@@ -4,16 +4,10 @@ import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.exception.CardNotFoundException;
 import com.vtb.payandsave.response.CardResponse;
-import com.vtb.payandsave.response.ProfileResponse;
 import com.vtb.payandsave.service.CardService;
-import com.vtb.payandsave.service.ProfileService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 

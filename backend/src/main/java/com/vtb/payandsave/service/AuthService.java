@@ -19,17 +19,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class AuthService {
-    @Autowired
-    AuthenticationManager authenticationManager;
+    final AuthenticationManager authenticationManager;
 
-    @Autowired
-    AccountRepository accountRepository;
+    final AccountRepository accountRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    JwtUtils jwtUtils;
+    final JwtUtils jwtUtils;
+
+    public AuthService(AuthenticationManager authenticationManager, AccountRepository accountRepository, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
+    }
 
     public JwtResponse authUser(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager

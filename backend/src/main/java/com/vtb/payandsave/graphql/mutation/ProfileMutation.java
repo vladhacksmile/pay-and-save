@@ -6,7 +6,6 @@ import com.vtb.payandsave.response.MessageResponse;
 import com.vtb.payandsave.service.ProfileService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
 import graphql.kickstart.tools.GraphQLMutationResolver;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;

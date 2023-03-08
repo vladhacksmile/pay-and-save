@@ -4,7 +4,6 @@ import com.vtb.payandsave.request.auth.LoginRequest;
 import com.vtb.payandsave.response.JwtResponse;
 import com.vtb.payandsave.service.AuthService;
 import graphql.annotations.annotationTypes.GraphQLNonNull;
-import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -21,14 +21,17 @@ import java.util.Optional;
 
 @Service
 public class CardService {
-    @Autowired
-    CardRepository cardRepository;
+    final CardRepository cardRepository;
 
-    @Autowired
-    TargetService targetService;
+    final TargetService targetService;
 
-    @Autowired
-    TransactionRepository transactionRepository;
+    final TransactionRepository transactionRepository;
+
+    public CardService(CardRepository cardRepository, TargetService targetService, TransactionRepository transactionRepository) {
+        this.cardRepository = cardRepository;
+        this.targetService = targetService;
+        this.transactionRepository = transactionRepository;
+    }
 
     public MessageResponse add(Account account, CardRequest cardRequest) {
         Card card = new Card(cardRequest.getCardType(), cardRequest.getPaymentSystem(), account);

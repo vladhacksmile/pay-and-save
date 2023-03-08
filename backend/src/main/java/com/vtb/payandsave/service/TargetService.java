@@ -21,20 +21,23 @@ import java.util.Optional;
 @Service
 public class TargetService {
 
-    @Autowired
-    TargetRepository targetRepository;
+    final TargetRepository targetRepository;
 
-    @Autowired
-    SavingAccountRepository savingAccountRepository;
+    final SavingAccountRepository savingAccountRepository;
 
-    @Autowired
-    AccountRepository accountRepository;
+    final AccountRepository accountRepository;
 
-    @Autowired
-    CardRepository cardRepository;
+    final CardRepository cardRepository;
 
-    @Autowired
-    TransactionRepository transactionRepository;
+    final TransactionRepository transactionRepository;
+
+    public TargetService(TargetRepository targetRepository, SavingAccountRepository savingAccountRepository, AccountRepository accountRepository, CardRepository cardRepository, TransactionRepository transactionRepository) {
+        this.targetRepository = targetRepository;
+        this.savingAccountRepository = savingAccountRepository;
+        this.accountRepository = accountRepository;
+        this.cardRepository = cardRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     private String getNameOfTransactionByTargetAllocateMoneyType(CardTransaction transaction, TargetAllocateMoneyType targetAllocateMoneyType) {
         return targetAllocateMoneyType == TargetAllocateMoneyType.ROUNDING ? "Округление трат" :
