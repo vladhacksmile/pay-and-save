@@ -49,12 +49,12 @@ public class AuthService {
 
     public MessageResponse registerUser(@RequestBody SignupRequest signupRequest) {
         if (accountRepository.existsByUsername(signupRequest.getUsername())) {
-            return new MessageResponse("Phone number already exists!");
+            return new MessageResponse("Account with this username already exists!");
         }
 
         Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()), signupRequest.getName(), signupRequest.getSurname());
 
         accountRepository.save(account);
-        return new MessageResponse("Phone number registered!");
+        return new MessageResponse("Account registered!");
     }
 }

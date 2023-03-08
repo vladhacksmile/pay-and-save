@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -23,9 +25,12 @@ public class Target {
     private Long target_id;
     private String icon_id;
     @NotNull
+    @NotBlank
     private String name;
-    private Float sum; // * (возможно оно будет считаться автоматически)
-    private Float amount; // всего нужно денег для цели
+    @PositiveOrZero
+    private Float sum;
+    @PositiveOrZero
+    private Float amount;
     @Enumerated(EnumType.ORDINAL)
     private TargetPriority priority;
     private boolean isCompleted;
@@ -38,7 +43,7 @@ public class Target {
     @OneToOne(targetEntity = SavingAccount.class, mappedBy = "target", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private SavingAccount savingAccount;
 
-    public Target(String icon_id, String name, Float amount, TargetPriority priority,
+    public Target(String icon_id, @NotNull String name, Float amount, TargetPriority priority,
                   Account account, SavingAccount savingAccount) {
         this.icon_id = icon_id;
         this.name = name;

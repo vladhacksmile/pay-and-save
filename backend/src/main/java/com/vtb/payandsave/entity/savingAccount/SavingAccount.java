@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -22,7 +23,9 @@ public class SavingAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long saving_account_id;
+    @PositiveOrZero
     private float percent;
+    @PositiveOrZero
     private float profit;
     @NotNull
     private LocalDateTime date;

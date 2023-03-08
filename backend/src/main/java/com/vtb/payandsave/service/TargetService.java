@@ -171,7 +171,7 @@ public class TargetService {
     }
 
     public MessageResponse withdraw(Account account, Target target, TargetWithdrawRequest targetWithdrawRequest) {
-        if(targetWithdrawRequest.getAmount() <= 0) targetWithdrawRequest.setAmount(target.getSum());
+        if(targetWithdrawRequest.getAmount() <= 0 || targetWithdrawRequest.getAmount() > target.getSum()) targetWithdrawRequest.setAmount(target.getSum());
 
         if(operationByCard(account, targetWithdrawRequest.getCard_id(), "Вывод накопления с цели", "Пополнение карты", targetWithdrawRequest.getAmount(), true)) {
             target.setSum(target.getSum() - targetWithdrawRequest.getAmount());

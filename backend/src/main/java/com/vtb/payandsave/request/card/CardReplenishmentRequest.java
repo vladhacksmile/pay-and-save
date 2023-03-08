@@ -1,21 +1,15 @@
 package com.vtb.payandsave.request.card;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.PositiveOrZero;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Data
 public class CardReplenishmentRequest {
-    @Min(value = 1, message = "Сумма пополнения должна быть минимум 1!")
+    @PositiveOrZero(message = "Сумма пополнения должна быть положительной!")
     private float amount;
-
-    public CardReplenishmentRequest(float amount){
-        this.amount = amount;
-    }
 }

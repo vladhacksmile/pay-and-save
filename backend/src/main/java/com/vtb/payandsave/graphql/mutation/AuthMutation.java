@@ -19,7 +19,6 @@ public class AuthMutation implements GraphQLMutationResolver {
     public AuthMutation(AuthService authService) {
         this.authService = authService;
     }
-
     public MessageResponse registerUser(@Valid @GraphQLNonNull SignupRequest signupRequest) {
         return authService.registerUser(signupRequest);
     }

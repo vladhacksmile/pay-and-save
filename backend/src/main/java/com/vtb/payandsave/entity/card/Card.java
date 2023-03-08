@@ -12,6 +12,8 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Locale;
 import java.util.Set;
 
@@ -31,6 +33,7 @@ public class Card {
     private CardPaymentSystem cardPaymentSystem;
     @Enumerated(EnumType.ORDINAL)
     private CardRoundingStep cardRoundingStep = CardRoundingStep.STEP10;
+    @PositiveOrZero
     private Float amount;
     private boolean isActive;
     @ManyToOne
@@ -40,14 +43,19 @@ public class Card {
     @OneToMany(targetEntity = CardTransaction.class, mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CardTransaction> cardTransactions;
     @NotNull
+    @NotBlank
     private String cardExpiry;
     @NotNull
+    @NotBlank
     private String encryptedPan;
     @NotNull
+    @NotBlank
     private String cvv;
     @NotNull
+    @NotBlank
     private String cardNumber;
     @NotNull
+    @NotBlank
     private String embossingName;
 
     public Card(CardType cardType, CardPaymentSystem cardPaymentSystem, Account account) {

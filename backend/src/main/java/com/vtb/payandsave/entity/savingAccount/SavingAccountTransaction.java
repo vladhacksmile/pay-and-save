@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -20,21 +22,25 @@ public class SavingAccountTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long saving_account_transaction_id;
+    @PositiveOrZero
     private Float amount;
     @NotNull
     private LocalDateTime date;
     @NotNull
+    @NotBlank
     private String name;
     @NotNull
+    @NotBlank
     private String category;
     @NotNull
+    @NotBlank
     private String operationSecurityCode;
     @ManyToOne
     @JoinColumn(name = "saving_account_id")
     @JsonIgnore
     private SavingAccount savingAccount;
 
-    public SavingAccountTransaction(SavingAccount savingAccount, String name, String category, Float amount) {
+    public SavingAccountTransaction(SavingAccount savingAccount, @NotNull String name, @NotNull String category, Float amount) {
         this.savingAccount = savingAccount;
         this.name = name;
         this.category = category;

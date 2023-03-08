@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -26,19 +28,26 @@ public class CardTransaction {
     @JsonIgnore
     private Card card;
     @NotNull
+    @NotBlank
     private String name;
     @NotNull
+    @NotBlank
     private String category;
+    @PositiveOrZero
     private Float amount;
     @NotNull
     private LocalDateTime date;
+    @PositiveOrZero
     private float cashback = 0;
+    @PositiveOrZero
     private float roundingAmount = 0;
+    @PositiveOrZero
     private float percentageOnBalance;
     @NotNull
+    @NotBlank
     private String operationSecurityCode;
 
-    public CardTransaction(Card card, String name, String category, Float amount) {
+    public CardTransaction(Card card, @NotNull String name, @NotNull String category, Float amount) {
         this.card = card;
         this.name = name;
         this.category = category;

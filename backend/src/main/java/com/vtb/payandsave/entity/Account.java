@@ -28,14 +28,18 @@ public class Account implements UserDetails {
     @JsonIgnore
     private Long account_id;
     @NotNull
+    @NotBlank
     @NotBlank(message = "Имя пользователя не может быть пустым!")
     private String username;
     @NotNull
+    @NotBlank
     @JsonIgnore
     private String password;
     @NotNull
+    @NotBlank
     private String name;
     @NotNull
+    @NotBlank
     private String surname;
     private Long superPriorityTarget_id;
     private boolean isUseCashback;
@@ -47,7 +51,7 @@ public class Account implements UserDetails {
     @OneToMany(targetEntity = Card.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Card> cards;
 
-    public Account(String username, String password, String name, String surname) {
+    public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String surname) {
         this.username = username;
         this.password = password;
         this.name = name;

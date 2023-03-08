@@ -5,14 +5,16 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 @AllArgsConstructor
 @Getter
 @Setter
 @Data
 public class TargetReplenishmentRequest {
+    @Positive(message = "ID карты должен быть положительным!")
     private Long card_id;
-    @Min(value = 1, message = "Сумма пополнения должна быть минимум 1!")
+    @PositiveOrZero(message = "Сумма пополнения должна быть положительной!")
     private float amount;
 }
