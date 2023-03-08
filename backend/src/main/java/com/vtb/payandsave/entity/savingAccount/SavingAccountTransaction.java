@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -22,7 +22,7 @@ public class SavingAccountTransaction {
     private Long saving_account_transaction_id;
     private Float amount;
     @NotNull
-    private Date date;
+    private LocalDateTime date;
     @NotNull
     private String name;
     @NotNull
@@ -39,7 +39,7 @@ public class SavingAccountTransaction {
         this.name = name;
         this.category = category;
         this.amount = amount;
-        this.date = new Date();
+        this.date = LocalDateTime.now();
         this.operationSecurityCode = String.valueOf(hashCode());
     }
 }

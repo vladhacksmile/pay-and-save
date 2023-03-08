@@ -1,13 +1,15 @@
 # Ответ, который приходит после логина
 type JwtResponse {
     # ID пользователя
-    id: ID!
+    id: ID
     # Access token (следует отправлять на каждый запрос)
-    token: String!
+    token: String
     # Имя пользователя
-    username: String!
+    username: String
     # Имя
-    name: String!
+    name: String
     # Фамилия
-    surname: String!
+    surname: String
+    # Сообщение с информацией
+    message: String
 }

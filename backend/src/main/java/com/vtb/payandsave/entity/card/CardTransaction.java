@@ -8,7 +8,8 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -30,7 +31,7 @@ public class CardTransaction {
     private String category;
     private Float amount;
     @NotNull
-    private Date date;
+    private LocalDateTime date;
     private float cashback = 0;
     private float roundingAmount = 0;
     private float percentageOnBalance;
@@ -42,7 +43,7 @@ public class CardTransaction {
         this.name = name;
         this.category = category;
         this.amount = amount;
-        this.date = new Date();
+        this.date = LocalDateTime.now();
 
         float roundingAmount = CardUtils.calculateRoundingByAmount(card.getCardRoundingStep().getRoundingStep(), amount);
 

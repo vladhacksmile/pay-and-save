@@ -1,11 +1,13 @@
 package com.vtb.payandsave.controller;
 
+import com.vtb.payandsave.exception.ExceptionMessages;
 import com.vtb.payandsave.request.auth.LoginRequest;
 import com.vtb.payandsave.request.auth.SignupRequest;
+import com.vtb.payandsave.response.JwtResponse;
 import com.vtb.payandsave.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class AuthController {
 
-    @Autowired
     private final AuthService authService;
 
     public AuthController(AuthService authService) {
@@ -22,7 +23,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authUser(@RequestBody LoginRequest loginRequest) {
-        return new ResponseEntity<>(authService.authUser(loginRequest), HttpStatus.OK);
+        try {
+            JwtResponse jwtResponse = authService.authUser(loginRequest);
+            return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
+        } catch (BadCredentialsException e) {
+            return new ResponseEntity<>(new JwtResponse(ExceptionMessages.INCORRECT_LOGIN), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/register")

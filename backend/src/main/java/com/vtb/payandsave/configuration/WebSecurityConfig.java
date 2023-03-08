@@ -3,7 +3,6 @@ package com.vtb.payandsave.configuration;
 import com.vtb.payandsave.jwt.AuthTokenFilter;
 import com.vtb.payandsave.jwt.AuthenticationEntryPointImpl;
 import com.vtb.payandsave.service.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,11 +22,14 @@ import org.springframework.web.cors.CorsConfiguration;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private AuthenticationEntryPointImpl authEntryPointJwt;
+    private final AuthenticationEntryPointImpl authEntryPointJwt;
+
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, AuthenticationEntryPointImpl authEntryPointJwt) {
+        this.userDetailsService = userDetailsService;
+        this.authEntryPointJwt = authEntryPointJwt;
+    }
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {

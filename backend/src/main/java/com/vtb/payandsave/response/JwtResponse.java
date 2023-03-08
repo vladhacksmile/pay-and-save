@@ -15,4 +15,9 @@ public class JwtResponse {
     private String username;
     private String name;
     private String surname;
+    private String message;
+
+    public JwtResponse(String message) {
+        this.message = message;
+    }
 }

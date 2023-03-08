@@ -47,11 +47,11 @@ public class Account implements UserDetails {
     @OneToMany(targetEntity = Card.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Card> cards;
 
-    public Account(String username, String password) {
+    public Account(String username, String password, String name, String surname) {
         this.username = username;
         this.password = password;
-        this.name = "Иван";
-        this.surname = "Иванов";
+        this.name = name;
+        this.surname = surname;
     }
 
     @Override

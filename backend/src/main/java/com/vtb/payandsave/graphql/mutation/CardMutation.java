@@ -3,6 +3,7 @@ package com.vtb.payandsave.graphql.mutation;
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.exception.CardNotFoundException;
+import com.vtb.payandsave.exception.ExceptionMessages;
 import com.vtb.payandsave.request.card.CardReplenishmentRequest;
 import com.vtb.payandsave.request.card.CardRequest;
 import com.vtb.payandsave.request.card.CardSettingsRequest;
@@ -33,7 +34,7 @@ public class CardMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return cardService.add(account, cardRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -43,7 +44,7 @@ public class CardMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return cardService.replenishCard(account, cardById(account, id), cardReplenishmentRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -57,7 +58,7 @@ public class CardMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return cardService.payByCard(account, cardById(account, id), payByCardRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -67,7 +68,7 @@ public class CardMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return cardService.cardSettings(account, cardById(account, id), cardSettingsRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 }

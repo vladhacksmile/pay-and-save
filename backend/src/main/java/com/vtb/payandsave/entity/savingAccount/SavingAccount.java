@@ -8,7 +8,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -25,7 +25,7 @@ public class SavingAccount {
     private float percent;
     private float profit;
     @NotNull
-    private Date date;
+    private LocalDateTime date;
     private boolean opened;
     @OneToOne
     @JoinColumn(name = "target_id")
@@ -37,6 +37,6 @@ public class SavingAccount {
     public SavingAccount(float percent) {
         this.percent = percent;
         this.opened = true;
-        this.date = new Date();
+        this.date = LocalDateTime.now();
     }
 }

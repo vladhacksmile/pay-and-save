@@ -4,4 +4,8 @@ input SignupRequest {
     username: String!
     # Пароль
     password: String!
+    # Имя
+    name: String!
+    # Фамилия
+    surname: String!
 }

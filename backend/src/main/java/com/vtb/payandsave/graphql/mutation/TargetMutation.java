@@ -2,6 +2,7 @@ package com.vtb.payandsave.graphql.mutation;
 
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.Target;
+import com.vtb.payandsave.exception.ExceptionMessages;
 import com.vtb.payandsave.exception.TargetNotFoundException;
 import com.vtb.payandsave.request.target.TargetReplenishmentRequest;
 import com.vtb.payandsave.request.target.TargetRequest;
@@ -32,7 +33,7 @@ public class TargetMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return targetService.add(account, targetRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -42,7 +43,7 @@ public class TargetMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return targetService.replenishment(account, targetById(account, id), targetReplenishmentRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -56,7 +57,7 @@ public class TargetMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return targetService.withdraw(account, targetById(account, id), targetWithdrawRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 
@@ -66,7 +67,7 @@ public class TargetMutation implements GraphQLMutationResolver {
             Account account = (Account) object;
             return targetService.update(account, targetById(account, id), targetRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 }

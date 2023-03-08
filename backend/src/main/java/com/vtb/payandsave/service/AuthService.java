@@ -7,9 +7,8 @@ import com.vtb.payandsave.request.auth.LoginRequest;
 import com.vtb.payandsave.request.auth.SignupRequest;
 import com.vtb.payandsave.response.JwtResponse;
 import com.vtb.payandsave.response.MessageResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +33,7 @@ public class AuthService {
         this.jwtUtils = jwtUtils;
     }
 
-    public JwtResponse authUser(LoginRequest loginRequest) {
+    public JwtResponse authUser(LoginRequest loginRequest) throws BadCredentialsException {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
@@ -45,7 +44,7 @@ public class AuthService {
 
         Account userDetails = (Account) authentication.getPrincipal();
 
-        return new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname());
+        return new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname(), "Используйте access_token на каждом авторизационном запросе! Добавьте заголовок Authorization с содержимым Bearer ACCESS_TOKEN!");
     }
 
     public MessageResponse registerUser(@RequestBody SignupRequest signupRequest) {
@@ -53,7 +52,7 @@ public class AuthService {
             return new MessageResponse("Phone number already exists!");
         }
 
-        Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()));
+        Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()), signupRequest.getName(), signupRequest.getSurname());
 
         accountRepository.save(account);
         return new MessageResponse("Phone number registered!");

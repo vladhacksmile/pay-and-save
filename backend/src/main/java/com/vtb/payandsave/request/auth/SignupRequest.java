@@ -18,6 +18,10 @@ public class SignupRequest {
     private String username;
     @NotBlank(message = "Пароль не должен быть пустым!")
     private String password;
+    @NotBlank(message = "Имя не должно быть пустым!")
+    private String name;
+    @NotBlank(message = "Фамлия не должна быть пустой!")
+    private String surname;
     private List<Target> targets = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
 }

@@ -1,7 +1,6 @@
 package com.vtb.payandsave.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.entity.savingAccount.SavingAccount;
 import com.vtb.payandsave.model.target.TargetPriority;
 import lombok.Getter;
@@ -10,8 +9,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -32,7 +30,7 @@ public class Target {
     private TargetPriority priority;
     private boolean isCompleted;
     @NotNull
-    private Date creationDate;
+    private LocalDateTime creationDate;
     @ManyToOne
     @JoinColumn(name = "account_id")
     @JsonIgnore
@@ -48,7 +46,7 @@ public class Target {
         this.amount = amount;
         this.priority = priority;
         this.isCompleted = false;
-        this.creationDate = new Date();
+        this.creationDate = LocalDateTime.now();
         this.account = account;
         this.savingAccount = savingAccount;
     }

@@ -1,6 +1,7 @@
 package com.vtb.payandsave.graphql.mutation;
 
 import com.vtb.payandsave.entity.Account;
+import com.vtb.payandsave.exception.ExceptionMessages;
 import com.vtb.payandsave.request.ProfileRequest;
 import com.vtb.payandsave.response.MessageResponse;
 import com.vtb.payandsave.service.ProfileService;
@@ -28,7 +29,7 @@ public class ProfileMutation implements GraphQLMutationResolver{
             Account account = (Account) object;
             return profileService.update(account, profileRequest);
         } else {
-            return null;
+            return new MessageResponse(ExceptionMessages.ACCOUNT_NOT_DEFINED);
         }
     }
 }
