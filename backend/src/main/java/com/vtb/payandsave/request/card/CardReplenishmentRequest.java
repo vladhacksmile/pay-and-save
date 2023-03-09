@@ -2,7 +2,7 @@ package com.vtb.payandsave.request.card;
 
 import lombok.*;
 
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,6 +10,6 @@ import javax.validation.constraints.PositiveOrZero;
 @Setter
 @Data
 public class CardReplenishmentRequest {
-    @PositiveOrZero(message = "Сумма пополнения должна быть положительной!")
+    @Positive(message = "Сумма пополнения должна быть положительной!")
     private float amount;
 }

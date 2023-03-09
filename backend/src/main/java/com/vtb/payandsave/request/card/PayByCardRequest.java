@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 @AllArgsConstructor
 @Getter
@@ -17,6 +17,6 @@ public class PayByCardRequest {
     private String name;
     @NotBlank(message = "Категория покупки не должна быть пустой!")
     private String category;
-    @PositiveOrZero(message = "Сумма покупки должна быть положительной!")
+    @Positive(message = "Сумма покупки должна быть положительной!")
     private Float amount;
 }

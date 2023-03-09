@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 @AllArgsConstructor
 @Getter
@@ -17,7 +17,7 @@ public class TargetRequest {
     private String icon_id;
     @NotBlank(message = "Имя цели не должно быть пустым!")
     private String name;
-    @PositiveOrZero(message = "Сумма цели должна быть положительной!")
+    @Positive(message = "Сумма цели должна быть положительной!")
     private Float amount;
     private TargetPriority priority = TargetPriority.HIGH;
     private boolean isSuperPriority = false;

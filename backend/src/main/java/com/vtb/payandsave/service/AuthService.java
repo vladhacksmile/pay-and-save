@@ -44,7 +44,7 @@ public class AuthService {
 
         Account userDetails = (Account) authentication.getPrincipal();
 
-        return new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname(), "Используйте access_token на каждом авторизационном запросе! Добавьте заголовок Authorization с содержимым Bearer ACCESS_TOKEN!");
+        return new JwtResponse(userDetails.getAccount_id(), jwt, userDetails.getUsername(), userDetails.getName(), userDetails.getSurname(),"Используйте access_token на каждом защищенном запросе! Добавьте заголовок Authorization с содержимым Bearer ACCESS_TOKEN!");
     }
 
     public MessageResponse registerUser(@RequestBody SignupRequest signupRequest) {

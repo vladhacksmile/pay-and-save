@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
 @NoArgsConstructor
 @Getter
@@ -15,6 +14,6 @@ import javax.validation.constraints.PositiveOrZero;
 public class TargetWithdrawRequest {
     @Positive(message = "ID карты должен быть положительным!")
     private Long card_id;
-    @PositiveOrZero(message = "Сумма цели должна быть положительной!")
+    @Positive(message = "Сумма цели должна быть положительной!")
     private float amount;
 }

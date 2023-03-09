@@ -16,7 +16,7 @@ type Card {
     cardTransactions: [CardTransaction]
     # Срок действия карты
     cardExpiry: String!
-    # Защифрованный код карты
+    # Зашифрованный код карты
     encryptedPan: String!
     # CVV код
     cvv: String!
